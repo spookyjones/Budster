@@ -1,7 +1,7 @@
 <h2><%= @strain %></h2>
 
 <ul>
-	<% @prices.each do |strain| %>
-	<li><%= strain.cost %></li>
+	<% @prices.each do |price| %>
+	<li><%= price.cost %> in <%= link_to price.region, price.region %></li>
 	<% end %>
 </ul>

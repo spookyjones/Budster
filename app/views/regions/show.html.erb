@@ -1,0 +1,7 @@
+<h2><%= @region %></h2>
+
+<ul>
+	<% @prices.each do |price| %>
+	<li><%= price.cost %> for 1oz of <%= link_to price.strain, price.strain %></li>
+	<% end %>
+</ul>

@@ -11,21 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150525025218) do
+ActiveRecord::Schema.define(version: 20150525052503) do
 
   create_table "prices", force: :cascade do |t|
     t.string   "cost"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "strain_id"
+    t.integer  "region_id"
   end
 
+  add_index "prices", ["region_id"], name: "index_prices_on_region_id"
   add_index "prices", ["strain_id"], name: "index_prices_on_strain_id"
+
+  create_table "regions", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "strains", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "region_id"
   end
+
+  add_index "strains", ["region_id"], name: "index_strains_on_region_id"
 
 end
