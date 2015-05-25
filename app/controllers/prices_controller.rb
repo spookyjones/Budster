@@ -5,6 +5,7 @@ class PricesController < ApplicationController
   # GET /prices.json
   def index
     @prices = Price.all
+    @strains = Strain.all
   end
 
   # GET /prices/1
