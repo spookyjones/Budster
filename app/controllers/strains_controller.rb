@@ -3,4 +3,8 @@ class StrainsController < ApplicationController
 		@strain = Strain.find(params[:id])
 		@prices = @strain.prices
 	end
+	
+	def index
+		@strains = Strain.all
+	end
 end
