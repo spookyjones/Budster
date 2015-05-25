@@ -15,7 +15,14 @@ class PricesController < ApplicationController
 
   # GET /prices/new
   def new
+    @strain_options = Strain.all.map{|s| [ s.name, s.id ] }
+    @region_options = Region.all.map{|r| [ r.name, r.id ] }
     @price = Price.new
+    @strain = Strain.new
+    @region = Region.new
+    @strains = Strain.all
+    @regions = Region.all
+
   end
 
   # GET /prices/1/edit
@@ -26,7 +33,7 @@ class PricesController < ApplicationController
   # POST /prices.json
   def create
     @price = Price.new(price_params)
-
+  	@strain = Strain.new(price_params)
     respond_to do |format|
       if @price.save
         format.html { redirect_to @price, notice: 'Price was successfully created.' }
@@ -66,10 +73,13 @@ class PricesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_price
       @price = Price.find(params[:id])
+      @price.strain_id = Price.find(params[:strain_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def price_params
       params.require(:price).permit(:cost)
+      params.require(:price).permit(:strain_id)
+      params.require(:price).permit(:region_id)
     end
 end

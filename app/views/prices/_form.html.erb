@@ -1,8 +1,8 @@
-<%= form_for(@price, url: new_price_path(@price), html: {method: "post"}) do |f| %>
+<%= form_for(@price) do |f| %>
   <% if @price.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@price.errors.count, "error") %> prohibited this price from being saved:</h2>
-  	     
+
       <ul>
       <% @price.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -15,16 +15,26 @@
     <%= f.label :cost %><br>
     <%= f.text_field :cost %>
   </div>
-  <div class="field">
+
+<div class="field">
     <%= f.label :strain %><br>
-    <%= options_for_select([@strains], 1) %>
-    <%= f.text_field :strain %>
-  </div>
-  <div class="field">
-    <%= f.label :region %><br>
-    <%= f.text_field :region %>
-  </div>
+    <%= f.fields_for @price.strain.build do |strain_form|
+    <%= f.select(:strain_id, @strain_options) %>
+</div>
+  
+<div class="field">	
+    <select name="region_id">
+      <%= f.label :region %><br>
+      <%= @regions.each do |region| %>
+        <option value="<%= region.id %>"><%= region.name %></option>
+      <% end %>
+    </select>
+    </div>
+    
+    
+    
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
