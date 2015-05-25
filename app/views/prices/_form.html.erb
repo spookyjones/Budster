@@ -19,7 +19,8 @@
 <div class="field">
     <%= f.label :strain %><br>
     <%= f.fields_for @price.strain.build do |strain_form| %>
-    <%= f.select(:strain_id, @strain_options) %>
+      <%= strain_form.select(:strain_id, @strain_options) %>
+    <% end %>
 </div>
   
 <div class="field">	
