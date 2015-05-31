@@ -16,22 +16,25 @@
     <%= f.text_field :cost %>
   </div>
 
-<div class="field">
-    <%= f.label :strain %><br>
-    <%= f.fields_for @price.strain.build do |strain_form| %>
-      <%= strain_form.select(:strain_id, @strain_options) %>
-    <% end %>
-</div>
   
-<div class="field">	
-    <select name="region_id">
-      <%= f.label :region %><br>
-      <%= @regions.each do |region| %>
-        <option value="<%= region.id %>"><%= region.name %></option>
-      <% end %>
-    </select>
-    </div>
-    
+    <div class="field">	
+      <select name="strain_id">
+        <%= f.label :strain %><br>
+        <%= @strains.each do |strain| %>
+          <option value="<%= strain.id %>"><%= strain.name %></option>
+        <% end %>
+      </select>
+   </div>
+  
+  <div class="field">	
+      <select name="region_id">
+        <%= f.label :region %><br>
+        <%= @regions.each do |region| %>
+          <option value="<%= region.id %>"><%= region.name %></option>
+        <% end %>
+      </select>
+   </div>
+      
     
     
   <div class="actions">

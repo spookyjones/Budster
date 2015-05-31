@@ -34,6 +34,9 @@ class PricesController < ApplicationController
   def create
     @price = Price.new(price_params)
   	@strain = Strain.new(price_params)
+    @prices = Price.all
+    @strains = Strain.all
+    @regions = Region.all
     respond_to do |format|
       if @price.save
         format.html { redirect_to @price, notice: 'Price was successfully created.' }
