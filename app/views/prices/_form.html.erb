@@ -16,27 +16,17 @@
     <%= f.text_field :cost %>
   </div>
 
-  
     <div class="field">	
-      <select name="strain_id">
-        <%= f.label :strain %><br>
-        <%= @strains.each do |strain| %>
-          <option value="<%= strain.id %>"><%= strain.name %></option>
-        <% end %>
-      </select>
+      <%= f.label :strain %><br>
+      <%= f.select :strain_id, options_for_select(@strains.map{ |s| [s.name, s.id]}) %>
    </div>
-  
+
   <div class="field">	
-      <select name="region_id">
-        <%= f.label :region %><br>
-        <%= @regions.each do |region| %>
-          <option value="<%= region.id %>"><%= region.name %></option>
-        <% end %>
-      </select>
+    <%= f.label :region %><br>
+    <%= f.select :region_id, options_for_select(@regions.map{ |r| [r.name, r.id]}) %>
    </div>
-      
-    
-    
+   <br>   
+       
   <div class="actions">
     <%= f.submit %>
   </div>

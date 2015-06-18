@@ -22,18 +22,20 @@ class PricesController < ApplicationController
     @region = Region.new
     @strains = Strain.all
     @regions = Region.all
-
   end
 
   # GET /prices/1/edit
   def edit
+    @prices = Price.all
+    @strains = Strain.all
+    @regions = Region.all
   end
 
   # POST /prices
   # POST /prices.json
   def create
     @price = Price.new(price_params)
-  	@strain = Strain.new(price_params)
+   #@strain = Strain.new(price_params)
     @prices = Price.all
     @strains = Strain.all
     @regions = Region.all
@@ -51,6 +53,9 @@ class PricesController < ApplicationController
   # PATCH/PUT /prices/1
   # PATCH/PUT /prices/1.json
   def update
+    @prices = Price.all
+    @strains = Strain.all
+    @regions = Region.all
     respond_to do |format|
       if @price.update(price_params)
         format.html { redirect_to @price, notice: 'Price was successfully updated.' }
@@ -76,13 +81,12 @@ class PricesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_price
       @price = Price.find(params[:id])
-      @price.strain_id = Price.find(params[:strain_id])
+      #@price.strain_id = Strain.find(params[:id])
+      #@price.region_id = Region.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def price_params
-      params.require(:price).permit(:cost)
-      params.require(:price).permit(:strain_id)
-      params.require(:price).permit(:region_id)
+      params.require(:price).permit(:cost, :strain_id, :region_id, :strain, :region, strain_attributes: [:id, :name], region_attributes: [:id, :name])
     end
 end
