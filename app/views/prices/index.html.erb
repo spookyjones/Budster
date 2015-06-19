@@ -8,6 +8,7 @@
   
   <table class="listing" summary="Prices list">
       <tr class="header">
+          <th></th>
           <th>Cost</th> 
           <th>Strain</th>   
           <th>Region</th>
@@ -15,13 +16,14 @@
       </tr>
       <% @prices.each do |price| %>
         <tr class="<%= cycle('odd', 'even') %>">
+          <td><%= price.position %></td>
           <td class="center">$<%= price.cost %></td>
           <td class="center"><%= link_to price.strain, price.strain %></td>
           <td class="center"><%= link_to price.region, price.region %></td>
           <td class="actions">
-            <%= link_to 'Show', price %>
-            <%= link_to 'Edit', edit_price_path(price) %>
-            <%= link_to 'Destroy', price, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to 'Show', price, :class => 'action show' %>
+            <%= link_to 'Edit', edit_price_path(price), :class => 'action edit' %>
+            <%= link_to 'Destroy', price, :class => 'action destroy', method: :delete, data: { confirm: 'Are you sure?' } %>
           </td>
         </tr>
       <% end %>

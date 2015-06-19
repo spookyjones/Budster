@@ -28,8 +28,13 @@
           <%= f.label :region %>:
           <%= f.select :region_id, options_for_select(@region_options) %>
          </div>
-         <br>   
-             
+   
+                  
+        <div class="field">
+          <%= f.label 'Position' %>:
+          <%= f.select :position, options_for_select(1..@prices.count) %>
+        </div> 
+         
         <div class="actions">
           <%= f.submit %>
         </div>

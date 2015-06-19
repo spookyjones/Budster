@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150525221419) do
+ActiveRecord::Schema.define(version: 20150619082445) do
 
   create_table "prices", force: :cascade do |t|
     t.string   "cost"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20150525221419) do
     t.datetime "updated_at", null: false
     t.integer  "strain_id"
     t.integer  "region_id"
+    t.integer  "position"
   end
 
   add_index "prices", ["region_id"], name: "index_prices_on_region_id"
@@ -28,7 +29,10 @@ ActiveRecord::Schema.define(version: 20150525221419) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "price_id"
   end
+
+  add_index "regions", ["price_id"], name: "index_regions_on_price_id"
 
   create_table "strains", force: :cascade do |t|
     t.string   "name"
@@ -36,6 +40,7 @@ ActiveRecord::Schema.define(version: 20150525221419) do
     t.datetime "updated_at", null: false
     t.integer  "region_id"
     t.integer  "price_id"
+    t.integer  "position"
   end
 
   add_index "strains", ["price_id"], name: "index_strains_on_price_id"

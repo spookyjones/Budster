@@ -4,7 +4,7 @@ class PricesController < ApplicationController
   # GET /prices
   # GET /prices.json
   def index
-    @prices = Price.all
+    @prices = Price.all.sorted
     @strains = Strain.all
   end
 
@@ -22,10 +22,13 @@ class PricesController < ApplicationController
     @region = Region.new
     @strains = Strain.all
     @regions = Region.all
+    @prices = Price.order('position Asc')
   end
 
   # GET /prices/1/edit
   def edit
+    @strain_options = Strain.all.map{|s| [ s.name, s.id ] }
+    @region_options = Region.all.map{|r| [ r.name, r.id ] }
     @prices = Price.all
     @strains = Strain.all
     @regions = Region.all
@@ -35,6 +38,7 @@ class PricesController < ApplicationController
   # POST /prices.json
   def create
     @price = Price.new(price_params)
+    @price.position = Price.count + 1
    #@strain = Strain.new(price_params)
     @prices = Price.all
     @strains = Strain.all
@@ -85,8 +89,9 @@ class PricesController < ApplicationController
       #@price.region_id = Region.find(params[:id])
     end
 
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def price_params
-      params.require(:price).permit(:cost, :strain_id, :region_id, :strain, :region, strain_attributes: [:id, :name], region_attributes: [:id, :name])
+      params.require(:price).permit(:cost, :position, :strain_id, :region_id, :strain, :region, strain_attributes: [:id, :name], region_attributes: [:id, :name])
     end
 end
