@@ -10,25 +10,33 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :cost %><br>
-    <%= f.text_field :cost %>
-  </div>
-
-    <div class="field">	
-      <%= f.label :strain %><br>
-      <%= f.select :strain_id, options_for_select(@strains.map{ |s| [s.name, s.id]}) %>
-   </div>
-
-  <div class="field">	
-    <%= f.label :region %><br>
-    <%= f.select :region_id, options_for_select(@regions.map{ |r| [r.name, r.id]}) %>
-   </div>
-   <br>   
-       
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<div class="center">
+  <table>
+    <tr>
+      <th>
+        <div class="field">
+          <%= f.label 'Price' %>:
+          <%= f.text_field :cost %>
+        </div>
+      
+          <div class="field">	
+            <%= f.label :strain %>:
+            <%= f.select :strain_id, options_for_select(@strain_options) %>
+         </div>
+      
+        <div class="field">	
+          <%= f.label :region %>:
+          <%= f.select :region_id, options_for_select(@region_options) %>
+         </div>
+         <br>   
+             
+        <div class="actions">
+          <%= f.submit %>
+        </div>
+      </th>
+    </tr>
+  </table>
+</div>
 <% end %>
+
 

@@ -1,8 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Cost:</strong>
-  <%= @price.cost %>
+  <strong>Price:</strong>
+  <%= @price.cost %><br />
+  <strong>Strain:</strong>
+  <%= link_to @price.strain, @price.strain %><br />
+  <strong>Region:</strong>
+  <%= link_to @price.region, @price.region %><br />  
 </p>
 
 <%= link_to 'Edit', edit_price_path(@price) %> |
