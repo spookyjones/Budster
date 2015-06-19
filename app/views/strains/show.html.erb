@@ -1,9 +1,42 @@
-<h2>Listing Prices for <%= @strain %></h2>
+<div class="price index">
+	<h2><%= @strain %></h2>
+	
+	
+	
+  <table class="listing" summary="strain summary">
+      <tr class="header">
+        <th class="center" colspan="1">Average</th>
+        <th class="center" colspan="1">Highest</th>
+        <th class="center" colspan="1">Lowest</th>
+      </tr>
 
-<ul>
-	<% @prices.each do |price| %>
-	<li><%= price.cost %> in <%= link_to price.region, price.region %></li>
-	<% end %>
-</ul>
+
+        <tr  class="<%= cycle('odd', 'even') %>">
+          <td class="center">$<%= @strain.prices.average(:cost).to_i %></td>
+          <td class="center">$<%= @strain.prices.maximum(:cost).to_i %></td>
+          <td class="center">$<%= @strain.prices.minimum(:cost).to_i %></td>
+        </tr>
+
+    </tbody>
+  </table>
+  
+  <br>
+  
+  <table class="listing" summary="strain prices">
+    <tr class="header">
+      <th class="center">Price</th>
+      <th class="center">State</th>
+      <th class="center">Time</th>
+    </tr>
+   
+   	<% @strain.prices.each do |price| %> 
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td class="center">$<%= price.cost %></td>
+        <td class="center"><%= link_to price.region, price.region %></td>
+        <td class="center"><%= price.created_at %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
 
 <%= link_to 'Home', prices_path %>

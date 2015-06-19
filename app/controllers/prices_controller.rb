@@ -3,6 +3,7 @@ class PricesController < ApplicationController
   layout 'application'
   # GET /prices
   # GET /prices.json
+
   def index
     @prices = Price.all.sorted
     @strains = Strain.all
@@ -85,11 +86,14 @@ class PricesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_price
       @price = Price.find(params[:id])
+      @prices = Price.order('position Asc')
       #@price.strain_id = Strain.find(params[:id])
       #@price.region_id = Region.find(params[:id])
     end
 
-
+  	def setup_navigation
+          @prices = Price.order('position Asc')
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def price_params
       params.require(:price).permit(:cost, :position, :strain_id, :region_id, :strain, :region, strain_attributes: [:id, :name], region_attributes: [:id, :name])

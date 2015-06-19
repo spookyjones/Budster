@@ -1,9 +1,7 @@
 <p id="notice"><%= notice %></p>
 <div class="prices index">
   <h2>Listing Prices</h1>
-  
-  <%= link_to("Strain List", strains_path, :class => 'action new') %>
-  <%= link_to("Add New Price", {:action => 'new'}, :class => 'action new') %>
+
 
   
   <table class="listing" summary="Prices list">
@@ -30,3 +28,6 @@
 
   </table>
   </div>
+  <br>
+  <%= link_to("Add New Price", {:action => 'new'}, :class => 'action new') %>
+  <%= link_to("Strain List", strains_path, :class => 'action new') %>
