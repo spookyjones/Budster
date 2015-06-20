@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+<div class="regions index">
+  <h2>Listing States</h1>
+  
+  <table class="listing" summary="State list">
+      <tr class="header">
+        <th colspan="1">Name</th>
+        <th colspan="1">Average</th>
+        <th colspan="1">Highest</th>
+        <th colspan="1">Lowest</th>
+        <th>Most Popular</th>
+      </tr>
+
+      <% @regions.each do |region| %>
+        <tr  class="<%= cycle('odd', 'even') %>">
+          <td><%= link_to region.name, region %></td>
+          <td class="center">$<%= region.prices.average(:cost).to_i %></td>
+          <td class="center">$<%= region.prices.maximum(:cost).to_i %></td>
+          <td class="center">$<%= region.prices.minimum(:cost).to_i %></td>
+          <td class="center"><<%= region.prices.maximum(:strain_id) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <br>
+  
+  <%= link_to 'Back', prices_path %>
+  
+</div>

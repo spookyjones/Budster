@@ -23,7 +23,7 @@ class PricesController < ApplicationController
     @region = Region.new
     @strains = Strain.all
     @regions = Region.all
-    @prices = Price.order('position Asc')
+    @prices = Price.order('position Desc')
   end
 
   # GET /prices/1/edit

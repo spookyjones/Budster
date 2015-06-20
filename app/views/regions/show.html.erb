@@ -1,9 +1,42 @@
-<h2>Listing Prices in <%= @region %></h2>
+<div class="regions index">
+	<h2>Listing Prices in <%= @region %></h2>
+	
+	
+	
+  <table class="listing" summary="region summary">
+      <tr class="header">
+        <th class="center" colspan="1">Average</th>
+        <th class="center" colspan="1">Highest</th>
+        <th class="center" colspan="1">Lowest</th>
+      </tr>
 
-<ul>
-	<% @prices.each do |price| %>
-	<li><%= price.cost %> for 1oz of <%= link_to price.strain, price.strain %></li>
-	<% end %>
-</ul>
+
+        <tr  class="<%= cycle('odd', 'even') %>">
+          <td class="center">$<%= @region.prices.average(:cost).to_i %></td>
+          <td class="center">$<%= @region.prices.maximum(:cost).to_i %></td>
+          <td class="center">$<%= @region.prices.minimum(:cost).to_i %></td>
+        </tr>
+
+    </tbody>
+  </table>
+  
+  <br>
+  
+  <table class="listing" summary="region prices">
+    <tr class="header">
+      <th class="center">Price</th>
+      <th class="center">Strain</th>
+      <th class="center">Time</th>
+    </tr>
+   
+   	<% @region.prices.each do |region| %> 
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td class="center">$<%= region.cost %></td>
+        <td class="center"><%= link_to region.strain, region.strain %></td>
+        <td class="center"><%= time_ago_in_words(region.created_at) %> ago</td>
+      </tr>
+    <% end %>
+  </table>
+</div>
 
 <%= link_to 'Home', prices_path %>

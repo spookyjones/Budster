@@ -2,7 +2,7 @@
 /* load after public.css */
 
 /* Structure */
-#content { padding-left: 56px; padding-right: 100px; }
+#content { padding-left: 56px; padding-right: 56px; }
 #content h2 { width: 100%; text-align: center; }
 
 .login form { margin: 100px 250px; }

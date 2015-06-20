@@ -6,11 +6,12 @@
   
   <table class="listing" summary="Prices list">
       <tr class="header">
-          <th></th>
-          <th>Cost</th> 
-          <th>Strain</th>   
-          <th>Region</th>
-          <th>Actions</th>
+          <th class="center"></th>
+          <th class="center">Cost</th> 
+          <th class="center">Strain</th>   
+          <th class="center">Region</th>
+          <th class="center">Created</th>
+          <th class="center">Actions</th>
       </tr>
       <% @prices.each do |price| %>
         <tr class="<%= cycle('odd', 'even') %>">
@@ -18,6 +19,7 @@
           <td class="center">$<%= price.cost %></td>
           <td class="center"><%= link_to price.strain, price.strain %></td>
           <td class="center"><%= link_to price.region, price.region %></td>
+          <td class="center"><%= time_ago_in_words(price.created_at) %> ago</td>
           <td class="actions">
             <%= link_to 'Show', price, :class => 'action show' %>
             <%= link_to 'Edit', edit_price_path(price), :class => 'action edit' %>
