@@ -5,6 +5,7 @@
         <th class="center" colspan="1"><%= sortable "average_price", "Average" %></th>
         <th class="center" colspan="1"><%= sortable "Highest" %></th>
         <th class="center" colspan="1"><%= sortable "Lowest" %></th>
+        <th class="center" colspan="1">Pictures</th>
       </tr>
 
       <% @strains.each do |strain| %>
@@ -14,6 +15,7 @@
           <td class="center">$<%= strain.prices.average(:cost).to_i %></td>
           <td class="center">$<%= strain.prices.maximum(:cost).to_i %></td>
           <td class="center">$<%= strain.prices.minimum(:cost).to_i %></td>
+          <td class="center"><img src="<%= thumb_of_strain(strain) %>"></td>
         </tr>
       <% end %>
     </tbody>

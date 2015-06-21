@@ -1,10 +1,16 @@
 class StrainsController < ApplicationController
 	layout 'application'
 	helper_method :sort_column, :sort_direction
+	require 'json'
 	
 	def show
 		@strain = Strain.find(params[:id])
 		@prices = @strain.prices
+		@leafly = Vaporizer::Strain.details(@strain.name.parameterize)
+		@description = @leafly['description']
+		@leafly2 = Vaporizer::Strain.photos(@strain.name.parameterize, { page: 0, take: 8 })
+		@leafly3 = @leafly2['photos']
+		@leaflyphotos = @leafly3#['thumb']
 	end
 		
 	def index

@@ -1,5 +1,5 @@
 <div class="price index">
-	<h2><%= @strain %></h2>
+	<h2><%= @strain.name.titleize %></h2>
 	
   <table class="listing" summary="strain summary">
       <tr class="header">
@@ -33,6 +33,33 @@
         <td class="center"><%= time_ago_in_words(price.created_at) %></td>
       </tr>
     <% end %>
+  </table>
+</div>
+<br>
+<div id="strain_description">
+  <table class="listing" summary="strain description">
+    <tr class="header">
+      <th class="center">Description</th>
+    </tr>
+    <tr>
+      <td><%= @description.html_safe %></td>
+    </tr>
+  </table>
+ </div>
+ <div id="pictures">
+  <table class="center">
+    <tr class="center">
+      <% photo1 = @leaflyphotos[1] %>
+      <td class="center"><img src="<%= photo1['fullSize'].html_safe %>"></td>
+    </tr>
+    <tr class="center">
+      <td class="center">
+        <% 7.times do |p| %>
+          <% photo = @leaflyphotos[p] %>
+          <img src="<%= photo['thumb'].html_safe %>">
+        <% end %>
+      </td>
+    </tr>
   </table>
 </div>
 

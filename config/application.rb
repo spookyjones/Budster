@@ -6,6 +6,14 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+require 'vaporizer'
+
+Vaporizer.configure do |config|
+  config.app_id = "0972b553"
+  config.app_key = "5ef6fdcad54a03aa1e4a2197957a1bee"
+  config.timeout = 3 # timeout for the requests, optional, in seconds
+end
+
 module Budster
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
