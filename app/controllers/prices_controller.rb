@@ -1,11 +1,12 @@
 class PricesController < ApplicationController
   before_action :set_price, only: [:show, :edit, :update, :destroy]
   layout 'application'
+  helper_method :sort_column, :sort_direction
   # GET /prices
   # GET /prices.json
 
   def index
-    @prices = Price.all.sorted
+    @prices = Price.order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page])
     @strains = Strain.all
   end
 
@@ -97,5 +98,13 @@ class PricesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def price_params
       params.require(:price).permit(:cost, :position, :strain_id, :region_id, :strain, :region, strain_attributes: [:id, :name], region_attributes: [:id, :name])
+    end
+    
+    def sort_column
+      Price.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
+    end
+    
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
     end
 end

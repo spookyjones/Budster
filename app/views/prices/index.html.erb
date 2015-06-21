@@ -2,17 +2,16 @@
 <div class="prices index">
   <h2>Listing Prices</h1>
 
-
-  
   <table class="listing" summary="Prices list">
       <tr class="header">
-          <th class="center"></th>
-          <th class="center">Cost</th> 
-          <th class="center">Strain</th>   
-          <th class="center">Region</th>
-          <th class="center">Created</th>
+          <th class="center"><%= sortable "position", "Pos" %></th>
+          <th class="center"><%= sortable "cost", "Price" %></th>
+          <th class="center"><%= sortable "strain_id", "Strain" %></th>  
+          <th class="center"><%= sortable "region_id", "Region" %></th>
+          <th class="center"><%= sortable "created_at", "Created" %></th>
           <th class="center">Actions</th>
       </tr>
+      
       <% @prices.each do |price| %>
         <tr class="<%= cycle('odd', 'even') %>">
           <td><%= price.position %></td>
@@ -29,6 +28,9 @@
       <% end %>
 
   </table>
+  
+  <%= will_paginate @prices %>
+  
   </div>
   <br>
   <%= link_to("Add New Price", {:action => 'new'}, :class => 'action new') %>

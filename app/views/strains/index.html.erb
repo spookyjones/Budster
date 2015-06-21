@@ -2,12 +2,22 @@
 <div class="strain index">
   <h2>Listing Strains</h1>
   
+  
+  <%= form_tag strains_path, :method => 'get' do %>
+    <%= hidden_field_tag :direction, params[:direction] %>
+    <%= hidden_field_tag :sort, params[:sort] %>
+    <p>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag "Search", :name => nil %>
+    </p>
+<% end %>
+
   <table class="listing" summary="Strains list">
       <tr class="header">
-        <th colspan="1">Name</th>
-        <th colspan="1">Average</th>
-        <th colspan="1">Highest</th>
-        <th colspan="1">Lowest</th>
+        <th colspan="1"><%= sortable "name", "Name" %></th>
+        <th colspan="1"><%= sortable "Average" %></th>
+        <th colspan="1"><%= sortable "Highest" %></th>
+        <th colspan="1"><%= sortable "Lowest" %></th>
       </tr>
 
       <% @strains.each do |strain| %>
@@ -21,6 +31,8 @@
     </tbody>
   </table>
   
+    <%= will_paginate @strains %>
+    
   <br>
   
   <%= link_to 'Back', prices_path %>

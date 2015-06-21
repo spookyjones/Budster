@@ -7,4 +7,12 @@ class Strain < ActiveRecord::Base
 	def to_s
 		name
 	end
+	
+	def self.search(search)
+	  if search
+	    where('name LIKE ?', "%#{search}%")
+	  else
+	    all
+	  end
+	end
 end

@@ -8,4 +8,7 @@ class Price < ActiveRecord::Base
 	
 	scope :sorted, lambda { order("prices.position ASC") }
 	scope :newest_first, lambda { order("prices.created_at DESC")}
+
+
+
 end
