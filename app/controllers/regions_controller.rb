@@ -2,6 +2,8 @@ class RegionsController < ApplicationController
 
 	def index
 		@regions = Region.all
+		@prices = Price.all
+		@strains = Strain.all
 	end
 	
 	def show
@@ -9,7 +11,5 @@ class RegionsController < ApplicationController
 		@prices = @region.prices
 	end
 	
-	def most_popular_strain(state)
-		state.group_by(:id).values.max_by(:strain).first
-	end
+
 end

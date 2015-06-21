@@ -91,6 +91,7 @@ class PricesController < ApplicationController
       #@price.strain_id = Strain.find(params[:id])
       #@price.region_id = Region.find(params[:id])
     end
+      
 
   	def setup_navigation
           @prices = Price.order('position Asc')

@@ -17,7 +17,7 @@
           <td class="center">$<%= region.prices.average(:cost).to_i %></td>
           <td class="center">$<%= region.prices.maximum(:cost).to_i %></td>
           <td class="center">$<%= region.prices.minimum(:cost).to_i %></td>
-          <td class="center"><<%= region.prices.maximum(:strain_id) %></td>
+          <td class="center"><%= Strain.find(most_popular_strain(region)).name || "none" %></td>
         </tr>
       <% end %>
     </tbody>
