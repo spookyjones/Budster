@@ -4,20 +4,20 @@
   
   <table class="listing" summary="State list">
       <tr class="header">
-        <th colspan="1">Name</th>
-        <th colspan="1">Average</th>
-        <th colspan="1">Highest</th>
-        <th colspan="1">Lowest</th>
-        <th>Most Popular</th>
+        <th colspan="1" class="center">Name</th>
+        <th colspan="1" class="center">Average</th>
+        <th colspan="1" class="center">Highest</th>
+        <th colspan="1" class="center">Lowest</th>
+        <th colspan="1" class="center">Most Popular</th>
       </tr>
 
       <% @regions.each do |region| %>
         <tr  class="<%= cycle('odd', 'even') %>">
-          <td><%= link_to region.name, region %></td>
+          <td class="center"><%= link_to region.name, region %></td>
           <td class="center">$<%= region.prices.average(:cost).to_i %></td>
           <td class="center">$<%= region.prices.maximum(:cost).to_i %></td>
           <td class="center">$<%= region.prices.minimum(:cost).to_i %></td>
-          <td class="center"><%= Strain.find(most_popular_strain(region)).name || "none" %></td>
+          <td class="center"><%= link_to Strain.find(most_popular_strain(region)).name.titleize, Strain.find(most_popular_strain(region)) %></td>
         </tr>
       <% end %>
     </tbody>

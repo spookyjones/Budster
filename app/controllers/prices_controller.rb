@@ -41,6 +41,10 @@ class PricesController < ApplicationController
   def create
     @price = Price.new(price_params)
     @price.position = Price.count + 1
+    
+    @strain = @price.strain
+    @strain.prices << @price
+    
    #@strain = Strain.new(price_params)
     @prices = Price.all
     @strains = Strain.all
@@ -88,8 +92,8 @@ class PricesController < ApplicationController
     def set_price
       @price = Price.find(params[:id])
       @prices = Price.order('position Asc')
-      #@price.strain_id = Strain.find(params[:id])
-      #@price.region_id = Region.find(params[:id])
+      #@price.strain_id = Strain.find(params[:id]).id
+      #@price.region_id = Region.find(params[:id]).id
     end
       
 

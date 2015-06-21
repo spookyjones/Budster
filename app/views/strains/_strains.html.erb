@@ -1,16 +1,16 @@
   <table class="listing" summary="Strains list">
       <tr class="header">
-        <th><%= sortable "strain_id", "ID" %></th>
-        <th colspan="1"><%= sortable "name", "Name" %></th>
-        <th colspan="1"><%= sortable "Average" %></th>
-        <th colspan="1"><%= sortable "Highest" %></th>
-        <th colspan="1"><%= sortable "Lowest" %></th>
+        <th class="center" colspan="1"><%= sortable "id", "Id" %></th>
+        <th class="center" colspan="1"><%= sortable "name", "Name" %></th>
+        <th class="center" colspan="1"><%= sortable "average_price", "Average" %></th>
+        <th class="center" colspan="1"><%= sortable "Highest" %></th>
+        <th class="center" colspan="1"><%= sortable "Lowest" %></th>
       </tr>
 
       <% @strains.each do |strain| %>
         <tr  class="<%= cycle('odd', 'even') %>">
-          <td><%= strain.id %></td>
-          <td><%= link_to strain.name, strain %></td>
+          <td class="center"><%= strain.id %></td>
+          <td class="center"><%= link_to strain.name.titleize, strain %></td>
           <td class="center">$<%= strain.prices.average(:cost).to_i %></td>
           <td class="center">$<%= strain.prices.maximum(:cost).to_i %></td>
           <td class="center">$<%= strain.prices.minimum(:cost).to_i %></td>
