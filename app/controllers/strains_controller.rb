@@ -7,14 +7,29 @@ class StrainsController < ApplicationController
 		@strain = Strain.find(params[:id])
 		@prices = @strain.prices
 		@leafly = Vaporizer::Strain.details(@strain.name.parameterize)
+		@category = @leafly['category']
 		@description = @leafly['description']
-		@leafly2 = Vaporizer::Strain.photos(@strain.name.parameterize, { page: 0, take: 8 })
-		@leafly3 = @leafly2['photos']
-		@leaflyphotos = @leafly3#['thumb']
+		@rating = @leafly['rating']
+		@leaflyphotos = @leafly['photos'] #returns an array of hashes for each photo
+		@starImage = @leafly['starImage'] #returns url
+		@testgraph = @leafly['testGraph']
+		@flavors2 = @leafly['flavors'] #returns an array of hashes for each flavor
+			
+		@key = @leafly["Key"]
+	    @id = @leafly["Id"]
+	    @symbol = @leafly["Symbol"]
+	    @overview = @leafly["Overview"]
+	    @url = @leafly["Url"]
+
+	    @effects = @leafly["Effects"] #returns an array of hashes for each effect
+	    @medical_uses = @leafly["Medical"]
+	    @side_effects = @leafly["Negative"]
+	    @reviews = @leafly["Reviews"]
+		
 	end
 		
 	def index
-	    @strains = Strain.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page])
+	    @strains = Strain.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 5, :page => params[:page])
 	end
 	
 	def new
@@ -28,4 +43,6 @@ class StrainsController < ApplicationController
     def sort_direction
       %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
     end
+	
+	
 end

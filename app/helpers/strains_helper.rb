@@ -5,4 +5,7 @@ module StrainsHelper
 		@leafly4 = @leafly3[1]
 		@leafly4['thumb'].html_safe
 	end
+
+	
+	
 end
