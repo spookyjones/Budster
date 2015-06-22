@@ -54,7 +54,7 @@ class PricesController < ApplicationController
     @regions = Region.all
     respond_to do |format|
       if @price.save
-        format.html { redirect_to @price, notice: 'Price was successfully created.' }
+        format.html { redirect_to "/", notice: 'Price was successfully created.' }
         format.json { render :show, status: :created, location: @price }
       else
         format.html { render :new }
@@ -71,7 +71,7 @@ class PricesController < ApplicationController
     @regions = Region.all
     respond_to do |format|
       if @price.update(price_params)
-        format.html { redirect_to @price, notice: 'Price was successfully updated.' }
+        format.html { redirect_to "/", notice: 'Price was successfully updated.' }
         format.json { render :show, status: :ok, location: @price }
       else
         format.html { render :edit }

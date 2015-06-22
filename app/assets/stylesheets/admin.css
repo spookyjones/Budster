@@ -14,10 +14,15 @@ a { text-decoration: none; }
 a:hover { text-decoration: underline; }
 
 /* large action buttons */
-a.action { float: center; padding: 2px 5px; margin: 0 0 1em 1em;
+a.action { 
+  -moz-box-shadow:4px 4px 4px darkgray;
+  -webkit-box-shadow:4px 4px 4px darkgray;
+  box-shadow:4px 4px 4px darkgray;
+  display: inline-block;
+  float: center; padding: 2px 5px; margin: 0 0 1em 1em;
   background: ghostwhite; color: black;  border: 2px solid gray;
   text-decoration: none; font-size: 0.8em; text-align: center; }
-a.action:hover { background: lightgreen; }
+a.action:hover { background: #B6D491; }
 
 /* small action buttons */
 .actions { width: 200px; }

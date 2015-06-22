@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150621091156) do
+ActiveRecord::Schema.define(version: 20150622153300) do
 
   create_table "prices", force: :cascade do |t|
     t.string   "cost"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20150621091156) do
     t.integer  "strain_id"
     t.integer  "region_id"
     t.integer  "position"
+    t.integer  "rating"
   end
 
   add_index "prices", ["region_id"], name: "index_prices_on_region_id"

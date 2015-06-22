@@ -2,7 +2,7 @@
 	<h2>Listing Prices in <%= @region %></h2>
 	
 	
-	
+<div id="parent2">	
   <table class="listing" summary="region summary">
       <tr class="header">
         <th class="center" colspan="1">Average</th>
@@ -19,9 +19,9 @@
 
     </tbody>
   </table>
-  
-  <br>
-  
+</div>  
+<br>
+<div id="parent2">	  
   <table class="listing" summary="region prices">
     <tr class="header">
       <th class="center">Price</th>
@@ -39,4 +39,6 @@
   </table>
 </div>
 
-<%= link_to 'Home', prices_path %>
+</div>
+<br>
+<%= link_to 'Home', prices_path, :class => 'action show' %>

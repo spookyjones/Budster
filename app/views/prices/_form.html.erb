@@ -1,3 +1,4 @@
+
 <%= form_for(@price) do |f| %>
   <% if @price.errors.any? %>
     <div id="error_explanation">
@@ -14,31 +15,35 @@
     <tr>
       <th>
       <td>
-        <div class="field">
+        <div>
           <%= f.label 'Price' %>:
           <%= f.text_field :cost %>
         </div>
         </td>
         <td> 
-          <div class="field">	
+          <div>	
             <%= f.label :strain %>:
             <%= f.select :strain_id, options_for_select(@strain_options) %>
          </div>
         <td> 
-        <div class="field">	
-          <%= f.label :region %>:
-          <%= f.select :region_id, options_for_select(@region_options) %>
-         </div>
-         </td>
+          <div>	
+            <%= f.label :region %>:
+            <%= f.select :region_id, options_for_select(@region_options) %>
+          </div>
+        </td>
         <td> 
-        <div class="actions">
-          <%= f.submit %>
-        </div>
+          <div>
+            <%= f.label :rating %>:
+            <%= f.select :rating, options_for_select(1..5) %>
+          </div>
+        </td> 
+        <td> 
+          <div class="action">
+            <%= f.submit %>
+          </div>
         </td>
       </th>
     </tr>
   </table>
 </div>
 <% end %>
-
-

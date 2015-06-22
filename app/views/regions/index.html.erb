@@ -1,8 +1,7 @@
 <p id="notice"><%= notice %></p>
-<div class="regions index">
-  <h2>Listing States</h1>
-  
-  <table class="listing" summary="State list">
+<div id="parent2"class="regions index">
+
+    <table class="listing" summary="State list">
       <tr class="header">
         <th colspan="1" class="center">Name</th>
         <th colspan="1" class="center">Average</th>
@@ -22,9 +21,9 @@
       <% end %>
     </tbody>
   </table>
+</div>
   
   <br>
   
-  <%= link_to 'Back', prices_path %>
-  
-</div>
+
+ <%= link_to 'Back', prices_path, :class => 'action show'%>
