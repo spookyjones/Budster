@@ -9,7 +9,7 @@ class PricesController < ApplicationController
     @strain_options = Strain.all.map{|s| [ s.name, s.id ] }
     @region_options = Region.all.map{|r| [ r.name, r.id ] }
     @price = Price.new
-    @prices = Price.order(sort_column + " " + sort_direction).paginate(:per_page => 25, :page => params[:page])
+    @prices = Price.order(sort_column + " " + sort_direction).paginate(:per_page => 15, :page => params[:page])
     @strains = Strain.all
   end
 
@@ -44,10 +44,8 @@ class PricesController < ApplicationController
   def create
     @price = Price.new(price_params)
     @price.position = Price.count + 1
-    
     @strain = @price.strain
     @strain.prices << @price
-    
    #@strain = Strain.new(price_params)
     @prices = Price.all
     @strains = Strain.all

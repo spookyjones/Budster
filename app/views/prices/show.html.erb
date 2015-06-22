@@ -4,7 +4,7 @@
   <strong>Price:</strong>
   <%= @price.cost %><br />
   <strong>Strain:</strong>
-  <%= link_to @price.strain, @price.strain %><br />
+  <%= link_to @price.strain.name.titleize, @price.strain %><br />
   <strong>Region:</strong>
   <%= link_to @price.region, @price.region %><br />  
 </p>
