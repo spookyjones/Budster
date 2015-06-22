@@ -1,11 +1,14 @@
 module StrainsHelper
-	def thumb_of_strain(strain1)
-		@leafly2 = Vaporizer::Strain.photos(strain1.name, { page: 0, take: 2 })
-		@leafly3 = @leafly2['photos']
-		@leafly4 = @leafly3[1]
-		@leafly4['thumb'].html_safe
-	end
 
+	def make_thumb(data)
+		@thumb2 = data['photos']
+		@thumb3 = @thumb2[1]
+		@thumb4 = @thumb3['thumb']
+	end
 	
-	
+	def strain_details(strain1)
+		@details = Vaporizer::Strain.details(strain1.name.parameterize)
+	end
+		
+
 end

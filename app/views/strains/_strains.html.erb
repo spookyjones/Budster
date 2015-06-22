@@ -9,13 +9,14 @@
       </tr>
 
       <% @strains.each do |strain| %>
+        <% @details = strain_details(strain) %>
         <tr  class="<%= cycle('odd', 'even') %>">
           <td class="center"><%= strain.id %></td>
-          <td class="center"><%= link_to strain.name.titleize, strain %></td>
+          <td class="center"><%= link_to strain.name.titleize, strain %><br><%= @details['description'].html_safe %></td>
           <td class="center">$<%= strain.prices.average(:cost).to_i %></td>
           <td class="center">$<%= strain.prices.maximum(:cost).to_i %></td>
           <td class="center">$<%= strain.prices.minimum(:cost).to_i %></td>
-          <td class="center"><img src="<%= thumb_of_strain(strain) %>"></td>
+          <td class="center"><img src="<%= make_thumb(@details) %>"></td>
         </tr>
       <% end %>
     </tbody>
