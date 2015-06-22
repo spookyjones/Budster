@@ -6,7 +6,10 @@ class PricesController < ApplicationController
   # GET /prices.json
 
   def index
-    @prices = Price.order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page])
+    @strain_options = Strain.all.map{|s| [ s.name, s.id ] }
+    @region_options = Region.all.map{|r| [ r.name, r.id ] }
+    @price = Price.new
+    @prices = Price.order(sort_column + " " + sort_direction).paginate(:per_page => 25, :page => params[:page])
     @strains = Strain.all
   end
 

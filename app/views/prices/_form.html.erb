@@ -2,7 +2,6 @@
   <% if @price.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@price.errors.count, "error") %> prohibited this price from being saved:</h2>
-
       <ul>
       <% @price.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -11,27 +10,31 @@
     </div>
   <% end %>
 <div class="center">
-  <table>
+  <table class="center">
     <tr>
       <th>
+      <td>
         <div class="field">
           <%= f.label 'Price' %>:
           <%= f.text_field :cost %>
         </div>
-      
+        </td>
+        <td> 
           <div class="field">	
             <%= f.label :strain %>:
             <%= f.select :strain_id, options_for_select(@strain_options) %>
          </div>
-      
+        <td> 
         <div class="field">	
           <%= f.label :region %>:
           <%= f.select :region_id, options_for_select(@region_options) %>
          </div>
-         
+         </td>
+        <td> 
         <div class="actions">
           <%= f.submit %>
         </div>
+        </td>
       </th>
     </tr>
   </table>

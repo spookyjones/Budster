@@ -1,7 +1,16 @@
 <p id="notice"><%= notice %></p>
-<div class="prices index">
-  <h2>Listing Prices</h1>
 
+<div id="new" alighn="center">
+  <table class="center">
+    <tr class="center">
+      <td>
+        <%= render 'form' %>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="prices index">
   <table class="listing" summary="Prices list">
       <tr class="header">
           <th class="center"><%= sortable "position", "Pos" %></th>
@@ -35,3 +44,4 @@
   <br>
   <%= link_to("Add New Price", {:action => 'new'}, :class => 'action new') %>
   <%= link_to("Strain List", strains_path, :class => 'action new') %>
+<img src="https://developer.leafly.com/images/assets/pbl-white.png" align="right">  
