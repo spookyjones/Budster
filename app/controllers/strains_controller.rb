@@ -13,18 +13,16 @@ class StrainsController < ApplicationController
 		@leaflyphotos = @leafly['photos'] #returns an array of hashes for each photo
 		@starImage = @leafly['starImage'] #returns url
 		@testgraph = @leafly['testGraph']
-		@flavors2 = @leafly['flavors'] #returns an array of hashes for each flavor
-			
-		@key = @leafly["Key"]
-	    @id = @leafly["Id"]
-	    @symbol = @leafly["Symbol"]
-	    @overview = @leafly["Overview"]
-	    @url = @leafly["Url"]
-
-	    @effects = @leafly["Effects"] #returns an array of hashes for each effect
-	    @medical_uses = @leafly["Medical"]
-	    @side_effects = @leafly["Negative"]
-	    @reviews = @leafly["Reviews"]
+		@flavors = @leafly['flavors'] #returns an array of hashes for each flavor
+		@effects = @leafly['effects']
+		@symptoms = @leafly['symptoms']	
+		@conditions = @leafly['conditions']
+		@grofinfo = @leafly['growInfo']
+		@permalink = @leafly['permalink']
+		@relatedstrains = @leafly['relatedStrains']
+		@parents = @leafly['parents']
+	    @reviews = @leafly["highlightedReviews"]
+		@video = @leafly['videoUrl']
 		
 	end
 		
