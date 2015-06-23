@@ -33,7 +33,7 @@
           </td>
           <% eff = s['NegativeEffects'] %>
           <td>
-            <% tags.each do |e| %>
+            <% eff.each do |e| %>
               <%= e['Name'] %>, 
             <% end %>
           </td>
