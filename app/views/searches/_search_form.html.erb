@@ -3,21 +3,22 @@
         <th>Name:</th>
         <th><%= text_field_tag :s_slug, params[:search_leafly] %></th>
         <th>Category:</th>
-        <th><%= select_tag :s_categories, options_for_select(["", "hybrid", "indica", "sativa"]) %></th>
+        <th><%= select_tag :s_categories, options_for_select(["", "hybrid", "indica", "sativa"], @categories) %></th>
         <th>Flavors:</th>
         <th>
-        <%= select_tag :s_flavors, options_for_select(@flavor_options) %>
+            <%= select_tag :s_flavors, options_for_select(@flavor_options, @flavors) %>
         </th>
         <th>Conditions:</th>
         <th>
-        <%= select_tag :s_conditions, options_for_select(@condtion_options) %>
+            <%= select_tag :s_conditions, options_for_select(@condtion_options, @conditions) %>
         </th>
         <th>Symptoms:</th>
-        <th><%= select_tag :s_symptoms, options_for_select(@symptoms_options) %>
-        </th>
-                                                                
+        <th>
+            <%= select_tag :s_symptoms, options_for_select(@symptoms_options, @symptoms) %>
+        </th>                                                     
         <th>Tags:</th>
-        <th><%= select_tag :tags, options_for_select(@tag_options) %>
+        <th>
+            <%= select_tag :tags, options_for_select(@tag_options, @tags) %>
         </th>
         <th><%= submit_tag "Search", :name => nil %></th>
     </table>

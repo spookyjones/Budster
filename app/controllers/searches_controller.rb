@@ -22,7 +22,7 @@ before_action :set_search
 													flavors: [@flavors],
 													conditions: [@conditions] },
 													search: @slug,
-													page: 0, take: 10
+													page: @page, take: @take
 													)
 													
 		@strain_results = @search_results['Strains']
@@ -32,6 +32,8 @@ before_action :set_search
 	private
 	
     def set_search
+		@page = params[:s_page] || 0
+		@take = params[:s_take] || 30
     	@slug = params[:s_slug] || ""
 		@conditions = params[:s_conditions] || ""
 		@flavors = params[:s_flavors] || ""

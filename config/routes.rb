@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
+  resources :reviews
   resources :prices
   resources :strains
   resources :regions
   
   match '/searches' => 'searches#index', :via => :get, :as => :searches
   match '/searches/search_leafly' => 'searches#search_leafly', :via => :post, :as => :search_leafly
-
-
+  match '/searches/next' => 'searches#search_leafly', :via => :post, :as => :next_results_page	
+  match '/searches/prev' => 'searches#search_leafly', :via => :post, :as => :prev_results_page
+  	
   root 'prices#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

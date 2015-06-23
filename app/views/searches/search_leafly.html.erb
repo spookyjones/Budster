@@ -10,26 +10,22 @@
     </table>
   </div>
 <br><br>
+
+
 <div id="parent2"><%= render 'search_results' %></div>
   
 
     
   <br>
   
-  <%= link_to 'Back', prices_path, :class => 'action show' %>
+  <%= link_to 'Previous Page', search_leafly_path, { :class => 'action show', :method => "POST", :s_page =>  0 } %>
+  <%= link_to 'Next Page', search_leafly_path, { :class => 'action show', :method => "POST", :s_page => 2 } %>
   
 
-
+<%= @page %>
   
 </div>
-
-<%= @slug %><br><br>
-<%= @conditions %><br><br>
-<%= @flavors %><br><br>
-<%= @categories %><br><br>
-<%= @symptoms %><br><br>
-<%= @tags %><br><br>
-<%= @search_results %>
+<br><br>
 
 
    <img src="https://developer.leafly.com/images/assets/pbl-white.png" align="right">
