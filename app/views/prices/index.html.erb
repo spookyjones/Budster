@@ -34,11 +34,11 @@
           <td class="center"><%= time_ago_in_words(price.created_at) %> ago</td>
           <td class="actions">
             <%= link_to 'Show', price, :class => 'action show' %>
-            <%= link_to 'Edit', edit_price_path(price), :class => 'action edit' %>
-            <%= link_to 'Destroy', price, :class => 'action destroy', method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to 'Find Near Me', price, :class => 'action show' %>
+            <%= link_to 'Info', price.strain, :class => 'action show' %>
           </td>
-        </tr>
-      <% end %>
+          </tr>
+        <% end %>
 
   </table>
   

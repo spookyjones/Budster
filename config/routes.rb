@@ -2,6 +2,11 @@ Rails.application.routes.draw do
   resources :prices
   resources :strains
   resources :regions
+  
+  match '/searches' => 'searches#index', :via => :get, :as => :searches
+  match '/searches/search_leafly' => 'searches#search_leafly', :via => :post, :as => :search_leafly
+
+
   root 'prices#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,28 +1,26 @@
 <div class="price index">
 	<h2><%= link_to @strain.name.titleize, @permalink %></h2>
-	
-  <table class="listing" summary="strain summary">
-      <tr class="header">
-        <th class="center" colspan="1">Average</th>
-        <th class="center" colspan="1">Highest</th>
-        <th class="center" colspan="1">Lowest</th>
-        <th class="center" colspan="1">Rating</th>
-        <th class="center" colspan="1">Category</th>
-      </tr>
-
-        <tr  class="<%= cycle('odd', 'even') %>">
-          <td class="center">$<%= @strain.prices.average(:cost).to_i %></td>
-          <td class="center">$<%= @strain.prices.maximum(:cost).to_i %></td>
-          <td class="center">$<%= @strain.prices.minimum(:cost).to_i %></td>
-          <td class="center"><%= @rating %> out of 5</td>
-          <td class="center"><%= @category %></td>
-        </tr>
-
-    </tbody>
-  </table>
-  
+    <div id="parent2">  	
+      <table class="listing" summary="strain summary">
+          <tr class="header">
+            <th class="center" colspan="1">Average</th>
+            <th class="center" colspan="1">Highest</th>
+            <th class="center" colspan="1">Lowest</th>
+            <th class="center" colspan="1">Rating</th>
+            <th class="center" colspan="1">Category</th>
+          </tr>
+    
+            <tr  class="<%= cycle('odd', 'even') %>">
+              <td class="center">$<%= @strain.prices.average(:cost).to_i %></td>
+              <td class="center">$<%= @strain.prices.maximum(:cost).to_i %></td>
+              <td class="center">$<%= @strain.prices.minimum(:cost).to_i %></td>
+              <td class="center"><%= @rating %> out of 5</td>
+              <td class="center"><%= @category %></td>
+            </tr>
+      </table>
+    </div>
   <br>
-  
+<div id="parent2">
   <table class="listing" summary="strain prices">
     <tr class="header">
       <th class="center">Price</th>
@@ -43,70 +41,72 @@
 
 <br>
 
-<div id="container">
+<div id="parent2">
   <table class="listing">
     <tr class="center">
       <td>
-        <div id="flavors" class="center" align="center">
+        <div id="parent" class="center" align="center">
           <table class="center" summary="flavors">
             <tr class="header">
               <th class="center">Flavors</th>
             </tr>
-            <tr class="center">
-              <% @flavors.each do |flavor| %>
+            <% @flavors.each do |flavor| %>
+              <tr class="center">
                 <td class="center"><%= flavor['name'] %></td>
-              <% end %>
-            </tr>
+              </tr>
+            <% end %>
           </table>
-         </div>
+        </div>
         
-        <br>
-        
-        <div id="effects" class="center" align="center">
+       
+        </td>
+        <td>
+        <div id="parent" class="center" align="center">
           <table class="listing" summary="effects">
             <tr class="header">
               <th class="center">Effects</th>
             </tr>
-            <tr class="center">
-              <% @effects.each do |effect| %>
+            <% @effects.each do |effect| %>
+              <tr class="center">
                 <td class="center"><%= effect['name'] %></td>
-              <% end %>
-            </tr>
+              </tr>
+            <% end %>
           </table>
         </div>
-         
-        <br>
-          
-        <div id="symptoms" class="center" align="center">
+        </td> 
+       
+        <td>  
+        <div id="parent" class="center" align="center">
           <table class="listing" summary="symptoms">
             <tr class="header">
               <th class="center">Symptoms</th>
             </tr>
-            <tr class="center">
-              <% @symptoms.each do |symptom| %>
+            <% @symptoms.each do |symptom| %>
+              <tr class="center">
                 <td class="center"><%= symptom['name'] %></td>
-              <% end %>
-            </tr>
+              </tr>
+            <% end %>
           </table>
         </div>
+        </td>
+        <td> 
+   
          
-        <br>
-         
-        <div id="conditions" class="center" align="center">
+        <div id="parent" class="center" align="center">
           <table class="listing" summary="conditions">
             <tr class="header">
               <th class="center">Conditions</th>
             </tr>
-            <tr class="center">
-              <% @conditions.each do |condition| %>
+            <% @conditions.each do |condition| %>
+              <tr class="center">
                 <td class="center"><%= condition['name'] %></td>
-              <% end %>
-            </tr>
+              </tr>
+            <% end %>
           </table>
         </div>
         </td>
         <td>
-          <div id="related" class="center" align="center">
+          <div id="parent" class="center" align="center">
             <table class="listing" summary="related">
               <tr class="header">
                 <th class="center" colspan="2">Related Strains</th>
@@ -121,7 +121,7 @@
           </div>
         </td>
         <td align="right">
-          <div id="parents" class="center" align="right">
+          <div id="parent" class="center" align="right">
             <table class="listing" summary="related">
               <tr class="header">
                 <th class="center" colspan="2">Parents</th>
@@ -141,7 +141,7 @@
 <br>
 <br>
 
-<div id="strain_description" class="center" align="center">
+<div id="parent" class="center" align="center">
   <table class="center" summary="strain description">
     <tr class="header">
       <th class="center">Description</th>
@@ -153,16 +153,16 @@
 </div>
 
 <br>
+<br>
 
-
-<div id="reviews" class="center" align="center">
+<div id="parent" class="center" align="center">
   <table class="center" summary="strain reviews">
     <tr class="header">
       <th class="center">Reviews</th>
     </tr>
     <% @reviews.each do |review| %>
     <tr>
-      <td class="center"><%= review['text'].html_safe %> by <%= review['username'] %></td>
+      <td class="center"><%= review['text'].html_safe %><br> - by <%= review['username'] %></td>
     </tr>
     <% end %>
   </table>
@@ -175,7 +175,7 @@
 
 
 <br>
- <div id="pictures">
+ <div id="parent">
   <table class="center">
     <tr class="center">
       <% 1.times do |p| %>
@@ -197,7 +197,7 @@
   </table>
 </div>
 
-
+<br>
 
 
 <%= link_to 'Home', prices_path, :class => 'action show' %>
