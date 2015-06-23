@@ -6,53 +6,18 @@
         <th><%= select_tag :s_categories, options_for_select(["", "hybrid", "indica", "sativa"]) %></th>
         <th>Flavors:</th>
         <th>
-        <%= select_tag :s_flavors, options_for_select(["", "ammonia", "apple", "apricot",
-                                                               "berry", "bluecheese", "blueberry",
-                                                               "butter", "cheese", "chemical",
-                                                               "chestnut", "citrus", "coffee",
-                                                               "diesel", "earthy", "flowery",
-                                                               "grape", "grapefruit", "honey",
-                                                               "lavender", "lemon", "lime",
-                                                               "mango", "menthol", "mint",
-                                                               "minty", "nutty", "orange",
-                                                               "peach", "pear", "pepper", "pine",
-                                                               "pineapple", "plum", "pungent", 
-                                                               "rose", "sage", "skunk", 
-                                                               "spicyherbal", "strawberry", 
-                                                               "sweet", "tar", "tea", "tobacco", 
-                                                               "treefruit", "tropical", "vanilla",
-                                                               "violet", "woody" 
-                                                       ]) %>
+        <%= select_tag :s_flavors, options_for_select(@flavor_options) %>
         </th>
         <th>Conditions:</th>
         <th>
-        <%= select_tag :s_conditions, options_for_select(["", "addadhd", "alzheimers", "anorexia",
-                                                              "anxiety", "arthritis", "asthma", 
-                                                              "bipolardisorder", "cachexia", "cancer", 
-                                                              "crohnsdisease", "epilepsy", "fibromyalgia", 
-                                                              "gastrointestinaldisorder", "glaucoma", 
-                                                              "hivaids", "hypertension", "migraines", 
-                                                              "multiplesclerosis", "musculardystrophy", 
-                                                              "parkinsons", "phantomlimbpain", "pms", "ptsd",
-                                                              "spinalcordinjury", "tinnitus", 
-                                                              "tourettessyndrome"
-                                                          ]) %>
+        <%= select_tag :s_conditions, options_for_select(@condtion_options) %>
         </th>
         <th>Symptoms:</th>
-        <th><%= select_tag :s_symptoms, options_for_select(["", "cramps", "depression", "eyepressure", 
-                                                                "fatigue", "headaches", "inflammation",
-                                                                "insomnia", "lackofappetite", "musclespasms",
-                                                                "nausea", "pain", "seizures", "spasticity",
-                                                                "stress"
-                                                          ]) %>
+        <th><%= select_tag :s_symptoms, options_for_select(@symptoms_options) %>
         </th>
                                                                 
         <th>Tags:</th>
-        <th><%= select_tag :tags, options_for_select(["", "anxious", "aroused", "creative", "dizzy", "dryeyes",
-                                                          "drymouth", "energetic", "euphoric", "focused", 
-                                                          "giggly", "happy", "hungry", "paranoid", "relaxed",
-                                                           "sleepy", "talkative", "tingly", "uplifted"
-                                                      ]) %>
+        <th><%= select_tag :tags, options_for_select(@tag_options) %>
         </th>
         <th><%= submit_tag "Search", :name => nil %></th>
     </table>

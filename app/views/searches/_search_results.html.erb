@@ -1,11 +1,43 @@
   <table class="listing" summary="Strains list">
       <tr class="header">
         <th class="center" colspan="1">Name</th>
-        <th class="center" colspan="1">Pictures</th>
+        <th class="center" colspan="1">Category</th>
+        <th class="center" colspan="1">Rating</th>
+        <th class="center" colspan="1">Conditions</th>
+        <th class="center" colspan="1">Flavors</th>
+        <th class="center" colspan="1">Tags</th>
+        <th class="center" colspan="1">Negative Effects</th>
       </tr>
-      <td><%= @search_results %></td>
-      <td></td>
-
-    </tbody>
+      <% @strain_results.each do |s| %>
+        <tr>
+          <td><%= s['Name'] %></td>
+          <td><%= s['Category'] %></td>
+          <td><%= s['Rating'] %></td>
+          <% conds = s['Conditions'] %>
+          <td>
+            <% conds.each do |c| %>
+              <%= c['Name'] %>, 
+            <% end %>
+          </td>
+          <% flavs = s['Flavors'] %>
+          <td>
+            <% flavs.each do |f| %>
+              <%= f['Name'] %>, 
+            <% end %>
+          </td>
+          <% tags = s['Tags'] %>
+          <td>
+            <% tags.each do |t| %>
+              <%= t['Name'] %>, 
+            <% end %>
+          </td>
+          <% eff = s['NegativeEffects'] %>
+          <td>
+            <% tags.each do |e| %>
+              <%= e['Name'] %>, 
+            <% end %>
+          </td>
+        <% end %>
+     </tr>
   </table>
-  
+

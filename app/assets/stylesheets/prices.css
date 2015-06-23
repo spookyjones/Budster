@@ -50,12 +50,22 @@ a:hover {}
 /* Content */
 #content h2 { color: darkgray; }
 
+/* tables */
+table{ background: white }
 
 /* box shadow */
 div#parent{
 -moz-box-shadow:4px 4px 4px darkgray;
 -webkit-box-shadow:4px 4px 4px darkgray;
 box-shadow:4px 4px 4px darkgray;
+display: inline-block;
+}
+
+div#background{
+-moz-box-shadow:4px 4px 4px darkgray;
+-webkit-box-shadow:4px 4px 4px darkgray;
+box-shadow:4px 4px 4px darkgray;
+background: darkgray;
 display: inline-block;
 }
 
