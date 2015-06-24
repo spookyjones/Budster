@@ -1,45 +1,4 @@
 <div class="price index">
-	<h2><%= link_to @strain.name.titleize, @permalink %></h2>
-    <div id="parent2">  	
-      <table class="listing" summary="strain summary">
-          <tr class="header">
-            <th class="center" colspan="1">Average</th>
-            <th class="center" colspan="1">Highest</th>
-            <th class="center" colspan="1">Lowest</th>
-            <th class="center" colspan="1">Rating</th>
-            <th class="center" colspan="1">Category</th>
-          </tr>
-    
-            <tr  class="<%= cycle('odd', 'even') %>">
-              <td class="center">$<%= @strain.prices.average(:cost).to_i %></td>
-              <td class="center">$<%= @strain.prices.maximum(:cost).to_i %></td>
-              <td class="center">$<%= @strain.prices.minimum(:cost).to_i %></td>
-              <td class="center"><%= @rating %> out of 5</td>
-              <td class="center"><%= @category %></td>
-            </tr>
-      </table>
-    </div>
-  <br>
-<div id="parent2">
-  <table class="listing" summary="strain prices">
-    <tr class="header">
-      <th class="center">Price</th>
-      <th class="center">State</th>
-      <th class="center">Time</th>
-    </tr>
-   
-   	<% @strain.prices.each do |price| %> 
-      <tr class="<%= cycle('odd', 'even') %>">
-        <td class="center">$<%= price.cost %></td>
-        <td class="center"><%= link_to price.region, price.region %></td>
-        <td class="center"><%= time_ago_in_words(price.created_at) %> ago</td>
-      </tr>
-    <% end %>
-  </table>
-</div>
-
-
-<br>
 
 <div>
   <div align="center" vertical-align="middle">
@@ -51,8 +10,8 @@
                 </tr>
                   <% @parents.each do |parent| %>
                     <tr class="<%= cycle('odd', 'even') %>">
-                      <td class="center"><%= link_to parent['name'], parent['permalink'] %></td>
-                      <td class="center"><%= parent['category'] %></td>
+                      <td class="center"><%= link_to parent['name'], show_path( :s_slug => parent['name'].parameterize )%></td>
+                        <td><%= link_to parent['category'], search_leafly_path( :s_categories => parent['category'].parameterize ), { :method => "POST" } %></td>
                     </tr>
                   <% end %>
                 </table>

@@ -48,7 +48,7 @@ a.action:hover { background: #B6D491; color: whitesmoke}
   border-top: 1px dotted #666666; }
 
 /* zebra striping for table rows */
-.odd { background: #edf4e4; }
+.odd { background: #e4efd6; }
 .even { background: #f6faf1; }
 
 /* status_tag */

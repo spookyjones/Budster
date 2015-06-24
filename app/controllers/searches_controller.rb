@@ -6,7 +6,30 @@ before_action :set_search
 		@tag_options = tags
 		@condtion_options = conditions
 	end
-
+	
+	def show
+		@flavor_options = flavors
+		@symptoms_options = symptoms
+		@tag_options = tags
+		@leafly = Vaporizer::Strain.details(params[:s_slug])
+		@category = @leafly['category']
+		@description = @leafly['description']
+		@rating = @leafly['rating']
+		@leaflyphotos = @leafly['photos'] #returns an array of hashes for each photo
+		@starImage = @leafly['starImage'] #returns url
+		@testgraph = @leafly['testGraph']#returns url
+		@flavors = @leafly['flavors'] #returns an array of hashes for each flavor
+		@effects = @leafly['effects']#returns an array of hashes
+		@symptoms = @leafly['symptoms']	#returns an array of hashes
+		@conditions = @leafly['conditions']#returns an array of hashes
+		@growinfo = @leafly['growInfo']
+		@permalink = @leafly['permalink']
+		@relatedstrains = @leafly['relatedStrains']#returns an array of hashes
+		@parents = @leafly['parents']#returns an array of hashes
+	    @reviews = @leafly["highlightedReviews"]#returns an array of hashes
+		@video = @leafly['videoUrl']
+	end
+	
 	def search_leafly
 		@db_strains = Strain.all
 		@flavor_options = flavors

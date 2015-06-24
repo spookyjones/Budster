@@ -3,7 +3,7 @@
         <th class="center" colspan="1">Name</th>
         <th class="center" colspan="1">Category</th>
         <th class="center" colspan="1">Rating</th>
-        <th class="center" colspan="1">Conditions</th>
+        <th class="center" colspan="1">Medicinal</th>
         <th class="center" colspan="1">Flavors</th>
         <th class="center" colspan="1">Tags</th>
         <th class="center" colspan="1">Negative Effects</th>
@@ -11,7 +11,7 @@
       </tr>
       <% @strain_results.each do |s| %>
         <tr class="<%= cycle('odd', 'even') %>">
-          <td><%= s['Name'] %></td>
+          <td><%= link_to s['Name'], show_path( :s_slug => s['Name'].parameterize ) %></td>
           <td><%= link_to s['Category'], search_leafly_path( :s_categories => s['Category'].parameterize ), { :method => "POST" } %></td>
           <td><%= s['Rating'] %></td>
           <% conds = s['Conditions'] %>
