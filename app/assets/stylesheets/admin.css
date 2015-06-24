@@ -19,10 +19,11 @@ a.action {
   -webkit-box-shadow:4px 4px 4px darkgray;
   box-shadow:4px 4px 4px darkgray;
   display: inline-block;
+  border-radius: 6px;
   float: center; padding: 2px 5px; margin: 0 0 1em 1em;
   background: ghostwhite; color: black;  border: 2px solid gray;
   text-decoration: none; font-size: 0.8em; text-align: center; }
-a.action:hover { background: #B6D491; }
+a.action:hover { background: #B6D491; color: whitesmoke}
 
 /* small action buttons */
 .actions { width: 200px; }
@@ -48,7 +49,7 @@ a.action:hover { background: #B6D491; }
 
 /* zebra striping for table rows */
 .odd { background: whitesmoke; }
-.even { background: none; }
+.even { background: white; }
 
 /* status_tag */
 span.status { display: block; width: 10px; height: 10px;

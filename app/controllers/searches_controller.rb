@@ -6,7 +6,7 @@ before_action :set_search
 		@tag_options = tags
 		@condtion_options = conditions
 	end
-	
+
 	def search_leafly
 		@db_strains = Strain.all
 		@flavor_options = flavors
@@ -29,6 +29,8 @@ before_action :set_search
 
 	end
 	
+	
+	
 	private
 	
     def set_search
@@ -45,7 +47,7 @@ before_action :set_search
     end
 	
 	def search_params
-		params.permit(:s_slug, :s_categories, :tags, :s_symptoms, :s_categories, :s_flavors, :s_conditions)
+		params.permit(:s_slug, :s_categories, :tags, :s_symptoms, :s_categories, :s_flavors, :s_conditions, :s_page)
 	end
 	
 	def flavors

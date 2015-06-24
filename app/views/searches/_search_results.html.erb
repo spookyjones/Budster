@@ -9,7 +9,7 @@
         <th class="center" colspan="1">Negative Effects</th>
       </tr>
       <% @strain_results.each do |s| %>
-        <tr>
+        <tr class="<%= cycle('odd', 'even') %>">
           <td><%= s['Name'] %></td>
           <td><%= s['Category'] %></td>
           <td><%= s['Rating'] %></td>

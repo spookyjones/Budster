@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150622153300) do
+ActiveRecord::Schema.define(version: 20150623220002) do
 
   create_table "prices", force: :cascade do |t|
     t.string   "cost"
@@ -36,6 +36,16 @@ ActiveRecord::Schema.define(version: 20150622153300) do
 
   add_index "regions", ["price_id"], name: "index_regions_on_price_id"
   add_index "regions", ["strain_id"], name: "index_regions_on_strain_id"
+
+  create_table "reviews", force: :cascade do |t|
+    t.string   "name"
+    t.string   "review"
+    t.integer  "price_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "reviews", ["price_id"], name: "index_reviews_on_price_id"
 
   create_table "strains", force: :cascade do |t|
     t.string   "name"
