@@ -30,14 +30,14 @@ a:hover {}
 /* Structure */
 #header { 
   height: 5em; padding-top: 1em; text-align: center;
-  background: whitesmoke; color: darkgray; border: 2px darkgray solid }
+  background: #edf4e4 }
 #header h1 { margin: 0; padding: 0; color: #B6D491; text-shadow: 2px 2px darkgray }
-#main { min-height: 500px; background: white; }
+#main { min-height: 500px; background: #f6faf1; }
 #navigation { float: left; width: 140px; min-height: 480px; padding: 10px; 
   background: #94B26F; color: #4C2516; }
 #content { padding: 10px; float: center }
 #footer { clear: both; height: 2.5em; text-align: right;
-  background: #4C2516; color: white; }
+  background: #B6D491; color: white; }
 #footer p { margin: 0; padding: 0.5em 1em; }
 
 /* Navigation */
@@ -63,7 +63,12 @@ border-radius: 25px;
 }
 
 div#background{
-  
+-moz-box-shadow:10px 10px 10px darkgray;
+-webkit-box-shadow:10px 10px 10px darkgray;
+box-shadow:10px 10px 10px darkgray;
+display: inline-block;
+border-collapse: collapse;
+border-radius: 25px;
 }
 
 div#parent2{

@@ -7,6 +7,7 @@
         <th class="center" colspan="1">Flavors</th>
         <th class="center" colspan="1">Tags</th>
         <th class="center" colspan="1">Negative Effects</th>
+        <th class="center" colspan="1">Actions</th>
       </tr>
       <% @strain_results.each do |s| %>
         <tr class="<%= cycle('odd', 'even') %>">
@@ -37,6 +38,8 @@
               <%= e['Name'] %>, 
             <% end %>
           </td>
+          <td>
+              
         <% end %>
      </tr>
   </table>

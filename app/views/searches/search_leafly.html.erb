@@ -16,12 +16,13 @@
 
 
   <br>
-  
-  <%= link_to 'Previous Page', search_leafly_path( :s_page => (@page = (@page.to_i - 1))), { :class => 'action show', :method => "POST" } %>
-  <%= link_to 'Next Page', search_leafly_path( :s_page => (@page = (@page.to_i + 1))), { :class => 'action show', :method => "POST" } %>
+<% if @page.to_i > 0 %>
+  <%= link_to 'Previous Page', search_leafly_path( :s_page => (@page.to_i - 1) ), { :class => 'action show', :method => "POST" } %>
+  <%= link_to 'Next Page', search_leafly_path( :s_page => (@page.to_i + 1)), { :class => 'action show', :method => "POST" } %>
+<% else %>
+  <%= link_to 'Next Page', search_leafly_path( :s_page => (@page.to_i + 1)), { :class => 'action show', :method => "POST" } %>
+<% end %>
 
-
-<%= @page %>
   
 </div>
 <br><br>

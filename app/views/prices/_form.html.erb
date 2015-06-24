@@ -12,28 +12,28 @@
   <% end %>
 <div class="center">
   <table class="center">
-    <tr>
+    <tr class="center">
       <th>
       <td>
         <div>
-          <%= f.label 'Price' %>:
+          <b><%= f.label 'Price' %>:</b>
           <%= f.text_field :cost %>
         </div>
         </td>
         <td> 
           <div>	
-            <%= f.label :strain %>:
+            <b><%= f.label :strain %>:</b>
             <%= f.select :strain_id, options_for_select(@strain_options) %>
          </div>
         <td> 
           <div>	
-            <%= f.label :region %>:
+            <b><%= f.label :region %>:</b>
             <%= f.select :region_id, options_for_select(@region_options) %>
           </div>
         </td>
         <td> 
           <div>
-            <%= f.label :rating %>:
+            <b><%= f.label :rating %>:</b>
             <%= f.select :rating, options_for_select(1..5) %>
           </div>
         </td> 
