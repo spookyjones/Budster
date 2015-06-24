@@ -13,37 +13,32 @@ before_action :set_search
 		@symptoms_options = symptoms
 		@tag_options = tags
 		@condtion_options = conditions
-		#@search_results = Vaporizer::Strain.search(search: params[:s_slug], page: 0, take: 10)
 		@search_results = Vaporizer::Strain.search(
-											    	filters: {
-													tags: [@tags],
-													symptoms: [@symptoms],
-													category: [@categories],
-													flavors: [@flavors],
-													conditions: [@conditions] },
-													search: @slug,
-													page: @page, take: @take
-													)
-													
+			filters: {
+			tags: [@tags],
+			symptoms: [@symptoms],
+			category: [@categories],
+			flavors: [@flavors],
+			conditions: [@conditions] },
+			search: @slug,
+			page: @page, take: @take
+			)
+
 		@strain_results = @search_results['Strains']
 
 	end
-	
-	
 	
 	private
 	
     def set_search
 		@page = params[:s_page] || 0
-		@take = params[:s_take] || 30
+		@take = params[:s_take] || 15
     	@slug = params[:s_slug] || ""
 		@conditions = params[:s_conditions] || ""
 		@flavors = params[:s_flavors] || ""
 		@categories = params[:s_categories] || ""
 		@symptoms = params[:s_symptoms] || ""
 		@tags = params[:tags] || ""
-      #@price.strain_id = Strain.find(params[:id].id
-      #@price.region_id = Region.find(params[:id]).id
     end
 	
 	def search_params
@@ -85,10 +80,12 @@ before_action :set_search
 	end
 	
 	def conditions
-		cond = ["", "anxious", "aroused", "creative", "dizzy", "dryeyes",
-        "drymouth", "energetic", "euphoric", "focused", 
-        "giggly", "happy", "hungry", "paranoid", "relaxed",
-        "sleepy", "talkative", "tingly", "uplifted"]
+		cond = ["", "addadhd", "alzheimers", "anorexia", "anxiety",
+		"arthritis", "asthma", "bipolardisorder", "cachexia", "cancer",
+		"crohnsdisease", "epilepsy", "fibromyalgia", "glaucoma", 
+		"hivaids", "hypertension", "migraines", "multiplesclerosis", 
+		"musculardystrophy", "parkinsons", "phantomlimbpain", "pms", "ptsd", 
+		"spinalcordinjury", "tinnitus", "tourettessyndrome"]
 	end
 	
 	

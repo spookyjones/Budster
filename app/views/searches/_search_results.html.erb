@@ -12,30 +12,30 @@
       <% @strain_results.each do |s| %>
         <tr class="<%= cycle('odd', 'even') %>">
           <td><%= s['Name'] %></td>
-          <td><%= s['Category'] %></td>
+          <td><%= link_to s['Category'], search_leafly_path( :s_categories => s['Category'].parameterize ), { :method => "POST" } %></td>
           <td><%= s['Rating'] %></td>
           <% conds = s['Conditions'] %>
           <td>
             <% conds.each do |c| %>
-              <%= c['Name'] %>, 
+              <%= link_to c['Name'], search_leafly_path( :s_conditions => c['Name'].parameterize ), { :method => "POST" } %>, 
             <% end %>
           </td>
           <% flavs = s['Flavors'] %>
           <td>
             <% flavs.each do |f| %>
-              <%= f['Name'] %>, 
+              <%= link_to f['Name'], search_leafly_path( :s_flavors => f['Name'].parameterize ), { :method => "POST" } %>, 
             <% end %>
           </td>
           <% tags = s['Tags'] %>
           <td>
             <% tags.each do |t| %>
-              <%= t['Name'] %>, 
+              <%= link_to t['Name'], search_leafly_path( :s_tags => t['Name'].parameterize ), { :method => "POST" } %>, 
             <% end %>
           </td>
           <% eff = s['NegativeEffects'] %>
           <td>
             <% eff.each do |e| %>
-              <%= e['Name'] %>, 
+              <%= link_to e['Name'], search_leafly_path( :s_effects => e['Name'].parameterize ), { :method => "POST" } %>,  
             <% end %>
           </td>
           <td>

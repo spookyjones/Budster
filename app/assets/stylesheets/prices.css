@@ -17,7 +17,7 @@ p, td, ul, ol, li, dl, dt, dd {
   font-family: Verdana,Lucida,Arial,Helvetica,sans-serif; }
 img { border: none; }
 table#container { vertical-align: top; border-collapse: collapse; }
-table { vertical-align: center; border-radius: 10px; background: #B6D491 }
+table { vertical-align: center; width: 100%; border-radius: 10px; background: #B6D491 }
 
 table tr th, table tr td { vertical-align: center; text-align: center; border-radius: 10px;
   padding: 5px; font-size: 14px; }
@@ -60,6 +60,7 @@ div#parent{
 box-shadow:10px 10px 10px darkgray;
 display: inline-block;
 border-radius: 25px;
+width: 100%;
 }
 
 div#background{
