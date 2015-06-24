@@ -20,9 +20,9 @@ img#full { border: none; width: 100%; height: auto
 img#half { border: none; width: 72%; height: auto
     }
 
-table { vertical-align: center; width: 100%; border-radius: 10px; background: #B6D491 }
+table { border: 2px solid #5d8032; vertical-align: center; width: 100%; border-radius: 10px; background: #B6D491 }
 
-table#container { vertical-align: top; border-collapse: collapse; }
+table#container { vertical-align: top; border-radius: 10px; border-collapse: collapse; }
 
 table tr th, table tr td { vertical-align: center; text-align: center; border-radius: 10px;
   padding: 5px; font-size: 14px; }
@@ -31,6 +31,8 @@ a:hover {}
 
 .clear { clear: both; }
 .center { text-align: center; }
+
+
 
 /* Structure */
 #header { 
@@ -53,7 +55,7 @@ a:hover {}
 #navigation a:hover { background: white; }
 
 /* Content */
-#content h2 { color: darkgray; }
+#content h2 { color: #f6faf1; text-shadow: 2px 2px darkgray }
 
 /* tables */
 

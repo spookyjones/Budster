@@ -10,40 +10,42 @@
       </ul>
     </div>
   <% end %>
-<div class="center">
-  <table class="center">
-    <tr class="center">
-      <th>
-      <td>
-        <div>
-          <b><%= f.label 'Price' %>:</b>
-          <%= f.text_field :cost %>
-        </div>
-        </td>
-        <td> 
-          <div>	
-            <b><%= f.label :strain %>:</b>
-            <%= f.select :strain_id, options_for_select(@strain_options) %>
-         </div>
-        <td> 
-          <div>	
-            <b><%= f.label :region %>:</b>
-            <%= f.select :region_id, options_for_select(@region_options) %>
-          </div>
-        </td>
-        <td> 
-          <div>
-            <b><%= f.label :rating %>:</b>
-            <%= f.select :rating, options_for_select(1..5) %>
-          </div>
-        </td> 
-        <td> 
-          <div class="action">
-            <%= f.submit %>
-          </div>
-        </td>
-      </th>
-    </tr>
-  </table>
-</div>
+
+
+    <div class="center">
+      <table class="center">
+        <tr class="center">
+          <td>
+            <div>
+              <b><%= f.label 'Price' %>:</b>
+              <%= f.text_field :cost %>
+            </div>
+          </td>
+          <td> 
+            <div>	
+              <b><%= f.label :strain %>:</b>
+              <%= f.select :strain_id, options_for_select(@strain_options) %>
+            </div>
+          <td> 
+            <div>	
+                <b><%= f.label :region %>:</b>
+                <%= f.select :region_id, options_for_select(@region_options) %>
+              </div>
+            </td>
+            <td> 
+              <div>
+                <b><%= f.label :rating %>:</b>
+                <%= f.select :rating, options_for_select(1..5) %>
+              </div>
+            </td> 
+            <td> 
+              <div class="action">
+                <%= f.submit %>
+              </div>
+            </td>
+         
+        </tr>
+      </table>
+    </div>
+
 <% end %>

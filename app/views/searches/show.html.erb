@@ -1,8 +1,12 @@
 <div class="price index">
-
-<div>
-  <div align="center" vertical-align="middle">
-    <td align="right">
+  <div id="background" width="90%">
+   <table align="center">
+    <td>
+  	 <h2><%= @slug.titleize %></h2>
+    </td>
+   </table>
+  </div>
+  <br><br>
             <div id="parent" class="center" align="right">
               <table class="listing" summary="related">
                 <tr class="header">
@@ -11,28 +15,31 @@
                   <% @parents.each do |parent| %>
                     <tr class="<%= cycle('odd', 'even') %>">
                       <td class="center"><%= link_to parent['name'], show_path( :s_slug => parent['name'].parameterize )%></td>
-                        <td><%= link_to parent['category'], search_leafly_path( :s_categories => parent['category'].parameterize ), { :method => "POST" } %></td>
+                       <td><%= link_to parent['category'], search_leafly_path( :s_categories => parent['category'].parameterize ), { :method => "POST" } %></td>
                     </tr>
                   <% end %>
                 </table>
              </div>
-         </td>
-    </div>
-    <br>
-    <div id="parent" class="center" align="center">
-      <table class="center" summary="flavors">
-        <tr class="header">
-          <th class="center">Flavors</th>
-              </tr>
-              <% @flavors.each do |flavor| %>
-                <tr class="<%= cycle('odd', 'even') %>">
-                  <td class="center"><%= flavor['name'] %></td>
-                </tr>
-              <% end %>
-            </table>
-          </div>
-        </td>
-        <td>
+             <br>
+ 
+            <br>
+              <div id="parent" class="center" align="center">
+                <table class="center" summary="flavors">
+                  <tr class="header">
+                    <th class="center">Flavors</th>
+                  </tr>
+                  <% @flavors.each do |flavor| %>
+                    <tr class="<%= cycle('odd', 'even') %>">
+                      <td class="center"><%= flavor['name'] %></td>
+                    </tr>
+                  <% end %>
+                </table>
+              </div>
+
+              <br>
+              <br>
+    
+
           <div id="parent" class="center" align="center">
             <table class="listing" summary="effects">
               <tr class="header">
@@ -45,8 +52,8 @@
               <% end %>
             </table>
           </div>
-        </td> 
-        <td>  
+          <br>
+          <br>
           <div id="parent" class="center" align="center">
             <table class="listing" summary="symptoms">
               <tr class="header">
@@ -59,8 +66,7 @@
               <% end %>
             </table>
           </div>
-        </td>
-        <td> 
+      <br><br>
           <div id="parent" class="center" align="center">
             <table class="listing" summary="conditions">
               <tr class="header">
@@ -73,8 +79,8 @@
               <% end %>
             </table>
           </div>
-        </td>
-          <td>
+          <br>
+          <br>
             <div id="parent" class="center" align="center">
               <table class="listing" summary="related">
                 <tr class="header">
@@ -88,23 +94,22 @@
                   <% end %>
               </table>
             </div>
-          </td>
-      </tr>
-  </div>
-</div>
+        
+   
+
 <br>
 <br>
 
-<div id="parent" class="center" align="center">
-  <table class="center" summary="strain description">
-    <tr class="header">
-      <th class="center">Description</th>
-    </tr>
-    <tr class="even">
-      <td><%= @description.html_safe %></td>
-    </tr>
-  </table>
-</div>
+  <div id="parent" class="center" align="center">
+    <table class="center" summary="strain description">
+      <tr class="header">
+        <th class="center">Description</th>
+      </tr>
+      <tr class="even">
+        <td><%= @description.html_safe %></td>
+      </tr>
+    </table>
+  </div>
 
 <br>
 <br>
