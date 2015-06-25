@@ -29,7 +29,7 @@ class StrainsController < ApplicationController
 	    @strains = Strain.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 5, :page => params[:page])
 	end
 
-	def new
+	def create
 		@strain = Strain.new
 	end
 

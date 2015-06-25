@@ -32,7 +32,7 @@
    	<% @region.prices.each do |region| %> 
       <tr class="<%= cycle('odd', 'even') %>">
         <td class="center">$<%= region.cost %></td>
-        <td class="center"><%= link_to region.strain.name.titleize, region.strain %></td>
+        <td class="center"><%= link_to region.strain.name.titleize, show_path( :s_slug => region.strain.name.parameterize ) %></td>
         <td class="center"><%= time_ago_in_words(region.created_at) %> ago</td>
       </tr>
     <% end %>

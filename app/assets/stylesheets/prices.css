@@ -20,17 +20,19 @@ img#full { border: none; width: 100%; height: auto
 img#half { border: none; width: 72%; height: auto
     }
 
-table { border: 2px solid #5d8032; vertical-align: center; width: 100%; border-radius: 10px; background: #B6D491 }
+table { border: 1px solid #5d8032; vertical-align: center; width: 100%; border-radius: 10px; background: #B6D491 }
 
 table#container { vertical-align: top; border-radius: 10px; border-collapse: collapse; }
+
 
 table tr th, table tr td { vertical-align: center; text-align: center; border-radius: 10px;
   padding: 5px; font-size: 14px; }
 a, a:visited { color: black; }
 a:hover {}
 
-.clear { clear: both; }
+.clear { clear: both; background: #f6faf1; border: 0 }
 .center { text-align: center; }
+.wide { width: 100%; text-align: center; }
 
 
 
@@ -77,6 +79,7 @@ box-shadow:10px 10px 10px darkgray;
 display: inline-block;
 border-collapse: collapse;
 border-radius: 25px;
+width: 100%;
 }
 
 div#parent2{

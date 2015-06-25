@@ -1,12 +1,156 @@
-<div class="price index">
-  <div id="background" width="90%">
-   <table align="center">
+  <div id="background" class="center">
+   <table>
     <td>
   	 <h2><%= @slug.titleize %></h2>
     </td>
    </table>
   </div>
-  <br><br>
+
+<br> 
+
+
+
+
+
+
+
+
+
+
+
+  <% @strain = Strain.find_by( name: params[:s_slug]) %>
+  <% if @strain != nil %>
+ <br>
+  
+    <div id="parent2">  	
+      <table class="listing" summary="strain summary">
+          <tr class="header">
+            <th class="center" colspan="1">Average Price</th>
+            <th class="center" colspan="1">Highest Price</th>
+            <th class="center" colspan="1">Lowest Price</th>
+            <th class="center" colspan="1">Rating</th>
+            <th class="center" colspan="1">Category</th>
+          </tr>
+    
+            <tr  class="<%= cycle('odd', 'even') %>">
+              <td class="center">$<%= @strain.prices.average(:cost).to_i %></td>
+              <td class="center">$<%= @strain.prices.maximum(:cost).to_i %></td>
+              <td class="center">$<%= @strain.prices.minimum(:cost).to_i %></td>
+              <td class="center"><%= @rating %> out of 5</td>
+              <td class="center"><%= @category %></td>
+            </tr>
+      </table>
+    </div>
+  <br>
+<div id="parent2">
+  <table class="listing" summary="strain prices">
+    <tr class="header">
+      <th class="center">Price</th>
+      <th class="center">State</th>
+      <th class="center">Time</th>
+    </tr>
+   
+   	<% @strain.prices.each do |price| %> 
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td class="center">$<%= price.cost %></td>
+        <td class="center"><%= link_to price.region, price.region %></td>
+        <td class="center"><%= time_ago_in_words(price.created_at) %> ago</td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<% else %>
+
+  <br>
+    <div id="parent2">  	
+      <table class="listing" summary="strain summary">
+          <tr class="header">
+            <th class="center" colspan="1">Average Price</th>
+            <th class="center" colspan="1">Highest Price</th>
+            <th class="center" colspan="1">Lowest Price</th>
+            <th class="center" colspan="1">Rating</th>
+            <th class="center" colspan="1">Category</th>
+          </tr>
+    
+            <tr  class="<%= cycle('odd', 'even') %>">
+              <td class="center">No Data</td>
+              <td class="center">No Data</td>
+              <td class="center">No Data</td>
+              <td class="center"><%= @rating %> out of 5</td>
+              <td class="center"><%= @category %></td>
+            </tr>
+      </table>
+    </div>
+<% end %>
+
+
+<br>
+
+           <div>
+             <table class="clear">
+                <tr>
+                  <td >    <div id="parent" class="center" align="center">
+                <table class="center" summary="flavors">
+                  <tr class="header">
+                    <th class="center">Flavors</th>
+                  </tr>
+                  <% @flavors.each do |flavor| %>
+                    <tr class="<%= cycle('odd', 'even') %>">
+                      <td border="1px" class="center"><%= flavor['name'] %></td>
+                    </tr>
+                  <% end %>
+                </table>
+              </div></td>
+              
+                  <td >          <div class="center" id="parent" align="center">
+            <table class="listing" summary="effects">
+              <tr class="header">
+                <th class="center">Effects</th>
+              </tr>
+              <% @effects.each do |effect| %>
+                <tr class="<%= cycle('odd', 'even') %>">
+                  <td class="center"><%= effect['name'] %></td>
+                </tr>
+              <% end %>
+            </table>
+          </div></td>
+                </tr>
+                <tr>
+                  <td >          <div class="center" id="parent" align="center">
+            <table class="listing" summary="symptoms">
+              <tr class="header">
+                <th class="center">Sypmtoms</th>
+              </tr>
+              <% @symptoms.each do |symptom| %>
+                <tr class="<%= cycle('odd', 'even') %>">
+                  <td class="center"><%= link_to symptom['name'], search_leafly_path( :s_effects => symptom['name'].parameterize ), { :method => "POST" } %></td>
+                </tr>
+              <% end %>
+            </table>
+          </div></td>
+                  <td ><div class="center" id="parent" align="center">
+            <table class="listing" summary="conditions">
+              <tr class="header">
+                <th class="center">Conditions</th>
+              </tr>
+              <% @conditions.each do |condition| %>
+                <tr class="<%= cycle('odd', 'even') %>">
+                  <td class="center"><%= condition['name'] %></td>
+                </tr>
+              <% end %>
+            </table>
+          </div></td>
+                </tr>
+              </table>    
+
+</div>
+
+
+ <br>
+<div class="price index">
+
+ 
             <div id="parent" class="center" align="right">
               <table class="listing" summary="related">
                 <tr class="header">
@@ -22,64 +166,11 @@
              </div>
              <br>
  
-            <br>
-              <div id="parent" class="center" align="center">
-                <table class="center" summary="flavors">
-                  <tr class="header">
-                    <th class="center">Flavors</th>
-                  </tr>
-                  <% @flavors.each do |flavor| %>
-                    <tr class="<%= cycle('odd', 'even') %>">
-                      <td class="center"><%= flavor['name'] %></td>
-                    </tr>
-                  <% end %>
-                </table>
-              </div>
+       
+            
+      
 
-              <br>
-              <br>
-    
-
-          <div id="parent" class="center" align="center">
-            <table class="listing" summary="effects">
-              <tr class="header">
-                <th class="center">Effects</th>
-              </tr>
-              <% @effects.each do |effect| %>
-                <tr class="<%= cycle('odd', 'even') %>">
-                  <td class="center"><%= effect['name'] %></td>
-                </tr>
-              <% end %>
-            </table>
-          </div>
-          <br>
-          <br>
-          <div id="parent" class="center" align="center">
-            <table class="listing" summary="symptoms">
-              <tr class="header">
-                <th class="center">Symptoms</th>
-              </tr>
-              <% @symptoms.each do |symptom| %>
-                <tr class="<%= cycle('odd', 'even') %>">
-                  <td class="center"><%= symptom['name'] %></td>
-                </tr>
-              <% end %>
-            </table>
-          </div>
-      <br><br>
-          <div id="parent" class="center" align="center">
-            <table class="listing" summary="conditions">
-              <tr class="header">
-                <th class="center">Conditions</th>
-              </tr>
-              <% @conditions.each do |condition| %>
-                <tr class="<%= cycle('odd', 'even') %>">
-                  <td class="center"><%= condition['name'] %></td>
-                </tr>
-              <% end %>
-            </table>
-          </div>
-          <br>
+     
           <br>
             <div id="parent" class="center" align="center">
               <table class="listing" summary="related">
@@ -88,14 +179,12 @@
                 </tr>
                   <% @relatedstrains.each do |relatedstrain| %>
                     <tr class="<%= cycle('odd', 'even') %>">
-                      <td class="center"><%= relatedstrain['name'] %></td>
-                      <td class="center"><%= relatedstrain['category'] %></td>
+                      <td class="center"><%= link_to relatedstrain['name'], show_path( :s_slug => relatedstrain['name'].parameterize )%></td>
+                      <td class="center"><%= link_to relatedstrain['category'], show_path( :s_categories => relatedstrain['category'].parameterize )%></td>
                     </tr>
                   <% end %>
               </table>
             </div>
-        
-   
 
 <br>
 <br>

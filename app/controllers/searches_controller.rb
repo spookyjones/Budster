@@ -65,7 +65,7 @@ before_action :set_search
     end
 	
 	def search_params
-		params.permit(:s_slug, :s_categories, :tags, :s_symptoms, :s_categories, :s_flavors, :s_conditions, :s_page)
+		params.permit(:s_slug, :s_categories, :tags, :s_effects, :s_symptoms, :s_categories, :s_flavors, :s_conditions, :s_page)
 	end
 	
 	def flavors

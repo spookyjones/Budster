@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   
   match '/searches' => 'searches#index', :via => :get, :as => :searches
   match '/searches/search_leafly' => 'searches#search_leafly', :via => :post, :as => :search_leafly
-  match '/searches/search_leafly' => 'searches#show', :via => :get, :as => :show
+  match '/searches/show' => 'searches#show', :via => :get, :as => :show
   match '/searches/next' => 'searches#search_leafly', :via => :post, :as => :next_results_page	
   match '/searches/prev' => 'searches#search_leafly', :via => :post, :as => :prev_results_page
   	
