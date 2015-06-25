@@ -1,6 +1,5 @@
 class PricesController < ApplicationController
   before_action :set_price, only: [:show, :edit, :update, :destroy]
-  after_action :update_price, only: [:create]
   layout 'application'
   helper_method :sort_column, :sort_direction
   # GET /prices
@@ -42,7 +41,6 @@ class PricesController < ApplicationController
   def create
     @price = Price.new(price_params)
     @price.position = Price.count + 1
-    
     respond_to do |format|
       if @price.save
         format.html { redirect_to "/", notice: 'Price was successfully created.' }
