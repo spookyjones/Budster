@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :strains
   resources :regions
   
+  match '/graphs' => 'graphs#index', :via => :get, :as => :graphs
   match '/searches' => 'searches#index', :via => :get, :as => :searches
   match '/searches/search_leafly' => 'searches#search_leafly', :via => :post, :as => :search_leafly
   match '/searches/show' => 'searches#show', :via => :get, :as => :show

@@ -23,6 +23,7 @@ before_action :set_search
 		@symptoms = @leafly['symptoms']	#returns an array of hashes
 		@conditions = @leafly['conditions']#returns an array of hashes
 		@growinfo = @leafly['growInfo']
+		@negatives = @leafly['negativeEffects']
 		@permalink = @leafly['permalink']
 		@relatedstrains = @leafly['relatedStrains']#returns an array of hashes
 		@parents = @leafly['parents']#returns an array of hashes

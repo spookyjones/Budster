@@ -1,4 +1,16 @@
-<h2>New Price for <%= @strain %></h2>	
+
+
+  <div id="background" class="center">
+   <table>
+    <td>
+  	 <h2>New Price for <%= @strain.name.titleize %></h2>	
+    </td>
+   </table>
+  </div>
+
+<br> <br>
+
+
 <div align="center">
 	<%= form_for(@price) do |f| %>
   <% if @price.errors.any? %>

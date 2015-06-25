@@ -10,6 +10,8 @@
 
 
   <% @strain = Strain.find_by( name: params[:s_slug]) %>
+
+  
   <% if @strain != nil %>
  <br>
   
@@ -88,7 +90,9 @@
                   </tr>
                   <% @flavors.each do |flavor| %>
                     <tr class="<%= cycle('odd', 'even') %>">
-                      <td border="1px" class="center"><%= flavor['name'] %></td>
+                      <td border="1px" class="center">
+                      <%= link_to flavor['name'], search_leafly_path( :s_flavors => flavor['name'].parameterize ), { :method => "POST" } %>
+                      </td>
                     </tr>
                   <% end %>
                 </table>
@@ -101,7 +105,9 @@
               </tr>
               <% @effects.each do |effect| %>
                 <tr class="<%= cycle('odd', 'even') %>">
-                  <td class="center"><%= effect['name'] %></td>
+                  <td class="center">
+                  <%= link_to effect['name'], search_leafly_path( :s_tags => effect['name'].parameterize ), { :method => "POST" } %>
+                  </td>
                 </tr>
               <% end %>
             </table>
@@ -115,7 +121,7 @@
               </tr>
               <% @symptoms.each do |symptom| %>
                 <tr class="<%= cycle('odd', 'even') %>">
-                  <td class="center"><%= link_to symptom['name'], search_leafly_path( :s_effects => symptom['name'].parameterize ), { :method => "POST" } %></td>
+                  <td class="center"><%= link_to symptom['name'], search_leafly_path( :s_symptoms => symptom['name'].parameterize ), { :method => "POST" } %></td>
                 </tr>
               <% end %>
             </table>
@@ -127,7 +133,9 @@
               </tr>
               <% @conditions.each do |condition| %>
                 <tr class="<%= cycle('odd', 'even') %>">
-                  <td class="center"><%= condition['name'] %></td>
+                  <td class="center">
+                                 <%= link_to condition['name'], search_leafly_path( :s_conditions => condition['name'].parameterize ), { :method => "POST" } %>
+                  </td>
                 </tr>
               <% end %>
             </table>

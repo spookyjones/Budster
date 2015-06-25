@@ -23,6 +23,10 @@ a.action {
   float: center; padding: 2px 5px; margin: 0 0 1em 1em;
   background: #dbeac8; color: black;  border: 2px solid #5d8032;
   text-decoration: none; font-size: 0.8em; text-align: center; }
+  
+a.action#show { float: middle; min-width: 3.5em;
+  padding: 1px 2px; margin: 2px 5px; font-size: 0.7em; }
+    
 a.action:hover { background: #B6D491; color: whitesmoke}
 
 /* small action buttons */

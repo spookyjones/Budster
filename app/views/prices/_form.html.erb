@@ -5,7 +5,8 @@
         <%= text_field_tag :s_slug, params[:search_leafly] %>
         <%= submit_tag "Search", :name => nil %>&nbsp
         or click 
-        <%= link_to 'Unknown Strain', new_price_path( :s_slug => "unknown" ), :class => 'actions show' %> 
+        
+        <%= link_to 'Unknown Strain', new_price_path( :s_slug => "unknown" ), :class => 'action show', :id => 'show' %> 
 <% end %>
 
 
