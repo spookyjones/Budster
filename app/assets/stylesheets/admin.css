@@ -27,7 +27,7 @@ a.action:hover { background: #B6D491; color: whitesmoke}
 
 /* small action buttons */
 .actions { width: 200px; }
-.actions a.action { float: left; min-width: 3.5em;
+.actions a.action { float: middle; min-width: 3.5em;
   padding: 1px 2px; margin: 2px 5px; font-size: 0.7em; }
 
 /* CRUD */

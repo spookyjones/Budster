@@ -31,7 +31,7 @@ a, a:visited { color: black; }
 a:hover {}
 
 .clear { clear: both; background: #f6faf1; border: 0 }
-.center { text-align: center; }
+.center { text-align: center; vertical-align: middle;  }
 .wide { width: 100%; text-align: center; }
 
 

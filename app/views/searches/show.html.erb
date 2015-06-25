@@ -229,15 +229,23 @@
           <a href="<%= photo['fullsize'] %>"><img src="<%= photo['thumb'].html_safe %>"></a>
         <% end %>
       </td>
-    </tr>
-    <tr class="center">
-      <td class="center"><img src="<%= @testgraph %>" id="half"></td>
-    </tr>   
+    </tr> 
   </table>
 </div>
+<br>
+<br>
+  <div id="parent">
+    <table class="center">
+      <tr class="center">
+        <td class="center"><img src="<%= @testgraph %>" id="half"></td>
+      </tr>
+    </table>
+  </div>
+    
+
 
 <br>
-
+<br>
 
 <%= link_to 'Home', prices_path, :class => 'action show' %>
 
