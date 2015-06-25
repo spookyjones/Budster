@@ -10,5 +10,6 @@ class Price < ActiveRecord::Base
 	scope :newest_first, lambda { order("prices.created_at DESC")}
 
 
+	
 
 end

@@ -37,11 +37,11 @@ a.action:hover { background: #B6D491; color: whitesmoke}
 .form-buttons { text-align: center; margin: 1em 0; }
 
 .index table { clear: both; width: 100%; }
-.index table tr td { border: 1px solid #666666; }
+.index table tr td {  }
 .show table { clear: both; margin: 0 200px; width: 300px; }
 .show table.wide { width: 600px; margin: 0 50px; }
 .show table tr th { white-space: nowrap; padding-right: 5px;}
-.show table tr td { border: 1px solid #666666; }
+.show table tr td {  }
 .edit table, .new table { margin: 0 auto; }
 
 .section + .section { padding-top: 0.5em; margin-top: 0.5em;

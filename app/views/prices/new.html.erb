@@ -1,5 +1,48 @@
-<h2>New Price</h2>	
+<h2>New Price for <%= @strain %></h2>	
 <div align="center">
-	<%= render 'form' %><br>
-	<%= link_to 'Back', prices_path %>
+	<%= form_for(@price) do |f| %>
+  <% if @price.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@price.errors.count, "error") %> prohibited this price from being saved:</h2>
+      <ul>
+      <% @price.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+    <div class="center">
+      <table class="center">
+        <tr class="center">
+          <td>
+            <div>
+              <b><%= f.label 'Price' %>:</b>
+              <%= f.text_field :cost %>
+            </div>
+          </td>
+          <td> 
+            <div>	
+                <b><%= f.label :region %>:</b>
+                <%= f.select :region_id, options_for_select(@region_options) %>
+              </div>
+            </td>
+				<%= f.hidden_field :strain_id, :value => @strain.id %>
+            <td> 
+              <div>
+                <b><%= f.label :rating %>:</b>
+                <%= f.select :rating, options_for_select(1..5) %>
+              </div>
+            </td> 
+            <td> 
+              <div class="action">
+                <%= f.submit %>
+              </div>
+            </td>
+         </tr>
+      </table>
+    </div>
+
+<% end %>
+	
 </div>

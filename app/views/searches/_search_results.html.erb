@@ -7,7 +7,7 @@
         <th class="center" colspan="1">Flavors</th>
         <th class="center" colspan="1">Effects</th>
         <th class="center" colspan="1">Negative Effects</th>
-        <th class="center" colspan="1">Actions</th>
+        <th class="center" colspan="3">Actions</th>
       </tr>
       <% @strain_results.each do |s| %>
         <tr class="<%= cycle('odd', 'even') %>">
@@ -38,8 +38,15 @@
               <%= link_to e['Name'], search_leafly_path( :s_effects => e['Name'].parameterize ), { :method => "POST" } %>,  
             <% end %>
           </td>
-          <td>
-              
+          <td class="center" align="center">
+            <%= link_to 'Price', new_price_path( :s_slug => s['Name'].parameterize ), :class => 'action show' %>
+          </td>
+          <td class="center" align="center">
+            <%= link_to 'Review', prices_path, :class => 'action show' %>
+          </td>
+          <td class="center" align="center">
+        		<%= link_to 'Find', prices_path, :class => 'action show' %>	
+          </td>    
         <% end %>
      </tr>
   </table>

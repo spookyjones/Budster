@@ -1,5 +1,6 @@
 class PricesController < ApplicationController
   before_action :set_price, only: [:show, :edit, :update, :destroy]
+  after_action :update_price, only: [:create]
   layout 'application'
   helper_method :sort_column, :sort_direction
   # GET /prices
@@ -20,14 +21,11 @@ class PricesController < ApplicationController
 
   # GET /prices/new
   def new
-    @strain_options = Strain.all.map{|s| [ s.name, s.id ] }
+    @strain_params = params[:s_slug] || "unknown"
+    @strain = Strain.find_or_create_by(name: @strain_params)
     @region_options = Region.all.map{|r| [ r.name, r.id ] }
     @price = Price.new
-    @strain = Strain.new
-    @region = Region.new
-    @strains = Strain.all
-    @regions = Region.all
-    @prices = Price.order('position Desc')
+    @price.strain = @strain
   end
 
   # GET /prices/1/edit
@@ -44,12 +42,7 @@ class PricesController < ApplicationController
   def create
     @price = Price.new(price_params)
     @price.position = Price.count + 1
-    @strain = @price.strain
-    @strain.prices << @price
-   #@strain = Strain.new(price_params)
-    @prices = Price.all
-    @strains = Strain.all
-    @regions = Region.all
+    
     respond_to do |format|
       if @price.save
         format.html { redirect_to "/", notice: 'Price was successfully created.' }
@@ -96,14 +89,17 @@ class PricesController < ApplicationController
       #@price.strain_id = Strain.find(params[:id]).id
       #@price.region_id = Region.find(params[:id]).id
     end
+    
+    def update_price
       
-
+    end
+    
+    
   	def setup_navigation
           @prices = Price.order('position Asc')
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def price_params
-      
       params.require(:price).permit(:cost, :position, :strain_id, :region_id, :strain, :region, strain_attributes: [:id, :name], region_attributes: [:id, :name])
     end
     
