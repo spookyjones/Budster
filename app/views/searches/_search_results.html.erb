@@ -41,7 +41,12 @@
           <td class="actions">
             <%= link_to 'Price', new_price_path( :s_slug => s['Name'].parameterize ), :class => 'action show' %>
             <%= link_to 'Review', prices_path, :class => 'action show' %>
-            <%= link_to 'Photos', prices_path, :class => 'action show' %></td>
+            <%= link_to 'Find', prices_path, :class => 'action show' %>
+            <%= link_to 'Photos', prices_path, :class => 'action show' %>
+            <%= link_to 'Info', prices_path, :class => 'action show' %>
+            <%= link_to 'Graphs', prices_path, :class => 'action show' %>
+            </td>
+            
         <% end %>
      </tr>
   </table>
