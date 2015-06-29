@@ -8,6 +8,8 @@
         <th colspan="1" class="center">Highest</th>
         <th colspan="1" class="center">Lowest</th>
         <th colspan="1" class="center">Most Popular</th>
+        <th class="center" colspan="1">Data Points</th>
+        
       </tr>
 
       <% @regions.each do |region| %>
@@ -17,6 +19,7 @@
           <td class="center">$<%= region.prices.maximum(:cost).to_i %></td>
           <td class="center">$<%= region.prices.minimum(:cost).to_i %></td>
           <td class="center"><%= link_to Strain.find(most_popular_strain(region)).name.titleize, Strain.find(most_popular_strain(region)) %></td>
+          <td class="center"><%= region.prices.count %> submissions</td>
         </tr>
       <% end %>
     </tbody>

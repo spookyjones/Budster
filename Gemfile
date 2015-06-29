@@ -25,6 +25,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'will_paginate'
 
+gem 'lazy_high_charts'
+
 gem 'vaporizer'
 
 # Use ActiveModel has_secure_password

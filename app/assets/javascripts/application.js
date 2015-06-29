@@ -13,14 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require raphael
-//= require morris
+//= require highcharts
 //= require_tree .
 
-
-$(function() {
-	$("#strains th a, #strains .pagination a").live("click", function() {
-		$.getscript(this.href);
-		return false;
-	});	
-});
