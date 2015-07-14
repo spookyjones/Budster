@@ -35,7 +35,7 @@ class GraphsController < ApplicationController
     end
 	
     @states_chart = LazyHighCharts::HighChart.new('graph') do |f|
-      f.title({ :text=>"Combination chart"})
+      f.title({ :text=>"State Pricing Data"})
 	   	f.options[:xAxis][:categories] = @region_names
       f.series(:type=> 'column',:name=> 'Lowest',:data=> @region_lowest)
       f.series(:type=> 'column',:name=> 'Average',:data=> @region_average)
@@ -90,14 +90,6 @@ class GraphsController < ApplicationController
           })
     end
 
-    @chart4 = LazyHighCharts::HighChart.new('column') do |f|
-      f.series(:name=>'John',:data=> [3, 20, 3, 5, 4, 10, 12 ])
-      f.series(:name=>'Jane',:data=>[1, 3, 4, 3, 3, 5, 4,-46] )     
-      f.title({ :text=>"example test title from controller"})
-      f.options[:chart][:defaultSeriesType] = "column"
-      f.plot_options({:column=>{:stacking=>"percent"}})
-    end
-
 		
 		
 	start_date = 12.months.ago.to_date
@@ -122,45 +114,45 @@ class GraphsController < ApplicationController
 	@last_year_in_months.each do |m| 
 		@months << Date::MONTHNAMES[m.first.month] + " " + m.first.year.to_s 
   end
-  
-
-   
    
   13.times do |m|
+    avg = 0
     n = m + 1
     avg = avg_price_month(n.months.ago, (n - 1).months.ago)
     avg == Float::INFINITY ? avg = 0 : avg = avg
     @avg_month_prices << avg 
   end
   
-  
   @date = Date.today
   @date.strftime("%B")
   @months <<  Date::MONTHNAMES[@date.month] + " " + @date.year.to_s
 
-  
   365.times do |m|
+    avg = 0
     n = m + 1
-    avg = avg = avg_price_month(n.days.ago, (n - 1).days.ago)
+    avg = avg_price_month(n.days.ago, (n - 1).days.ago)
     avg == Float::INFINITY ? avg = 0 : avg = avg
     @avg_day_prices << avg 
   end
   
 	 @prices_chart = LazyHighCharts::HighChart.new('graph') do |f|
-	 f.title(:text => "Avg Price of Marijuana over time")
-	 f.xAxis(:categories => @months)
-	 f.series(:name => "Average Price", :yAxis => 0, :data => @avg_month_prices.reverse)
-			
-	 f.yAxis [
-	   {:title => {:text => "Average Price", :margin => 70} },
-	   {:title => {:text => "Population in Millions"}, :opposite => true},
-	 ]
-			
-	 f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
-	 f.chart({:defaultSeriesType=>"column"})
+  	 f.title(:text => "Avg Price Of Marijuana Last Year")
+  	 f.xAxis(:categories => @months)
+  	 f.series(:name => "Average Price Per Oz", :yAxis => 0, :data => @avg_month_prices.reverse)
+  	 f.yAxis [
+  	   {:title => {:text => "Average Price In USD", :margin => 70} },
+  	 ]
+  	 f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
+  	 f.chart({:defaultSeriesType=>"column"})
 	 end
 	
-	
+    @chart4 = LazyHighCharts::HighChart.new('column') do |f|
+      f.series(:name=>'Average Price',:data=> @avg_day_prices)
+      f.title({ :text=>"example test title from controller"})
+      f.options[:chart][:defaultSeriesType] = "spline"
+      f.plot_options({:column=>{:stacking=>"percent"}})
+    end
+
 	end
 
 private
@@ -188,7 +180,5 @@ private
 		end 
 		(@total.to_f / @last_price.count.to_f)
 	end
-	
-
 
 end

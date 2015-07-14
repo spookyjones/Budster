@@ -8,6 +8,12 @@ before_action :set_search
 	end
 	
 	def show
+		
+		@strain_params = params[:s_slug] || "unknown"
+    	@strain = Strain.find_or_create_by(name: @strain_params)
+    	@region_options = Region.all.map{|r| [ r.name, r.id ] }
+    	@price = Price.new
+    	@price.strain = @strain
 		@flavor_options = flavors
 		@symptoms_options = symptoms
 		@tag_options = tags
