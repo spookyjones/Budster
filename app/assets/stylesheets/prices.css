@@ -20,12 +20,12 @@ img#full { border: none; width: 100%; height: auto
 img#half { border: none; width: 72%; height: auto
     }
 
-table { border: 1px solid #5d8032; vertical-align: center; width: 100%; border-radius: 10px; background: #B6D491 }
+table { border: 1px solid #5d8032; vertical-align: center; width: 100%;  background: #B6D491 }
 
-table#container { vertical-align: top; border-radius: 10px; border-collapse: collapse; }
+table#container { vertical-align: top;  border-collapse: collapse; }
 
 
-table tr th, table tr td { vertical-align: center; text-align: center; border-radius: 10px;
+table tr th, table tr td { vertical-align: center; text-align: center; 
   padding: 5px; font-size: 14px; }
 a, a:visited { color: black; }
 a:hover {}
@@ -64,29 +64,29 @@ a:hover {}
 
 /* box shadow */
 div#parent{
--moz-box-shadow:10px 10px 10px darkgray;
--webkit-box-shadow:10px 10px 10px darkgray;
-box-shadow:10px 10px 10px darkgray;
+-moz-box-shadow:4px 4px 2px darkgray;
+-webkit-box-shadow:4px 4px 2px darkgray;
+box-shadow:4px 4px 2px darkgray;
 display: inline-block;
-border-radius: 25px;
+
 width: 100%;
 }
 
 div#background{
--moz-box-shadow:10px 10px 10px darkgray;
--webkit-box-shadow:10px 10px 10px darkgray;
-box-shadow:10px 10px 10px darkgray;
+-moz-box-shadow:4px 4px 2px darkgray;
+-webkit-box-shadow:4px 4px 2px darkgray;
+box-shadow:4px 4px 2px darkgray;
 display: inline-block;
 border-collapse: collapse;
-border-radius: 25px;
+
 width: 100%;
 }
 
 div#parent2{
--moz-box-shadow:10px 10px 10px darkgray;
--webkit-box-shadow:10px 10px 10px darkgray;
-box-shadow:10px 10px 10px darkgray;
-border-radius: 25px;
+-moz-box-shadow:4px 4px 2px darkgray;
+-webkit-box-shadow:4px 4px 2px darkgray;
+box-shadow:4px 4px 2px darkgray;
+
 }
 
 div#shadow{

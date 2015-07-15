@@ -5,6 +5,7 @@ class Strain < ActiveRecord::Base
 	accepts_nested_attributes_for :prices 
 	accepts_nested_attributes_for :regions
 	acts_as_list
+	
 	def to_s
 		name
 	end

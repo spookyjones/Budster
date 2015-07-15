@@ -15,11 +15,11 @@ a:hover { text-decoration: underline; }
 
 /* large action buttons */
 a.action { 
-  -moz-box-shadow:4px 4px 4px darkgray;
-  -webkit-box-shadow:4px 4px 4px darkgray;
-  box-shadow:4px 4px 4px darkgray;
+  -moz-box-shadow:2px 2px 2px darkgray;
+  -webkit-box-shadow:2px 2px 2px darkgray;
+  box-shadow:2px 2px 2px darkgray;
   display: inline-block;
-  border-radius: 6px;
+  border-radius: 4px;
   float: center; padding: 2px 5px; margin: 0 0 1em 1em;
   background: #dbeac8; color: black;  border: 2px solid #5d8032;
   text-decoration: none; font-size: 0.8em; text-align: center; }
