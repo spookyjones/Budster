@@ -135,11 +135,6 @@ class GraphsController < ApplicationController
   	 f.chart({:defaultSeriesType=>"column"})
 	 end
 
-     @averageprices = []
-     @prices.each do |n|
-       @averageprices << n.avg_price_per_day
-     end
-
     @chart4 = LazyHighCharts::HighChart.new('graph') do |f|
       f.series(:name=>'Average Price',:data=> @avg_day_prices)
       f.xAxis(:text => 'Days Ago')
