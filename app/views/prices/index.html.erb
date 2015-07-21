@@ -40,7 +40,7 @@
           <% if price.strain.name.parameterize == "unknown" %>
             <%= link_to 'Info', graphs_path, :class => 'action show' %>
           <% else %>
-            <%= link_to 'Info', price.strain, :class => 'action show' %>
+            <%= link_to 'Info', show_path( :s_slug => price.strain.name.parameterize ), :class => 'action show' %>
           <% end %>
           </td>
           </tr>
