@@ -9,10 +9,9 @@ class Price < ActiveRecord::Base
 	scope :sorted, lambda { order("prices.position ASC") }
 	scope :newest_first, lambda { order("prices.created_at DESC")}
 
-
 	def avg_price_per_day	
-    	Price.group(:created_at).average(:cost)
-  	end
+    	
+  end
 	    
 	
 end

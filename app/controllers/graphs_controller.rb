@@ -13,13 +13,13 @@ class GraphsController < ApplicationController
   	  @region_names << r.name #adds each region name to an array to pass for next arg
   		@region_lowest << r.prices.minimum(:cost).to_i
   		@region_highest << r.prices.maximum(:cost).to_i
-  		@region_average << r.prices.average(:cost).to_i
+  		@region_average << find_average(r)
 	  end
 
    @region_array = []
     
     @regions.each do |r|
-      @region_array << [r.name, r.prices.sum(:cost).to_i]
+      @region_array << [r.name, sum_obj(r).to_i]
     end  
       
 
@@ -154,6 +154,26 @@ class GraphsController < ApplicationController
 	end
 
 private
+
+
+  def find_average(obj)
+    total_prices = 0.0
+    price_list = obj.prices.all
+    price_list.each do |p|
+      total_prices = total_prices + p.cost.to_i
+    end
+    avg = (total_prices / price_list.count) 
+    avg == Float::NAN ? avg = 0 : avg
+  end
+
+  def sum_obj(obj)
+    total_obj = 0.0
+    price_list = obj.prices.all
+    price_list.each do |p|
+      total_obj = total_obj + p.cost.to_i
+    end
+    total_obj
+  end
 
 	def last_year_months
 		start_date = 12.months.ago.to_date

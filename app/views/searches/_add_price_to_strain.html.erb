@@ -1,4 +1,7 @@
-  <% if @price.errors.any? %>
+<div align="center">
+	<%= form_for(@price) do |f| %>
+  
+    <% if @price.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@price.errors.count, "error") %> prohibited this price from being saved:</h2>
       <ul>
@@ -8,9 +11,7 @@
       </ul>
     </div>
   <% end %>
-
-<div align="center">
-	<%= form_for(@price) do |f| %>
+  
     <div id="parent">
       <table>
         <tr>

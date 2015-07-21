@@ -8,7 +8,6 @@ before_action :set_search
 	end
 	
 	def show
-		
 		@strain_params = params[:s_slug] || "unknown"
     	@strain = Strain.find_or_create_by(name: @strain_params)
     	@region_options = Region.all.map{|r| [ r.name, r.id ] }
@@ -53,9 +52,7 @@ before_action :set_search
 			search: @slug,
 			page: @page, take: @take
 			)
-
 		@strain_results = @search_results['Strains']
-
 	end
 	
 	private

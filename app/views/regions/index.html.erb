@@ -15,7 +15,7 @@
       <% @regions.each do |region| %>
         <tr  class="<%= cycle('odd', 'even') %>">
           <td class="center"><%= link_to region.name, region %></td>
-          <td class="center">$<%= region.prices.average(:cost).to_i %></td>
+          <td class="center">$<%= average_region(region) %></td>
           <td class="center">$<%= region.prices.maximum(:cost).to_i %></td>
           <td class="center">$<%= region.prices.minimum(:cost).to_i %></td>
           <td class="center"><%= link_to Strain.find(most_popular_strain(region)).name.titleize, Strain.find(most_popular_strain(region)) %></td>

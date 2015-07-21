@@ -1,3 +1,8 @@
+  
+  
+  
+  
+  
   <div id="background" class="center">
    <table>
     <td>
@@ -30,7 +35,7 @@
           </tr>
     
             <tr  class="<%= cycle('odd', 'even') %>">
-              <td class="center">$<%= @strain.prices.average(:cost).to_i %></td>
+              <td class="center">$<%= average_strain(@strain) %></td>
               <td class="center">$<%= @strain.prices.maximum(:cost).to_i %></td>
               <td class="center">$<%= @strain.prices.minimum(:cost).to_i %></td>
               <td class="center"><%= @rating %> out of 5</td>

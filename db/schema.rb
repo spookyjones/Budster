@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150623220002) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "prices", force: :cascade do |t|
     t.string   "cost"
     t.datetime "created_at", null: false
@@ -23,19 +26,17 @@ ActiveRecord::Schema.define(version: 20150623220002) do
     t.integer  "rating"
   end
 
-  add_index "prices", ["region_id"], name: "index_prices_on_region_id"
-  add_index "prices", ["strain_id"], name: "index_prices_on_strain_id"
+  add_index "prices", ["region_id"], name: "index_prices_on_region_id", using: :btree
+  add_index "prices", ["strain_id"], name: "index_prices_on_strain_id", using: :btree
 
   create_table "regions", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "price_id"
     t.integer  "strain_id"
   end
 
-  add_index "regions", ["price_id"], name: "index_regions_on_price_id"
-  add_index "regions", ["strain_id"], name: "index_regions_on_strain_id"
+  add_index "regions", ["strain_id"], name: "index_regions_on_strain_id", using: :btree
 
   create_table "reviews", force: :cascade do |t|
     t.string   "name"
@@ -45,20 +46,18 @@ ActiveRecord::Schema.define(version: 20150623220002) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "reviews", ["price_id"], name: "index_reviews_on_price_id"
+  add_index "reviews", ["price_id"], name: "index_reviews_on_price_id", using: :btree
 
   create_table "strains", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.integer  "region_id"
     t.integer  "price_id"
     t.integer  "position"
     t.float    "average_price", default: 0.0, null: false
   end
 
-  add_index "strains", ["average_price"], name: "index_strains_on_average_price"
-  add_index "strains", ["price_id"], name: "index_strains_on_price_id"
-  add_index "strains", ["region_id"], name: "index_strains_on_region_id"
+  add_index "strains", ["average_price"], name: "index_strains_on_average_price", using: :btree
+  add_index "strains", ["price_id"], name: "index_strains_on_price_id", using: :btree
 
 end

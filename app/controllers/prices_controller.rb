@@ -88,10 +88,8 @@ class PricesController < ApplicationController
       #@price.region_id = Region.find(params[:id]).id
     end
     
-    def update_price
-      
+    def update_price 
     end
-    
     
   	def setup_navigation
           @prices = Price.order('position Asc')
@@ -109,3 +107,5 @@ class PricesController < ApplicationController
       %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
     end
 end
+
+
