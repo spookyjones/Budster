@@ -12,13 +12,13 @@
         
             <%= select_tag :s_conditions, options_for_select(@condtion_options, @conditions) %>
         
-        Negative Effects:
+        Symptoms:
         
             <%= select_tag :s_symptoms, options_for_select(@symptoms_options, @symptoms) %>
                                                              
         Effects:
         
-            <%= select_tag :tags, options_for_select(@tag_options, @tags) %>
+            <%= select_tag :s_effects, options_for_select(@tag_options, @tags) %>
         
         <%= submit_tag "Search", :name => nil %>
     </table>
