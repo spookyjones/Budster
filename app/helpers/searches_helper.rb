@@ -14,7 +14,8 @@ module SearchesHelper
     price_list.each do |p|
       total_prices = total_prices + p.cost.to_i
     end
-    (total_prices / price_list.count)
+    avg = (total_prices / price_list.count) 
+    avg == Float::NAN ? avg = 0 : avg
   end
   
   
