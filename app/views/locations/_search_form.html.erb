@@ -1,7 +1,11 @@
 <%= form_tag locations_path do %>
 
         Strain:
-        <%= text_field_tag :s_slug, params[:s_slug] %>
+		<% if params.has_key?(:s_slug) %>
+        	<%= text_field_tag :s_slug, params[:s_slug].titleize %>
+		<% else %>
+			<%= text_field_tag :s_slug, params[:s_slug] %>
+		<% end %>
         Address:
 		<%= text_field_tag :address, params[:address] %>
 		

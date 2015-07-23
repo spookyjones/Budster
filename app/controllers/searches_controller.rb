@@ -1,5 +1,5 @@
 class SearchesController < ApplicationController
-before_action :set_search
+  before_action :set_search
 	def index
 		@flavor_options = flavors
 		@symptoms_options = symptoms
