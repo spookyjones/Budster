@@ -1,0 +1,26 @@
+
+  <table summary="Store list">
+      <tr class="header">
+        <th class="center" colspan="1">Name</th>
+		<th class="center" colspan="1">Location</th>
+		<th class="center" colspan="1">Rating</th>
+		<th class="center" colspan="1">Medicinal</th>
+		<th class="center" colspan="1">Retail</th>
+		<th class="center" colspan="1">Menu</th>
+      </tr>
+	  
+      <% @stores.each do |s| %>
+        <tr class="<%= cycle('odd', 'even') %>">
+          <td><%= s['name']%></td>
+		  <td><%= s['locationLabel']%></td>
+		  <td><%= s['rating']%></td>
+          <td><%= s['medical']%></td>
+		  <td><%= s['retail']%></td>
+		  <td><%= link_to 'Menu', dispensary_path( :slug => s['slug'] ), :class => 'action show' %></td>
+        </tr> 
+		
+		
+      <% end %>
+     
+  </table>
+

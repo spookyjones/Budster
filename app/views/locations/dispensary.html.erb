@@ -1,0 +1,49 @@
+
+<div id="background">
+	<table>
+		<tr class="header">
+			<th>
+				<b><%= params[:slug].titleize %></b>
+			</th>
+		</tr>
+	</table>
+</div>
+<div id="background">
+	<div id="Menu Items">
+		<table>	
+			<tr class="header">
+				<th>
+					Product
+				</th>
+				<th>
+					Type
+				</th>
+				<th>
+					Description
+				</th>
+				<th>
+					Unit Price
+				</th>
+			</tr>
+			<% @menu.each do |m| %>
+				<tr class="<%= cycle('odd', 'even') %>">
+					<td>
+						<%= m['name'] %>
+					</td>
+					<td>
+						<%= m['type'] %>
+					</td>
+					<td>
+						<%= m['description'] %>
+					</td>
+					<td>
+						<% n = m['pricing'] %>
+						<% n.each do |o| %>
+							<%= o['Unit'] %>: $<%= o['Price']%>0
+						<% end %>	
+					</td>
+				</tr>
+			<% end %>
+		</table>
+	</div>
+</div>

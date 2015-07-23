@@ -1,7 +1,7 @@
 <%= form_tag search_leafly_path do %>
 
         Name:
-        <%= text_field_tag :s_slug, params[:search_leafly] %>
+        <%= text_field_tag :s_slug, params[:s_slug] %>
         Category:
         <%= select_tag :s_categories, options_for_select(["", "hybrid", "indica", "sativa"], @categories) %>
         Flavors:
@@ -20,6 +20,6 @@
         
             <%= select_tag :tags, options_for_select(@tag_options, @tags) %>
         
-        <%= submit_tag "Search", :name => nil %>
+        <%= submit_tag "Search" %>
     </table>
 <% end %>

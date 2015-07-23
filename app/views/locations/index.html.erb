@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+<div class="strain index">
+  <div id="parent">
+    <table>
+      <tr>
+        <td>
+          <%= render 'search_form' %>
+        </td>
+      </tr>
+    </table>
+  </div>
+<br>
+<% if @slug != "" %>
+  <div id="parent">
+    <table>
+      <tr>
+        <td>
+          Nearest locations with <%= @slug.titleize %> 
+		</td>
+      </tr>
+    </table>
+  </div>
+<br>
+<% end %> 
+<div id="parent2"><%= render 'search_results' %></div>
+
+<%= @stores %> 

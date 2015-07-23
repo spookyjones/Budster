@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+
   resources :reviews
   resources :prices
   resources :strains
   resources :regions
   
+  match '/locations' => 'locations#index', :via => :get, :as => :locations
+  match '/locations' => 'locations#show', :via => :post, :as => :search_locations
+  match '/locations/dispensary' => 'locations#dispensary', :via => :get, :as => :dispensary
   match '/graphs' => 'graphs#index', :via => :get, :as => :graphs
   match '/searches' => 'searches#index', :via => :get, :as => :searches
   match '/searches/search_leafly' => 'searches#search_leafly', :via => :post, :as => :search_leafly

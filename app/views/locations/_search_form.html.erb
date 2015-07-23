@@ -1,0 +1,10 @@
+<%= form_tag locations_path do %>
+
+        Strain:
+        <%= text_field_tag :s_slug, params[:s_slug] %>
+        Address:
+		<%= text_field_tag :address, params[:address] %>
+		
+        <%= submit_tag "Search" %>
+    </table>
+<% end %>

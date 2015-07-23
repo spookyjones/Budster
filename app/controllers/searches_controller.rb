@@ -32,7 +32,7 @@ before_action :set_search
 		@permalink = @leafly['permalink']
 		@relatedstrains = @leafly['relatedStrains']#returns an array of hashes
 		@parents = @leafly['parents']#returns an array of hashes
-	    @reviews = @leafly["highlightedReviews"]#returns an array of hashes
+	  @reviews = @leafly["highlightedReviews"]#returns an array of hashes
 		@video = @leafly['videoUrl']
 	end
 	
@@ -50,7 +50,8 @@ before_action :set_search
 			flavors: [@flavors],
 			conditions: [@conditions] },
 			search: @slug,
-			page: @page, take: @take
+			page: @page,
+      take: @take
 			)
 		@strain_results = @search_results['Strains']
 	end
@@ -58,14 +59,14 @@ before_action :set_search
 	private
 	
     def set_search
-		@page = params[:s_page] || 0
-		@take = params[:s_take] || 15
-    	@slug = params[:s_slug] || ""
-		@conditions = params[:s_conditions] || ""
-		@flavors = params[:s_flavors] || ""
-		@categories = params[:s_categories] || ""
-		@symptoms = params[:s_symptoms] || ""
-		@tags = params[:tags] || ""
+  		@page = params[:s_page] || 0
+  		@take = params[:s_take] || 50
+      @slug = params[:s_slug] || ""
+  		@conditions = params[:s_conditions] || ""
+  		@flavors = params[:s_flavors] || ""
+  		@categories = params[:s_categories] || ""
+  		@symptoms = params[:s_symptoms] || ""
+  		@tags = params[:tags] || ""
     end
 	
 	def search_params
