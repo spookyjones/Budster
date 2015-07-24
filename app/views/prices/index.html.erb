@@ -36,7 +36,7 @@
           <td class="center"><%= time_ago_in_words(price.created_at) %> ago</td>
           <td class="actions">
             <%= link_to 'Show', price, :class => 'action show' %>
-            <%= link_to 'Find', locations_path( :s_slug => price.strain.name.parameterize ), :class => 'action show' %>
+            <%= link_to 'Find', locations_path( :s_slug => price.strain.name.parameterize, :address => price.region ), :class => 'action show' %>
           <% if price.strain.name.parameterize == "unknown" %>
             <%= link_to 'Info', graphs_path, :class => 'action show' %>
           <% else %>
