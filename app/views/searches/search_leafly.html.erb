@@ -16,14 +16,34 @@
 
 
   <br>
-<% if @page.to_i > 0 %>
-  <%= link_to 'Previous Page', search_leafly_path( :s_slug => @slug, :s_conditions => @conditions, :s_flavors => @flavors, :s_categories => @categories, :s_symptoms => @symptoms, :s_tags => @tags, :s_page => (@page.to_i - 1)), { :class => 'action show', :method => "POST" } %>
-  <%= link_to 'Next Page', search_leafly_path( :s_slug => @slug, :s_conditions => @conditions, :s_flavors => @flavors, :s_categories => @categories, :s_symptoms => @symptoms, :s_tags => @tags, :s_page => (@page.to_i + 1)), { :class => 'action show', :method => "POST" } %>
-<% else %>
-  <%= link_to 'Next Page', search_leafly_path( :s_page => (@page.to_i + 1)), { :class => 'action show', :method => "POST" } %>
-<% end %>
+	<% if @page.to_i > 0 %>
+	  <%= link_to 'Previous Page', search_leafly_path( :s_slug => @slug,
+													   :s_conditions => @conditions,
+													   :s_flavors => @flavors, 
+													   :s_categories => @categories,
+													   :s_symptoms => @symptoms, 
+													   :s_tags => @tags, 
+													   :s_page => (@page.to_i - 1)), 
+													   { :class => 'action show', :method => "POST" } %>
+	  <%= link_to 'Next Page', search_leafly_path(:s_slug => @slug, 
+												  :s_conditions => @conditions, 
+												  :s_flavors => @flavors, 
+												  :s_categories => @categories, 
+												  :s_symptoms => @symptoms, 
+												  :s_tags => @tags, 
+												  :s_page => (@page.to_i + 1)), 
+												  { :class => 'action show', :method => "POST" } %>
+	<% else %>
+	  <%= link_to 'Next Page', search_leafly_path(:s_slug => @slug, 
+												  :s_conditions => @conditions, 
+												  :s_flavors => @flavors, 
+												  :s_categories => @categories, 
+												  :s_symptoms => @symptoms, 
+												  :s_tags => @tags, 
+												  :s_page => (@page.to_i + 1)), 
+												  { :class => 'action show', :method => "POST" } %>
+	<% end %>
 
-  
 </div>
 <br><br>
 

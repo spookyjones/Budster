@@ -6,9 +6,9 @@
 		<% else %>
 			<%= text_field_tag :s_slug, params[:s_slug] %>
 		<% end %>
-        Address:
+        Location:
 		<%= text_field_tag :address, params[:address] %>
-		(eg. 'Los Angeles, CA', '1234 Road Dr., San Francisco, CA')
+		(e.g. 'Los Angeles, CA')
         <%= submit_tag "Search" %>
     </table>
 <% end %>

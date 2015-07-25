@@ -11,8 +11,8 @@
 	  
       <% @stores.each do |s| %>
         <tr class="<%= cycle('odd', 'even') %>">
-          <td><%= s['name']%></td>
-		  <td><%= s['locationLabel']%></td>
+          <td><%= link_to s['name'], dispensary_path( :slug => s['slug'] ) %></td>
+		  <td><%= link_to s['locationLabel'], locations_path( :address => s['locationLabel'], :s_slug => @slug )%></td>
 		  <td><%= s['rating']%></td>
           <td><%= s['medical']%></td>
 		  <td><%= s['retail']%></td>
