@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   match '/locations' => 'locations#index', :via => :get, :as => :locations
   match '/locations' => 'locations#show', :via => :post, :as => :search_locations
   match '/locations/dispensary' => 'locations#dispensary', :via => :get, :as => :dispensary
+  match '/locations/specials' => 'locations#specials', :via => :get, :as => :specials
+  match '/locations/details' => 'locations#details', :via => :get, :as => :details
   match '/graphs' => 'graphs#index', :via => :get, :as => :graphs
   match '/searches' => 'searches#index', :via => :get, :as => :searches
   match '/searches/search_leafly' => 'searches#search_leafly', :via => :post, :as => :search_leafly

@@ -1,0 +1,14 @@
+<div>
+	<table>
+		<tr>
+			<th>Title</th>
+			<th>Details</th>
+		</tr>
+		<% @specials.each do |s| %>
+			<tr class="<%= cycle('odd', 'even') %>">
+				<td><%= s['title'] %></td>
+				<td><%= s['details'] %></td>
+			</tr>
+		<% end %>
+	</table>
+</div>

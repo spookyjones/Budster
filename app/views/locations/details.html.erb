@@ -1,0 +1,108 @@
+<div>
+	<table>
+		<tr>
+			<th>
+				<h2><%= @name %></h2>
+			</th>
+		</tr>
+	</table>
+</div>
+<div>
+	<table>
+		<tr class="odd">
+			<td>Address</td>
+			<td><%= @address1 %>,<%= @city %>,<%= @state %>,<%= @zip %></td>
+		</tr>
+		<tr class="even">
+			<td>Phone</td>
+			<td><%= @phone %></td>
+		</tr>
+		<tr class="odd">
+			<td>Hours</td>
+			<td><%= @hours %></td>
+		</tr>
+		<tr class="even">
+			<td>Website</td>
+			<td><a href="<%= @website %>"><%= @name %></td>
+		</tr>
+		<tr class="odd">
+			<td>Rating</td>
+			<td><%= @rating %></td>
+		</tr>
+		<tr class="even">
+			<td>Atm</td>
+			<td><%= @atm == true ? "Yes" : "No" %></td>
+		</tr>
+		<tr class="odd">
+			<td>Accepts Credit Cards</td>
+			<td><%= @credit_cards == true ? "Yes" : "No" %></td>
+		</tr>
+		<tr class="even">
+			<td>Veteran Discount</td>
+			<td><%= @veteran_discount == true ? "Yes" : "No" %></td>
+		</tr>
+		<tr class="odd">
+			<td>Delivery</td>
+			<td><%= @delivery == true ? "Yes" : "No" %></td>
+		</tr>
+		<tr class="even">
+			<td>Medical</td>
+			<td><%= @medical == true ? "Yes" : "No" %></td>
+		</tr>
+		<tr class="odd">
+			<td>Retail</td>
+			<td><%= @retail == true ? "Yes" : "No" %></td>
+		</tr>
+		<tr class="even">
+			<td>Storefront</td>
+			<td><%= @storefront == true ? "Yes" : "No" %></td>
+		</tr>
+	</table>
+</div>
+<div>
+	<table>
+		<tr>
+			<th>
+				<h2>Recent Reviews</h2>
+			</th>
+		</tr>
+		<% @recent_reviews.each do |r| %>
+			<tr class="<%= cycle('odd', 'even') %>">
+				<td>
+					<%= r['comments'] %>
+					<br>-<%= r['username'] %>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+</div>
+<div>
+	<table>
+		<tr>
+			<th colspan="2"><h2>Specials</h2></th>
+		</tr>
+		<% @specials.each do |s| %>
+			<tr class="<%= cycle('odd', 'even') %>">
+				<td><%= s['title'] %></td>
+				<td><%= s['details'] %></td>
+			</tr>
+		<% end %>
+	</table>
+</div>
+<div>
+	<table>
+		<tr>
+			<th colspan="<%= @photos.count %>">
+				<h2>Photos</h2>
+			</th>
+		</tr>
+		<tr class="odd">
+			<% @photos.each do |s| %>
+				<td><img src="<%= s %>"></td>
+			<% end %>
+		</tr>
+	</table>
+</div>
+
+
+<%= @details %>

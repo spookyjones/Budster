@@ -1,14 +1,20 @@
+
 <%= form_tag locations_path do %>
 
-        Strain:
-		<% if params.has_key?(:s_slug) %>
-        	<%= text_field_tag :s_slug, params[:s_slug].titleize %>
-		<% else %>
-			<%= text_field_tag :s_slug, params[:s_slug] %>
-		<% end %>
-        Location:
-		<%= text_field_tag :address, params[:address] %>
-		(e.g. 'Los Angeles, CA')
-        <%= submit_tag "Search" %>
-    </table>
+	        Strain:
+			<% if params.has_key?(:s_slug) %>
+	        	<%= text_field_tag :s_slug, params[:s_slug].titleize %>
+			<% else %>
+				<%= text_field_tag :s_slug, params[:s_slug] %>
+			<% end %>
+	        Location:
+			<%= text_field_tag :address, params[:address] %>
+			(e.g. 'Los Angeles, CA')
+	        <%= submit_tag "Search" %>
+			<%= hidden_field_tag :medical, '' %>
+			Medicinal:<%= check_box_tag :medical, true %>
+			<%= hidden_field_tag :retail, '' %>
+			Retail:<%= check_box_tag :retail, true %>
+			<%= hidden_field_tag :delivery, '' %>
+			Delivery:<%= check_box_tag :delivery, true %>
 <% end %>

@@ -30,7 +30,7 @@ a.action#show { float: middle; min-width: 3.5em;
 a.action:hover { background: #B6D491; color: whitesmoke}
 
 /* small action buttons */
-.actions { width: 200px; }
+.actions {  }
 .actions a.action { float: middle; min-width: 3.5em;
   padding: 1px 2px; margin: 2px 5px; font-size: 0.7em; }
 
