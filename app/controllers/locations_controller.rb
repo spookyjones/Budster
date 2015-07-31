@@ -1,11 +1,11 @@
 class LocationsController < ApplicationController
-  before_action :set_search, :only => [:index, :show]
-  def index
 
+  before_action :set_search, :only => [:index, :show]
+
+  def index
   end
   
   def show
-
   end
   
   def details

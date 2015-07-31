@@ -15,14 +15,19 @@ a:hover { text-decoration: underline; }
 
 /* large action buttons */
 a.action { 
-  -moz-box-shadow:2px 2px 2px darkgray;
-  -webkit-box-shadow:2px 2px 2px darkgray;
-  box-shadow:2px 2px 2px darkgray;
-  display: inline-block;
-  border-radius: 4px;
-  float: center; padding: 2px 5px; margin: 0 0 1em 1em;
-  background: #dbeac8; color: black;  border: 2px solid #5d8032;
-  text-decoration: none; font-size: 0.8em; text-align: center; }
+	-moz-box-shadow:2px 2px 2px darkgray;
+	-webkit-box-shadow:2px 2px 2px darkgray;
+	box-shadow:2px 2px 2px darkgray;
+	display: inline-block;
+	border-radius: 4px;
+	float: center; padding: 2px 5px; margin: 0 0 1em 1em;
+	background: #dbeac8; color: black;  border: 2px solid #5d8032;
+	text-decoration: none; font-size: 0.8em; text-align: center;
+	transition: all .4s ease-in-out;
+	&:hover {
+		opacity: 0.4;
+	}
+  }
   
 a.action#show { float: middle; min-width: 3.5em;
   padding: 1px 2px; margin: 2px 5px; font-size: 0.7em; }
@@ -32,7 +37,12 @@ a.action:hover { background: #B6D491; color: whitesmoke}
 /* small action buttons */
 .actions {  }
 .actions a.action { float: middle; min-width: 3.5em;
-  padding: 1px 2px; margin: 2px 5px; font-size: 0.7em; }
+	padding: 1px 2px; margin: 2px 5px; font-size: 0.7em;
+	transition: all .4s ease-in-out;
+	&:hover {
+	opacity: 0.4;
+	}
+ }
 
 /* CRUD */
 .notice { height: 1.25em; padding: 0.5em; text-align: center;

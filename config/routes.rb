@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   resources :reviews
   resources :prices
   resources :strains
@@ -16,7 +17,12 @@ Rails.application.routes.draw do
   match '/searches/show' => 'searches#show', :via => :get, :as => :show
   match '/searches/next' => 'searches#search_leafly', :via => :post, :as => :next_results_page	
   match '/searches/prev' => 'searches#search_leafly', :via => :post, :as => :prev_results_page
-  	
+
+  devise_scope :user do
+    get 'sign_in', :to => 'devise/sessions#new', :as => :session
+    get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
+  end
+  
   root 'prices#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -4,30 +4,21 @@
         <th class="center" colspan="1">Name</th>
 		<th class="center" colspan="1">Location</th>
 		<th class="center" colspan="1">Rating</th>
-		<th class="center" colspan="1">Phone</th>
 		<th class="center" colspan="1">Medicinal</th>
 		<th class="center" colspan="1">Retail</th>
-		<th class="center" colspan="1">Delivery</th>
-		<th class="center" colspan="1">Actions</th>
-		
+		<th class="center" colspan="1">Menu</th>
       </tr>
 	  
       <% @stores.each do |s| %>
+	  
         <tr class="<%= cycle('odd', 'even') %>">
           <td><%= link_to s['name'], dispensary_path( :slug => s['slug'] ) %></td>
 		  <td><%= link_to s['locationLabel'], locations_path( :address => s['locationLabel'], :s_slug => @slug )%></td>
-		  <td><%= s['rating'] %></td>
-		  <td><%= s['phone'] %></td>
-          <td><%= s['medical'] == false ? "No" : "Yes"  %></td>
-		  <td><%= s['retail'] == false ? "No" : "Yes"  %></td>
-		  <td><%= s['delivery'] == false ? "No" : "Yes" %></td>
-		  <td class="actions">
-			  <%= link_to 'Menu', dispensary_path( :slug => s['slug'] ), :class => 'action show' %>
-		  	  <%= link_to 'Specials', specials_path( :slug => s['slug'] ), :class => 'action show' %>
-			  <%= link_to 'Details', details_path( :slug => s['slug'] ), :class => 'action show' %>	
-		  </td>
+		  <td><%= s['rating']%></td>
+          <td><%= s['medical']%></td>
+		  <td><%= s['retail']%></td>
+		  <td><%= link_to 'Menu', dispensary_path( :slug => s['slug'] ), :class => 'action show' %></td>
         </tr> 
-		
 		
       <% end %>
      
