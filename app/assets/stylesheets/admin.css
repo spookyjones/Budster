@@ -25,7 +25,7 @@ a.action {
 	text-decoration: none; font-size: 0.8em; text-align: center;
 	transition: all .4s ease-in-out;
 	&:hover {
-		opacity: 0.4;
+		background: #B6D491; color: whitesmoke;
 	}
   }
   
