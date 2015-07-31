@@ -40,7 +40,7 @@ a.action:hover { background: #B6D491; color: whitesmoke}
 	padding: 1px 2px; margin: 2px 5px; font-size: 0.7em;
 	transition: all .4s ease-in-out;
 	&:hover {
-	opacity: 0.4;
+	background: #B6D491; color: whitesmoke;
 	}
  }
 
