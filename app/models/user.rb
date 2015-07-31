@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :prices
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :omniauthable, :omniauth_providers => [:facebook]
@@ -9,6 +10,8 @@ class User < ActiveRecord::Base
       user.password = Devise.friendly_token[0,20]
       user.name = auth.info.name   # assuming the user model has a name
       user.image = auth.info.image # assuming the user model has an image
+      user.last_sign_in_at = Time.now
+      user.save
     end
   end
 
@@ -20,4 +23,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  def largeimage
+    "http://graph.facebook.com/#{self.uid}/picture?type=large"
+  end
+  
+  def normalimage
+     "http://graph.facebook.com/#{self.uid}/picture?type=normal"
+  end
+  
 end

@@ -7,6 +7,8 @@
   <%= link_to @price.strain.name.titleize, @price.strain %><br />
   <strong>Region:</strong>
   <%= link_to @price.region, @price.region %><br />  
+  <strong>User:</strong>
+  <%= link_to @price.user.name, @price.user %>
 </p>
 
 <%= link_to 'Home', prices_path, :class => 'action show'  %>

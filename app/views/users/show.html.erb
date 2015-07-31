@@ -1,0 +1,25 @@
+<h1><%= current_user.name.titleize %></h1><br>
+ <img="#{current_user.largeimage}">
+ <table>
+	 <% current_user.prices.each do |price| %>
+        <tr class="<%= cycle('odd', 'even') %>">
+			<td class="center">$<%= price.cost %></td>
+			<% if price.strain.name.parameterize == "unknown" %>
+				<td class="center"><%= link_to price.strain.name.titleize, graphs_path %></td>
+			<% else %>
+				<td class="center"><%= link_to price.strain.name.titleize, show_path( :s_slug => price.strain.name.parameterize ) %></td>
+			<% end %>
+			<td class="center"><%= link_to price.region, price.region %></td>
+			<td class="center"><%= time_ago_in_words(price.created_at) %> ago</td>
+			<td class="actions">
+			<%= link_to 'Find', locations_path( :s_slug => price.strain.name.parameterize, :address => price.region.name ), :class => 'action show' %>
+			<% if price.strain.name.parameterize == "unknown" %>
+				<%= link_to 'Info', graphs_path, :class => 'action show' %>
+			<% else %>
+				<%= link_to 'Info', show_path( :s_slug => price.strain.name.parameterize ), :class => 'action show' %>
+			<% end %>
+			</td>
+        </tr>
+	<% end %>
+</table>
+

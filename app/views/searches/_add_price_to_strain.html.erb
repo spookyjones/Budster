@@ -32,6 +32,7 @@
               </div>
             </td>
 				<%= f.hidden_field :strain_id, :value => @strain.id %>
+				<%= f.hidden_field :user_id, :value => current_user.id %>
             <td> 
               <div>
                 <b><%= f.label :rating %>:</b>
