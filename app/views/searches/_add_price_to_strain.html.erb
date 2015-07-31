@@ -31,7 +31,7 @@
                 <%= f.select :region_id, options_for_select(@region_options) %>
               </div>
             </td>
-				<%= f.hidden_field :strain_id, :value => strain.id %>
+				<%= f.hidden_field :strain_id, :value => @strain.id %>
 				<% if user_signed_in? %> 
 					<%= f.hidden_field :user_id, :value => current_user.id %>
 				<% end %>
