@@ -7,5 +7,5 @@ test:
   secret: 3619d0c7216629312768d09d275be816
 
 production:
-  app_id: ENV['APP_ID']
-  secret: ENV['APP_SECRET']
+  app_id: <%= ENV['APP_ID'] %>
+  secret: <%= ENV['APP_SECRET'] %>
