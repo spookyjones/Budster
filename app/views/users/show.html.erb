@@ -1,5 +1,5 @@
 <h1><%= current_user.name.titleize %></h1><br>
- <img="#{current_user.largeimage}">
+
  <table>
 	 <% current_user.prices.each do |price| %>
         <tr class="<%= cycle('odd', 'even') %>">
@@ -22,6 +22,6 @@
         </tr>
 	<% end %>
 </table>
-
+<%= image_tag @user.image %>
 <%= current_user.attributes %>
 <%= @user_info %>
