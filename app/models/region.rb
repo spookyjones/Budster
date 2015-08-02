@@ -8,5 +8,9 @@ class Region < ActiveRecord::Base
 		name
 	end
 
-	
+	def update_average_price(strain=nil)	
+	    s = self.prices.sum(:cost)
+	    c = self.prices.count
+	    self.update_attribute(:average_price, c == 0 ? 0.0 : s.to_f / c.to_f)
+	end
 end

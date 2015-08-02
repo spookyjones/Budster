@@ -14,7 +14,7 @@
 	<td colspan="4">
 		<div class="field">
 			<% f.label :content %>
-			<%= f.text_area :content, :placeholder => "Review/Description", size: "30x6", class: 'users' %>
+			<%= f.text_area :content, :placeholder => "Review/Description", size: "30x4", class: 'users' %>
 			<% f.label :user_id %>
 			<% f.hidden_field :user_id, :value => current_user.id %>
 		</div>

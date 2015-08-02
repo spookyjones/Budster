@@ -1,0 +1,25 @@
+<% current_user.posts.each do |post| %>
+	<tr class="<%= cycle('odd', 'even') %>">
+		
+		<td class="center">
+			$<%= post.price ? post.price.cost : ""  %>
+		</td>
+		<% if post.strain %>
+			<% if post.strain.name.parameterize == "unknown" %>
+				<td class="center">
+					<%= link_to post.strain.name.titleize, graphs_path %>
+				</td>
+			<% else %>
+				<td class="center">
+					<%= link_to post.strain.name.titleize, show_path( :s_slug => post.strain.name.parameterize ) %>
+				</td>
+			<% end %>
+		<% end %>
+		<td class="center"><%= post.content %></td>
+		<td class="center"><%= post.region %></td>
+		<td class="center"><%= time_ago_in_words(post.created_at) %> ago</td>
+		<td class="actions">
+			
+		</td>
+	</tr>
+<% end %>

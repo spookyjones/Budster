@@ -14,11 +14,8 @@ class UsersController < ApplicationController
     @post = Post.new(post_params)
     @region = Region.find(params["post"]["region_id"])
     @user = current_user.id
-    #if !@strain_params.blank? 
-      @strain = Strain.find_or_create_by(name: params["post"]["strain"]["name"].parameterize)
-      @strain.save
-      
-  #  end
+    @strain = Strain.find_or_create_by(name: params["post"]["strain"]["name"].parameterize)
+
 
   #  if !@price_params.blank?
       @price = Price.new(price_params)
@@ -33,10 +30,13 @@ class UsersController < ApplicationController
   #  end
     @post.user = current_user
     @post.price_id = @price.id
+    @post.price = @price
     @post.strain_id = @strain.id
+    @post.strain = @strain
     @post.region_id = @region.id
+    @post.region = @region
     @post.save
-    Strain.update_average_price(@strain)
+
   end
 
   # PATCH/PUT /posts/1

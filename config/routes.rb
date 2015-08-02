@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
 
-  resources :posts
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   resources :users, :only => [:show]
   resources :reviews
   resources :prices
   resources :strains
   resources :regions
-  
+  resources :posts
   match '/locations' => 'locations#index', :via => :get, :as => :locations
   match '/locations' => 'locations#show', :via => :post, :as => :search_locations
   match '/locations/dispensary' => 'locations#dispensary', :via => :get, :as => :dispensary

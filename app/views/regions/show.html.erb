@@ -4,20 +4,17 @@
 	
 <div id="parent2">	
   <table class="listing" summary="region summary">
-      <tr class="header">
-        <th class="center" colspan="1">Average</th>
-        <th class="center" colspan="1">Highest</th>
-        <th class="center" colspan="1">Lowest</th>
-      </tr>
-
-
-        <tr  class="<%= cycle('odd', 'even') %>">
-          <td class="center">$<%= @region.prices.average(:cost).to_i %></td>
-          <td class="center">$<%= @region.prices.maximum(:cost).to_i %></td>
-          <td class="center">$<%= @region.prices.minimum(:cost).to_i %></td>
-        </tr>
-
-    </tbody>
+		<tr class="header">
+			<th class="center" colspan="1">Average</th>
+			<th class="center" colspan="1">Highest</th>
+			<th class="center" colspan="1">Lowest</th>
+		</tr>
+		<tr  class="<%= cycle('odd', 'even') %>">
+			<td class="center">$<%= average_region(@region) %></td>
+			<td class="center">$<%= @region.prices.maximum(:cost).to_i %></td>
+			<td class="center">$<%= @region.prices.minimum(:cost).to_i %></td>
+		</tr>
+     </tbody>
   </table>
 </div>  
 <br>
