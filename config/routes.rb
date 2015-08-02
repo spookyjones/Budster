@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :posts
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   resources :users, :only => [:show]
   resources :reviews
@@ -18,7 +19,8 @@ Rails.application.routes.draw do
   match '/searches/show' => 'searches#show', :via => :get, :as => :show
   match '/searches/next' => 'searches#search_leafly', :via => :post, :as => :next_results_page	
   match '/searches/prev' => 'searches#search_leafly', :via => :post, :as => :prev_results_page
-
+  match '/users/posts/new' => 'users#post_create', :via => :post, :as => :post_create
+  match '/users/#{:uid}' => 'users#show', :via => :get, :as => :user_show
   devise_scope :user do
     get 'sign_in', :to => 'devise/sessions#new', :as => :session
     get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session

@@ -1,5 +1,6 @@
 class Region < ActiveRecord::Base
 	has_many :prices
+  has_many :posts
 	has_many :strains, :through => :prices
 	accepts_nested_attributes_for :strains
 	accepts_nested_attributes_for :prices

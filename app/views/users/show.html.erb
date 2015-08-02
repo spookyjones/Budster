@@ -5,7 +5,8 @@
 				<table id="user_image_table">
 					<tr>
 						<td>
-							<%= image_tag @user.largeimage %><br><%= current_user.name.titleize %><br>
+							<%= image_tag @user.largeimage %>
+							<br><%= current_user.name.titleize %><br>
 						</td>
 					</tr>
 				</table>
@@ -14,7 +15,14 @@
 	</div>
     <div id="contentwrap">
         <div id="user_content">
-			 <table>
+			<table>
+				<tr>
+					<td>
+						<%= render "posts/form" %>
+					</td>
+				</tr>
+			</table>
+			<table>
 				 <% current_user.prices.each do |price| %>
 			        <tr class="<%= cycle('odd', 'even') %>">
 						<td class="center">$<%= price.cost %></td>
@@ -26,7 +34,7 @@
 						<td class="center"><%= link_to price.region, price.region %></td>
 						<td class="center"><%= time_ago_in_words(price.created_at) %> ago</td>
 						<td class="actions">
-							<%= link_to 'Find', locations_path( :s_slug => price.strain.name.parameterize, :address => price.region.name ), :class => 'action show' %>
+							<%= link_to 'Find', locations_path( :s_slug => price.strain.name.parameterize ), :class => 'action show' %>
 							<% if price.strain.name.parameterize == "unknown" %>
 								<%= link_to 'Info', graphs_path, :class => 'action show' %>
 							<% else %>
@@ -39,8 +47,4 @@
         </div>
     </div>
 </div>
-
-			<%= current_user.attributes %>
-			<%= @user_info %>
-			||<%= @user.email %>||
 

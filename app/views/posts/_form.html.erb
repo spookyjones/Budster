@@ -1,0 +1,39 @@
+<%= form_for(@post, :as => :post, :url => post_create_path) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<tr>
+	<td>
+		<div class="field">
+			<% f.label :content %>
+			<%= f.text_area :content %>
+			<% f.label :user_id %>
+			<% f.hidden_field :user_id, :value => current_user.id %>
+		</div>
+	</td>
+</tr>
+<tr>
+	<td>		
+		<div class="field">
+			<%= f.fields_for @price do |builder| %>
+			  <%= render "price_fields", :f => builder %>
+			<% end %>
+			<%= f.fields_for @strain do |builder| %>
+				<%= render "strain_fields", :f => builder %>
+			<% end%>
+			<% f.label :region %>
+			<%= f.select :region_id, options_for_select(@region_options) %>
+  
+			<%= f.submit %>
+		</div>
+	</td>
+</tr>
+<% end %>

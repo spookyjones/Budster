@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150801143546) do
+ActiveRecord::Schema.define(version: 20150802104034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,21 @@ ActiveRecord::Schema.define(version: 20150801143546) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.string   "content"
+    t.integer  "user_id"
+    t.integer  "price_id"
+    t.integer  "strain_id"
+    t.integer  "region_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "posts", ["price_id"], name: "index_posts_on_price_id", using: :btree
+  add_index "posts", ["region_id"], name: "index_posts_on_region_id", using: :btree
+  add_index "posts", ["strain_id"], name: "index_posts_on_strain_id", using: :btree
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
+
   create_table "prices", force: :cascade do |t|
     t.text     "cost"
     t.datetime "created_at", null: false
@@ -33,8 +48,10 @@ ActiveRecord::Schema.define(version: 20150801143546) do
     t.integer  "position"
     t.integer  "rating"
     t.integer  "user_id"
+    t.integer  "post_id"
   end
 
+  add_index "prices", ["post_id"], name: "index_prices_on_post_id", using: :btree
   add_index "prices", ["region_id"], name: "index_prices_on_region_id", using: :btree
   add_index "prices", ["strain_id"], name: "index_prices_on_strain_id", using: :btree
   add_index "prices", ["user_id"], name: "index_prices_on_user_id", using: :btree
@@ -44,8 +61,10 @@ ActiveRecord::Schema.define(version: 20150801143546) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "strain_id"
+    t.integer  "post_id"
   end
 
+  add_index "regions", ["post_id"], name: "index_regions_on_post_id", using: :btree
   add_index "regions", ["strain_id"], name: "index_regions_on_strain_id", using: :btree
 
   create_table "reviews", force: :cascade do |t|
@@ -65,9 +84,11 @@ ActiveRecord::Schema.define(version: 20150801143546) do
     t.integer  "price_id"
     t.integer  "position"
     t.float    "average_price", default: 0.0, null: false
+    t.integer  "post_id"
   end
 
   add_index "strains", ["average_price"], name: "index_strains_on_average_price", using: :btree
+  add_index "strains", ["post_id"], name: "index_strains_on_post_id", using: :btree
   add_index "strains", ["price_id"], name: "index_strains_on_price_id", using: :btree
 
   create_table "users", force: :cascade do |t|
@@ -96,4 +117,8 @@ ActiveRecord::Schema.define(version: 20150801143546) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["uid"], name: "index_users_on_uid", using: :btree
 
+  add_foreign_key "posts", "prices"
+  add_foreign_key "posts", "regions"
+  add_foreign_key "posts", "strains"
+  add_foreign_key "posts", "users"
 end
