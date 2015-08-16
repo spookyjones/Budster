@@ -1,4 +1,18 @@
 class UsersController < ApplicationController
+  
+  def index
+    @users = User.all
+  end
+  
+  def facebook_friends
+    @user_friends = []
+    @koala = current_user.info
+    @friend_uids = @koala.split(",")
+    for f in @friend_uids
+      @user_friends << User.find_by(:uid => f)
+    end
+  end
+  
   def show
     @user = User.find(params[:id])
     @post = Post.new
@@ -15,8 +29,6 @@ class UsersController < ApplicationController
     @region = Region.find(params["post"]["region_id"])
     @user = current_user.id
     @strain = Strain.find_or_create_by(name: params["post"]["strain"]["name"].parameterize)
-
-
   #  if !@price_params.blank?
       @price = Price.new(price_params)
       @price.cost = params["post"]["price"]["cost"]
@@ -36,7 +48,6 @@ class UsersController < ApplicationController
     @post.region_id = @region.id
     @post.region = @region
     @post.save
-
   end
 
   # PATCH/PUT /posts/1

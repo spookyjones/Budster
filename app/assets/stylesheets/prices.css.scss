@@ -60,7 +60,8 @@ table#container { vertical-align: top;  border-collapse: collapse; }
 
 
 table tr th, table tr td { vertical-align: center; text-align: center; 
-  padding: 5px; font-size: 14px; color: #336633 ; }
+  padding: 5px; font-size: 14px; color: #336633; }
+td:hover { background-color: #5d8032; color: #e4efd6; transition: all .4s ease-in-out; }
 a, a:visited { color: #336633 ; }
 a:hover {}
 

@@ -6,7 +6,8 @@
 					<tr class="odd">
 						<td>
 							<%= image_tag @user.largeimage %>
-							<br><h3><%= current_user.name.titleize %></h3><br>
+							<h3><%= @user.name.titleize %></h3>
+							<%= @user.email %><br><%= @user.koala_friends_list %>
 						</td>
 					</tr>
 				</table>
@@ -15,14 +16,23 @@
 	</div>
     <div id="contentwrap">
         <div id="user_content">
-			<table>
-				<%= render "users/form" %>
-			</table>
+			<div>
+				<table>
+					<%= render "users/form" %>
+				</table>
+			</div>
 			<br>
-			<table>
-				 <%= render "users/posts" %>
-			</table>
+			<div>
+				
+					 <%= render "users/posts" %>
+				
+			</div>
         </div>
     </div>
+	<div id="rightcontentwrap">
+		<div id="user_friends">
+			<%= render "users/friends" %>
+		</div>
+	</div>
 </div>
 

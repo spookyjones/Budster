@@ -57,7 +57,11 @@ class LocationsController < ApplicationController
 	
     def set_search
       if params[:address] == nil 
-        @a=Geokit::Geocoders::GoogleGeocoder.geocode 'Los Angeles, CA'
+        unless current_user.home_location
+          @a=Geokit::Geocoders::GoogleGeocoder.geocode "Los Angeles, CA"
+        else
+          @a=Geokit::Geocoders::GoogleGeocoder.geocode current_user.home_location
+        end
       else
         @a=Geokit::Geocoders::GoogleGeocoder.geocode params[:address]
       end

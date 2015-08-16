@@ -73,8 +73,7 @@ a.action:hover { background: #B6D491; color: whitesmoke}
 .actions a.action { float: middle; min-width: 3.5em;
 	padding: 1px 2px; margin: 2px 5px; font-size: 0.7em;
 	transition: all .4s ease-in-out;
-	&:hover {
-	background: #B6D491; color: whitesmoke;
+	&:hover { color: whitesmoke;
 	}
  }
 

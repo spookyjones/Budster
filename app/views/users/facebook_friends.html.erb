@@ -1,0 +1,11 @@
+<%= @friend_uids.count %><br>
+<% @friend_uids.each do |f| %>
+	<%= f %>
+<% end %>
+<br>
+
+<% @user_friends.each do |user| %>
+	<%= user.name %>
+	<%= link_to "Follow", friendships_path(:friend_id => user), :method => :post %>
+<% end %>
+

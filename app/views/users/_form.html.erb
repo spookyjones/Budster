@@ -22,14 +22,11 @@
 </tr>
 <tr class="even">
 	<td>		
-	
 			<%= f.fields_for @price do |builder| %>
 			  <%= render "price_fields", :f => builder %>
 			<% end %>
-
 	</td>
-	<td>
-		
+	<td>	
 			<%= f.fields_for @strain do |builder| %>
 				<%= render "strain_fields", :f => builder %>
 			<% end%>

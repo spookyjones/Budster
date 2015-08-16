@@ -1,25 +1,54 @@
 <%= form_tag search_leafly_path do %>
-
-        Name:
-        <%= text_field_tag :s_slug, params[:s_slug] %>
-        Category:
-        <%= select_tag :s_categories, options_for_select(["", "hybrid", "indica", "sativa"], @categories) %>
-        Flavors:
+    <table>
+		<tr class="odd">
+			<th>
+	        		Name
+			</th>
+			<th>
+					Category
+			</th>
+			<th>
+					Flavors
+			</th>
+			<th>
+					Conditions
+			</th>
+			<th>
+					Symptoms
+			</th>
+			<th>
+					Effects
+			</th>
+		</tr>
+		<tr class="even">
+			<td>
+		        <%= text_field_tag :s_slug, params[:s_slug] %>
+			</td>
+			<td>    
+		        <%= select_tag :s_categories, options_for_select(["", "hybrid", "indica", "sativa"], @categories) %>
+			</td>
+			<td>    
         
-            <%= select_tag :s_flavors, options_for_select(@flavor_options, @flavors) %>
+		        <%= select_tag :s_flavors, options_for_select(@flavor_options, @flavors) %>
         
-        Conditions:
+			</td>
+			<td>    
         
-            <%= select_tag :s_conditions, options_for_select(@condtion_options, @conditions) %>
+		        <%= select_tag :s_conditions, options_for_select(@condtion_options, @conditions) %>
         
-        Symptoms:
+			</td>
+			<td>
         
-            <%= select_tag :s_symptoms, options_for_select(@symptoms_options, @symptoms) %>
+		        <%= select_tag :s_symptoms, options_for_select(@symptoms_options, @symptoms) %>
                                                              
-        Effects:
+			</td>
+			<td>    
         
-            <%= select_tag :tags, options_for_select(@tag_options, @tags) %>
-        
-        <%= submit_tag "Search" %>
+		        <%= select_tag :tags, options_for_select(@tag_options, @tags) %>
+			</td>
+			<td>
+		        <%= submit_tag "Search" %>
+			</td>
+		</tr>
     </table>
 <% end %>

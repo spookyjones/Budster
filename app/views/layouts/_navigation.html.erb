@@ -1,22 +1,18 @@
-		
-		
-		<strong>
-		<%= link_to 'Newest Prices', prices_path, :class => 'action show' %>
-		<%= link_to 'Region Prices', regions_path, :class => 'action show' %>
-		<%= link_to 'Search Strains', searches_path, :class => 'action show' %>
-		<%= link_to 'Charts & Graphs', graphs_path, :class => 'action show' %>
-		<%= link_to 'Find Near Me', locations_path, :class => 'action show' %>
-		<% if user_signed_in? %> 
-			<%= link_to current_user.name, user_path(:id => current_user), :class => 'action show' %>
-			<%= link_to "Sign Out", destroy_user_session_path, :class => 'action show' %>
-		<% else %>
-			<%= link_to "Sign in", user_omniauth_authorize_path(:facebook), :class => 'action show' %>
-		<% end %></strong>
-		<div id="search">
-		  <table class="search">
-		        <%= render 'prices/form' %>
-		  </table>
-		</div>
-		
+
+<strong>
+<%= link_to 'Newest Prices', prices_path, :class => 'action show' %>
+<%= link_to 'Region Prices', regions_path, :class => 'action show' %>
+<%= link_to 'Search Strains', searches_path, :class => 'action show' %>
+<%= link_to 'Charts & Graphs', graphs_path, :class => 'action show' %>
+<%= link_to 'Find Near Me', locations_path, :class => 'action show' %>
+<% if user_signed_in? %> 
+	<%= link_to current_user.name, user_path(:id => current_user), :class => 'action show' %>
+	<%= link_to "Sign Out", destroy_user_session_path, :class => 'action show' %>
+<% else %>
+	<%= link_to "Sign in", user_omniauth_authorize_path(:facebook), :class => 'action show' %>
+<% end %>
+</strong>
+
+
 
 		

@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
-  resources :users, :only => [:show]
+  resources :users, :only => [:show, :index]
   resources :reviews
   resources :prices
   resources :strains
   resources :regions
   resources :posts
+  resources :friendships
+  
   match '/locations' => 'locations#index', :via => :get, :as => :locations
   match '/locations' => 'locations#show', :via => :post, :as => :search_locations
   match '/locations/dispensary' => 'locations#dispensary', :via => :get, :as => :dispensary
@@ -20,6 +22,7 @@ Rails.application.routes.draw do
   match '/searches/prev' => 'searches#search_leafly', :via => :post, :as => :prev_results_page
   match '/users/posts/new' => 'users#post_create', :via => :post, :as => :post_create
   match '/users/#{:uid}' => 'users#show', :via => :get, :as => :user_show
+  match '/facebook_friends' => 'users#facebook_friends', :via => :get, :as => :facebook_friends
   devise_scope :user do
     get 'sign_in', :to => 'devise/sessions#new', :as => :session
     get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
