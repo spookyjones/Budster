@@ -20,7 +20,7 @@
 		<td class="center"><%= post.region %></td>
 		<td class="center"><%= time_ago_in_words(post.created_at) %> ago</td>
 		<td class="actions">
-			
+			<%= link_to 'Destroy', {:controller=>:posts,:action=>:destroy, :id=>post}, :method=>:delete %>
 		</td>
 	</tr>
 </table>
