@@ -14,26 +14,27 @@
 						</td>
 					</tr>
 				</table>
+				<br>
+				<div id="rightcontentwrap">
+					<div id="user_friends">
+						<%= render "users/friends" %>
+					</div>
+				</div>
 			</div>
         </div>
 	</div>
     <div id="contentwrap">
         <div id="user_content">
-			<div>
-				<table>
+			<% if @user == current_user %>
+				<div>
 					<%= render "users/form" %>
-				</table>
-			</div>
+				</div>
+			<% end %>
 			<br>
 			<div>	
 				<%= render "users/posts" %>
 			</div>
         </div>
     </div>
-	<div id="rightcontentwrap">
-		<div id="user_friends">
-			<%= render "users/friends" %>
-		</div>
-	</div>
 </div>
 

@@ -1,23 +1,25 @@
 <table>
-	<th>Following</th>
+	<tr>
+		<th>Following</th>
+	</tr>
 	<% for friendship in @user.friendships %>
       <tr class="<%= cycle('odd', 'even') %>">
 		  <td>
-      		  <%= link_to friendship.friend.name, friendship.friend, :via => :get %>
-		  </td>
-		  <td>
-      		  (<%= link_to "remove", friendship, :method => :delete %>)
+      		  <%= link_to friendship.friend.name, friendship.friend, :via => :get %> 
 		  </td>
   	  </tr>
-    <% end %>
+    <% end %>	
 </table>
+<br>
 <table>
-	<th>Followed by</th>
-	  <% for user in @user.inverse_friends %>
-      <tr class="<%= cycle('odd', 'even') %>">
+	<tr>
+		<th>Followed by</th>
+	</tr>
+	<% for user in @user.inverse_friends %>
+		<tr class="<%= cycle('odd', 'even') %>">
 		  <td>
 			  <%= link_to user.name, user, :via => :get %>
 		  </td>
-	  </tr>
-	  <% end %>
+		</tr>
+	<% end %>
 </table>

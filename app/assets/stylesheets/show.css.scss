@@ -33,13 +33,14 @@ $rgba-primary-4: rgba( 55, 82,  2,1);
 }
 
 #contentwrap {
-    width: 60%;
+    width: 66%;
     float: left;
 }
-
+td.content {
+    text-align: left;
+}
 #rightcontentwrap {
-	width: 200px;
-    float: right;
+
 }
 
 #user_content {
@@ -62,6 +63,9 @@ input#post_price_cost.users {
 }
 input#post_strain_name.users {
     width: 96%;
+}
+input#comment_content.users {
+    width: 85%;
 }
 
 textarea#post_content.users {

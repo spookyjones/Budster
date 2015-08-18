@@ -1,28 +1,62 @@
 <% @user.posts.each do |post| %>
-<table>
-	<tr class="<%= cycle('odd', 'even') %>">
-		
-		<td class="center">
-			$<%= post.price ? post.price.cost : ""  %>
-		</td>
-		<% if post.strain %>
-			<% if post.strain.name.parameterize == "unknown" %>
-				<td class="center">
-					<%= link_to post.strain.name.titleize, graphs_path %>
-				</td>
-			<% else %>
-				<td class="center">
-					<%= link_to post.strain.name.titleize, show_path( :s_slug => post.strain.name.parameterize ) %>
+	<table>
+		<tr class="<%= cycle('odd', 'even') %>">
+			<td class="center" rowspan="2">
+				<%= image_tag @user.smallimage %>
+			</td>
+			<td colspan="5" class="content">
+				<%= post.content %>
+			</td>
+		</tr>
+		<tr class="<%= cycle('odd', 'even') %>">
+			<td class="center">
+				$<%= post.price ? post.price.cost : ""  %>
+			</td>
+			<% if post.strain %>
+				<% if post.strain.name.parameterize == "unknown" %>
+					<td class="center">
+						<%= link_to post.strain.name.titleize, graphs_path %>
+					</td>
+				<% else %>
+					<td class="center">
+						<%= link_to post.strain.name.titleize, show_path( :s_slug => post.strain.name.parameterize ) %>
+					</td>
+				<% end %>
+			<% end %>
+
+			<td class="center"><%= post.region %></td>
+			<td class="center"><%= time_ago_in_words(post.created_at) %> ago</td>
+			<% if @user == current_user %>
+				<td class="actions">
+					<%= link_to 'Delete', {:controller=>:posts,:action=>:destroy, :id=>post.id}, :method=>:delete %>
 				</td>
 			<% end %>
-		<% end %>
-		<td class="center"><%= post.content %></td>
-		<td class="center"><%= post.region %></td>
-		<td class="center"><%= time_ago_in_words(post.created_at) %> ago</td>
-		<td class="actions">
-			<%= link_to 'Destroy', {:controller=>:posts,:action=>:destroy, :id=>post}, :method=>:delete %>
-		</td>
-	</tr>
-</table>
-<br>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td>
+				<% if user_signed_in? %> 
+					<%= form_for(@comment, :url => comment_create_path) do |comment| %>
+						<%= comment.hidden_field :user_id, :value => current_user.id %>
+						<%= comment.hidden_field :post_id, :value => post.id %>
+						<%= comment.text_field :content, :placeholder => 'Leave a comment', class: 'users' %>
+						<%= comment.submit "Comment" %>
+		
+					<% end %>
+				<% end %>
+			</td>
+		</tr>
+	</table>
+	<table>
+		<% post.comments.each do |c| %>
+			<tr class="<%= cycle('odd', 'even') %>">
+				<td class="content">
+					<%= image_tag c.user.smallimage %>
+					<%= c.content %>
+				</td>
+			</tr>
+		<% end %>	
+	</table>
 <% end %>
+<br><br>

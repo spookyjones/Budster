@@ -1,43 +1,43 @@
 <%= form_for(@post, :as => :post, :url => post_create_path) do |f| %>
-  <% if @post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul>
-      <% @post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-<tr class="odd">
-	<td colspan="4">
-		<div class="field">
-			<% f.label :content %>
-			<%= f.text_area :content, :placeholder => "Review/Description", size: "30x4", class: 'users' %>
-			<% f.label :user_id %>
-			<% f.hidden_field :user_id, :value => current_user.id %>
-		</div>
-	</td>
-</tr>
-<tr class="even">
-	<td>		
-			<%= f.fields_for @price do |builder| %>
-			  <%= render "price_fields", :f => builder %>
-			<% end %>
-	</td>
-	<td>	
-			<%= f.fields_for @strain do |builder| %>
-				<%= render "strain_fields", :f => builder %>
-			<% end%>
-	</td>
-	<td>
-			<% f.label :region %>
-			<%= f.select :region_id, options_for_select(@region_options) %>
-	</td>
-	<td>
-			<%= f.submit %>
-	</td>
-	
-</tr>
+	<table>
+		<tr class="odd">
+			<td colspan="4">
+					<% if @post.errors.any? %>
+						<div id="error_explanation">
+							<h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+							<ul>
+								<% @post.errors.full_messages.each do |message| %>
+								<li><%= message %></li>
+							</ul>
+						</div>
+					<% end %>
+				<% end %>
+				<div class="field">
+					<% f.label :content %>
+					<%= f.text_area :content, :placeholder => "Review/Description", size: "30x4", class: 'users' %>
+					<% f.label :user_id %>
+					<% f.hidden_field :user_id, :value => current_user.id %>
+				</div>
+			</td>
+		</tr>
+		<tr class="even">
+			<td>		
+					<%= f.fields_for @price do |builder| %>
+					  <%= render "price_fields", :f => builder %>
+					<% end %>
+			</td>
+			<td>	
+					<%= f.fields_for @strain do |builder| %>
+						<%= render "strain_fields", :f => builder %>
+					<% end%>
+			</td>
+			<td>
+					<% f.label :region %>
+					<%= f.select :region_id, options_for_select(@region_options) %>
+			</td>
+			<td>
+					<%= f.submit %>
+			</td>
+		</tr>
+	</table>
 <% end %>

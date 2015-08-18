@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @post = Post.new
+    @comment = Comment.new
     @strain = Strain.new
     @price = Price.new
     @region_options = Region.all.map{|r| [ r.name, r.id ] }
@@ -23,6 +24,13 @@ class UsersController < ApplicationController
 
   def update
   end
+
+  def comment_create
+    @comment = Comment.new(comment_params)
+    @comment.save
+    redirect_to :back
+  end
+
 
   def post_create
     @post = Post.new(post_params)
@@ -48,6 +56,7 @@ class UsersController < ApplicationController
     @post.region_id = @region.id
     @post.region = @region
     @post.save
+    redirect_to :back
   end
 
   # PATCH/PUT /posts/1
@@ -89,5 +98,9 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
       params.require(:post).permit(:content, :user_id, :price_id, :strain_id, price_attributes: [:id, :cost], strain_attributes: [:id, :name], region_attributes: [:id, :name])
+    end
+    
+    def comment_params
+      params.require(:comment).permit(:content, :user_id, :post_id)
     end
 end

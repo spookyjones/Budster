@@ -9,7 +9,10 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :omniauthable, :omniauth_providers => [:facebook]
 
-  attr_accessor :koala_friends_list
+  acts_as_follower
+  acts_as_followable
+  acts_as_liker
+  acts_as_mentionable
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

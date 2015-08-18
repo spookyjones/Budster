@@ -1,13 +1,20 @@
 Rails.application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
-  resources :users, :only => [:show, :index]
+  resources :users, :only => [:show, :index] do
+    post 'follow',   to: 'socializations#follow'
+    post 'unfollow', to: 'socializations#unfollow'
+  end
   resources :reviews
   resources :prices
-  resources :strains
+  resources :strains do
+    post 'follow',   to: 'socializations#follow'
+    post 'unfollow', to: 'socializations#unfollow'
+  end
   resources :regions
-  resources :posts
   resources :friendships
+  resources :posts
+  resources :comments
   
   match '/locations' => 'locations#index', :via => :get, :as => :locations
   match '/locations' => 'locations#show', :via => :post, :as => :search_locations
@@ -16,13 +23,15 @@ Rails.application.routes.draw do
   match '/locations/details' => 'locations#details', :via => :get, :as => :details
   match '/graphs' => 'graphs#index', :via => :get, :as => :graphs
   match '/searches' => 'searches#index', :via => :get, :as => :searches
-  match '/searches/search_leafly' => 'searches#search_leafly', :via => :post, :as => :search_leafly
+  match '/searches/search_leafly' => 'searches#search_leafly', :via => [:post, :get], :as => :search_leafly
   match '/searches/show' => 'searches#show', :via => :get, :as => :show
   match '/searches/next' => 'searches#search_leafly', :via => :post, :as => :next_results_page	
   match '/searches/prev' => 'searches#search_leafly', :via => :post, :as => :prev_results_page
   match '/users/posts/new' => 'users#post_create', :via => :post, :as => :post_create
+  match '/users/comments/new' => 'users#comment_create', :via => :post, :as => :comment_create
   match '/users/#{:uid}' => 'users#show', :via => :get, :as => :user_show
   match '/facebook_friends' => 'users#facebook_friends', :via => :get, :as => :facebook_friends
+  
   devise_scope :user do
     get 'sign_in', :to => 'devise/sessions#new', :as => :session
     get 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session

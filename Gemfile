@@ -22,7 +22,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-
+gem 'jquery-turbolinks'
 gem 'will_paginate'
 
 gem 'lazy_high_charts'
@@ -35,6 +35,7 @@ gem 'omniauth-facebook'
 gem "koala", "~> 2.0"
 gem 'font-awesome-sass', '~> 4.3.0'
 gem 'devise'
+gem "socialization"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
