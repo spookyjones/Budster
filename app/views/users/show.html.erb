@@ -7,8 +7,10 @@
 						<td>
 							<%= image_tag @user.largeimage %>
 							<h3><%= @user.name.titleize %></h3>
-							<% unless @user == current_user %>
-								<%= link_to "Follow", friendships_path(:friend_id => @user), :method => :post %>
+							<% unless current_user.follows?(@user)%>
+								<%= link_to "Follow", user_follow_path(:user_id => @user.id), :method => :post %>
+							<% else %>
+								<%= link_to "Unfollow", user_unfollow_path(:user_id => @user.id), :method => :post %>
 							<% end %>
 							<br>
 						</td>

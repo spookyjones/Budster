@@ -3,14 +3,10 @@
   <div class="user">
     <p>
       <strong><%=h user.name %></strong>
-      <%= link_to "Add Friend", friendships_path(:friend_id => user), :method => :post %>
+	  
+      <%= link_to "Follow", user_follow_path(:user_id => user.id), :method => :post %>
       <div class="clear"></div>
     </p>
   </div>
 <% end %>
 </div>
-
-
-<% @users.each do |user| %>
-  <%= user.name %>
-<% end %>

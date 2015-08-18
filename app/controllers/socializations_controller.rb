@@ -3,26 +3,36 @@ class SocializationsController < ApplicationController
 
   def follow
     current_user.follow!(@socializable)
-    render json: { follow: true }
+    redirect_to :back
   end
 
   def unfollow
     current_user.unfollow!(@socializable)
-    render json: { follow: false }
+    redirect_to :back
+  end
+  
+  def like
+    current_user.like!(@socializable)
+    redirect_to :back
   end
 
+  def unlike
+    current_user.unlike!(@socializable)
+    redirect_to :back
+  end
+  
 private
   def load_socializable
     @socializable =
       case
       when id = params[:comment_id] # Must be before :item_id, since it's nested under it.
-        @community.comments.find(id)
-      when id = params[:item_id]
-        @community.items.find(id)
+        Comment.find_by_id(id)
+      when id = params[:post_id]
+        Post.find_by_id(id)
       when id = params[:user_id]
-        User.find(id)
-      when id = params[:category_id]
-        @community.categories.find_by_id(id)
+        User.find_by_id(id)
+      when id = params[:strain_id]
+        Strain.find_by_id(id)
       else
         raise ArgumentError, "Unsupported socializable model, params: " +
                              params.keys.inspect

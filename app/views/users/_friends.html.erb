@@ -2,10 +2,10 @@
 	<tr>
 		<th>Following</th>
 	</tr>
-	<% for friendship in @user.friendships %>
+	<% for followee in @user.followees(User) %>
       <tr class="<%= cycle('odd', 'even') %>">
 		  <td>
-      		  <%= link_to friendship.friend.name, friendship.friend, :via => :get %> 
+      		  <%= link_to followee.name, followee, :via => :get %> 
 		  </td>
   	  </tr>
     <% end %>	
@@ -13,13 +13,13 @@
 <br>
 <table>
 	<tr>
-		<th>Followed by</th>
+		<th>Followers</th>
 	</tr>
-	<% for user in @user.inverse_friends %>
-		<tr class="<%= cycle('odd', 'even') %>">
+	<% for follower in @user.followers(User) %>
+      <tr class="<%= cycle('odd', 'even') %>">
 		  <td>
-			  <%= link_to user.name, user, :via => :get %>
+      		  <%= link_to follower.name, follower, :via => :get %> 
 		  </td>
-		</tr>
-	<% end %>
+  	  </tr>
+    <% end %>
 </table>

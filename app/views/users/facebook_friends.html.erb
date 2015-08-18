@@ -1,11 +1,12 @@
-<%= @friend_uids.count %><br>
-<% @friend_uids.each do |f| %>
-	<%= f %>
-<% end %>
-<br>
-
-<% @user_friends.each do |user| %>
-	<%= user.name %>
-	<%= link_to "Follow", friendships_path(:friend_id => user), :method => :post %>
+<% @user_friends.each do |f| %>
+	<% if f %>
+		<%= f.name %>
+		<% unless current_user.follows?(f)%>
+			<%= link_to "Follow", user_follow_path(:user_id => f.id), :method => :post %>
+		<% else %>
+			<%= link_to "Unfollow", user_unfollow_path(:user_id => f.id), :method => :post %>
+		<% end %>
+	
+	<% end %>
 <% end %>
 
