@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @post = Post.new
     @comment = Comment.new
+    @reply = Reply.new
     @strain = Strain.new
     @price = Price.new
     @region_options = Region.all.map{|r| [ r.name, r.id ] }
@@ -28,6 +29,12 @@ class UsersController < ApplicationController
   def comment_create
     @comment = Comment.new(comment_params)
     @comment.save
+    redirect_to :back
+  end
+  
+  def reply_create
+    @reply = Reply.new(reply_params)
+    @reply.save
     redirect_to :back
   end
 
@@ -92,6 +99,7 @@ class UsersController < ApplicationController
     def price_params
       params.require(:post).permit(price_attributes: [:id, :cost])
     end
+    
     def strain_params
       params.require(:post).permit(strain_attributes: [:id, :name])
     end
@@ -102,5 +110,9 @@ class UsersController < ApplicationController
     
     def comment_params
       params.require(:comment).permit(:content, :user_id, :post_id)
+    end
+    
+    def reply_params
+      params.require(:reply).permit(:content, :user_id, :comment_id)
     end
 end

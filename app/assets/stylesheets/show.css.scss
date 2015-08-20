@@ -57,8 +57,13 @@ td.content {
     border-radius: 10px;
     margin: 5px;
 }
-
+a.button {
+	float: right;
+}
 input#post_price_cost.users {
+    width: 96%;
+}
+input#reply_content {
     width: 96%;
 }
 input#post_strain_name.users {

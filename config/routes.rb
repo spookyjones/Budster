@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   resources :strains do
     post 'follow',   to: 'socializations#follow'
     post 'unfollow', to: 'socializations#unfollow'
+    post 'like',      to: 'socializations#like'
+    post 'unlike',    to: 'socializations#unlike'
   end
   resources :regions
   resources :friendships
@@ -18,6 +20,10 @@ Rails.application.routes.draw do
     post 'unlike',    to: 'socializations#unlike'
   end
   resources :comments do
+    post 'like',      to: 'socializations#like'
+    post 'unlike',    to: 'socializations#unlike'
+  end
+  resources :replies do
     post 'like',      to: 'socializations#like'
     post 'unlike',    to: 'socializations#unlike'
   end
@@ -35,7 +41,8 @@ Rails.application.routes.draw do
   match '/searches/prev' => 'searches#search_leafly', :via => :post, :as => :prev_results_page
   match '/users/posts/new' => 'users#post_create', :via => :post, :as => :post_create
   match '/users/comments/new' => 'users#comment_create', :via => :post, :as => :comment_create
-  match '/users/#{:uid}' => 'users#show', :via => :get, :as => :user_show
+  match '/users/replies/new' => 'users#reply_create', :via => :post, :as => :reply_create
+  match '/users/#{:id}' => 'users#show', :via => :get, :as => :user_show
   match '/facebook_friends' => 'users#facebook_friends', :via => :get, :as => :facebook_friends
 
   devise_scope :user do

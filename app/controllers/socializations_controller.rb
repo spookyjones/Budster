@@ -33,6 +33,8 @@ private
         User.find_by_id(id)
       when id = params[:strain_id]
         Strain.find_by_id(id)
+      when id = params[:reply_id]
+        Reply.find_by_id(id)
       else
         raise ArgumentError, "Unsupported socializable model, params: " +
                              params.keys.inspect

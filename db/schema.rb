@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150817120703) do
+ActiveRecord::Schema.define(version: 20150818202028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,6 +117,17 @@ ActiveRecord::Schema.define(version: 20150817120703) do
 
   add_index "regions", ["post_id"], name: "index_regions_on_post_id", using: :btree
   add_index "regions", ["strain_id"], name: "index_regions_on_strain_id", using: :btree
+
+  create_table "replies", force: :cascade do |t|
+    t.string   "content"
+    t.integer  "user_id"
+    t.integer  "comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "replies", ["comment_id"], name: "index_replies_on_comment_id", using: :btree
+  add_index "replies", ["user_id"], name: "index_replies_on_user_id", using: :btree
 
   create_table "reviews", force: :cascade do |t|
     t.string   "name"

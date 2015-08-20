@@ -1,9 +1,8 @@
 <% @user.posts.each do |post| %>
 	<table>
 		<tr class="<%= cycle('odd', 'even') %>">
-			<td class="center" rowspan="2">
-				<%= link_to image_tag(@user.smallimage), @user %>
-				
+			<td class="center" rowspan="2" width="100px">
+				<%= link_to image_tag(@user.normalimage), @user %>
 			</td>
 			<td colspan="5" class="content">
 				<%= post.content %>
@@ -24,21 +23,20 @@
 					</td>
 				<% end %>
 			<% end %>
-
 			<td class="center"><%= post.region %></td>
 			<td class="center"><%= time_ago_in_words(post.created_at) %> ago</td>
 			<% if @user == current_user %>
 				<td class="actions">
-					<%= link_to 'Delete', {:controller=>:posts, :action=>:destroy, :id=>post.id}, :method=>:delete %>
+					<%= link_to 'Delete', {:controller=>:posts, :action=>:destroy, :id=>post.id}, :method=>:delete, :class=>"button" %>
 				</td>
 			<% else %>
 				<% unless post.liked_by?(current_user) %>
 					<td class="actions">
-						<%= link_to 'Like', post_like_path(:post_id=>post.id), method: :post %>
+						<%= link_to 'Like', post_like_path(:post_id=>post.id), method: :post, :class=>"button" %>
 					</td>
 				<% else %>
 					<td class="actions">
-						<%= link_to 'Unlike', post_unlike_path(:post_id=>post.id), method: :post %>
+						<%= link_to 'Unlike', post_unlike_path(:post_id=>post.id), method: :post, :class=>"button" %>
 					</td>
 				<% end %>
 			<% end %>
@@ -47,31 +45,52 @@
 	<table>
 		<% post.comments.each do |c| %>
 			<tr class="<%= cycle('odd', 'even') %>">
-				<td class="content" rowspan="2" width="50px">
+				<td class="content" width="50px">
 					<%= link_to image_tag(c.user.smallimage), c.user %>
 				</td>
-				<td colspan="3">
+				<td colspan="3" class="content">
 					<%= c.content %>
+					<% if c.user == current_user %>
+						<%= link_to 'Delete', {:controller=>:comments, :action=>:destroy, :id=>c.id}, :method=>:delete, :class=>"button"%>
+					<% else %>
+						<% unless c.liked_by?(current_user) %>
+								<%= link_to 'Like', comment_like_path(:comment_id=>c.id), method: :post, :class=>"button" %>
+						<% else %>
+								<%= link_to 'Unlike', comment_unlike_path(:comment_id=>c.id), method: :post, :class=>"button" %>
+						<% end %>
+					<% end %>
 				</td>
 			</tr>
-			<tr class="<%= cycle('odd', 'even') %>">
-				<td>
-				</td>
-				<% if c.user == current_user %>
-					<td class="actions">
-						<%= link_to 'Delete', {:controller=>:posts, :action=>:destroy, :id=>post.id}, :method=>:delete %>
+			<% c.replies.each do |reply| %>
+				<tr class="<%= cycle('odd', 'even') %>">
+					<td>
+						Reply>
 					</td>
-				<% else %>
-					<% unless post.liked_by?(current_user) %>
-						<td class="actions">
-							<%= link_to 'Like', post_like_path(:post_id=>post.id), method: :post %>
-						</td>
-					<% else %>
-						<td class="actions">
-							<%= link_to 'Unlike', post_unlike_path(:post_id=>post.id), method: :post %>
-						</td>
+					<td class="content" width="50px">
+						<%= link_to image_tag(reply.user.smallimage), reply.user %>
+					</td>
+					<td colspan="3" class="content" id="reply">
+						<%= reply.content %>
+						<% if reply.user == current_user %>
+								<%= link_to 'Delete', {:controller=>:replies, :action=>:destroy, :id=>reply.id}, :method=>:delete, :class=>"button"%>
+						<% else %>
+							<% unless reply.liked_by?(current_user) %>
+									<%= link_to 'Like', reply_like_path(:reply_id=>reply.id), method: :post, :class=>"button" %>
+							<% else %>
+									<%= link_to 'Unlike', reply_unlike_path(:reply_id=>reply.id), method: :post, :class=>"button" %>
+							<% end %>
+						<% end %>
+					</td>
+				</tr>
+			<% end%>
+			<tr class="<%= cycle('odd', 'even') %>">
+				<td colspan="14">
+					<%= form_for(@reply, :url => reply_create_path) do |r| %>
+						<%= r.text_field :content, :placeholder => "Reply" %>
+						<%= r.hidden_field :user_id, :value => current_user.id %>
+						<%= r.hidden_field :comment_id, :value => c.id %>
 					<% end %>
-				<% end %>
+				</td>
 			</tr>
 		<% end %>	
 	</table>
