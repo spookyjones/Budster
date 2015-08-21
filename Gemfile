@@ -30,7 +30,8 @@ gem 'lazy_high_charts'
 gem 'vaporizer'
 
 gem 'geokit'
-
+gem 'fog'
+gem "paperclip", "~> 4.3"
 gem 'omniauth-facebook'
 gem "koala", "~> 2.0"
 gem 'font-awesome-sass', '~> 4.3.0'

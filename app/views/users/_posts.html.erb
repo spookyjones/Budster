@@ -1,10 +1,13 @@
-<% @user.posts.each do |post| %>
+<% @user.posts.reverse.each do |post| %>
 	<table class="posts">
 		<tr class="<%= cycle('even', 'odd') %>">
 			<td class="content" rowspan="2" width="100px">
 				<%= link_to image_tag(@user.normalimage), @user %>
 			</td>
 			<td colspan="5" class="content">
+				<% unless post.image.url == "/images/original/missing.png" %>
+					<%= image_tag post.image.url(:large) %><br>
+				<% end %>
 				<%= post.content %>
 			</td>
 		</tr>
@@ -52,6 +55,7 @@
 					<%= link_to image_tag(c.user.smallimage), c.user %>
 				</td>
 				<td colspan="3" class="content">
+					<%= image_tag c.image.url(:large) %><br>
 					<%= c.content %>
 				</td>
 			</tr>
@@ -77,6 +81,7 @@
 						<%= link_to image_tag(reply.user.smallimage), reply.user %>
 					</td>
 					<td colspan="3" class="content" id="reply">
+						<%= image_tag reply.image.url(:large) %><br>
 						<%= reply.content %>
 					</td>
 					</tr>
@@ -97,10 +102,13 @@
 			<% end%>
 			<tr class="<%= cycle('even', 'odd') %>">
 				<td colspan="14">
-					<%= form_for(@reply, :url => reply_create_path) do |r| %>
+					<%= form_for(@reply, :url => reply_create_path, :html => { :multipart => true }) do |r| %>
 						<%= r.text_field :content, :placeholder => "Reply" %>
 						<%= r.hidden_field :user_id, :value => current_user.id %>
 						<%= r.hidden_field :comment_id, :value => c.id %>
+						<% r.label :image %>
+						<%= r.file_field :image %>
+						<%= r.submit %>
 					<% end %>
 				</td>
 			</tr>
@@ -110,10 +118,11 @@
 		<tr>
 			<td>
 				<% if user_signed_in? %> 
-					<%= form_for(@comment, :url => comment_create_path) do |comment| %>
+					<%= form_for(@comment, :url => comment_create_path, :html => { :multipart => true }) do |comment| %>
 						<%= comment.hidden_field :user_id, :value => current_user.id %>
 						<%= comment.hidden_field :post_id, :value => post.id %>
 						<%= comment.text_field :content, :placeholder => 'Leave a comment', class: 'users' %>
+						<%= comment.file_field :image %>
 						<%= comment.submit "Comment" %>
 					<% end %>
 				<% end %>

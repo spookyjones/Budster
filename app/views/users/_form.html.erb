@@ -1,7 +1,7 @@
-<%= form_for(@post, :as => :post, :url => post_create_path) do |f| %>
+<%= form_for(@post, :as => :post, :url => post_create_path, :html => { :multipart => true }) do |f| %>
 	<table>
 		<tr class="odd">
-			<td colspan="4">
+			<td colspan="5">
 					<% if @post.errors.any? %>
 						<div id="error_explanation">
 							<h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -34,6 +34,10 @@
 			<td>
 					<% f.label :region %>
 					<%= f.select :region_id, options_for_select(@region_options) %>
+			</td>
+			<td>
+					<% f.label :image %>
+					<%= f.file_field :image %>
 			</td>
 			<td>
 					<%= f.submit %>

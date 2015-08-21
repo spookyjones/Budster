@@ -108,14 +108,14 @@ class UsersController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:content, :user_id, :price_id, :strain_id, price_attributes: [:id, :cost], strain_attributes: [:id, :name], region_attributes: [:id, :name])
+      params.require(:post).permit(:content, :image, :user_id, :price_id, :strain_id, price_attributes: [:id, :cost], strain_attributes: [:id, :name], region_attributes: [:id, :name])
     end
     
     def comment_params
-      params.require(:comment).permit(:content, :user_id, :post_id)
+      params.require(:comment).permit(:content, :image, :user_id, :post_id)
     end
     
     def reply_params
-      params.require(:reply).permit(:content, :user_id, :comment_id)
+      params.require(:reply).permit(:content, :image, :user_id, :comment_id)
     end
 end
