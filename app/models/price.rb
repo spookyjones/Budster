@@ -1,5 +1,5 @@
 class Price < ActiveRecord::Base
-	validates_presence_of :cost, :numericality => {:only_integer => true}
+
 	belongs_to :strain
 	belongs_to :region
   belongs_to :user

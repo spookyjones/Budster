@@ -38,7 +38,23 @@ $rgba-primary-4: rgba( 55, 82,  2,1);
 }
 td.content {
     text-align: left;
+	vertical-align: top;
+	
 }
+
+td.info { 
+	font-size: x-small;
+	height: 15px;
+}
+table.posts {
+
+}
+td#button.info { 
+	font-size: x-small;
+	height: 15px;
+	float: center;
+}
+
 #rightcontentwrap {
 
 }
@@ -75,7 +91,7 @@ input#comment_content.users {
 
 textarea#post_content.users {
     -webkit-appearance: textarea;
-    background-color: white;
+    background-color: #f6faf1;
     border: 1px solid;
     border-image-source: initial;
     border-image-slice: initial;

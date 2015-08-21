@@ -43,8 +43,12 @@ class UsersController < ApplicationController
     @post = Post.new(post_params)
     @region = Region.find(params["post"]["region_id"])
     @user = current_user.id
-    @strain = Strain.find_or_create_by(name: params["post"]["strain"]["name"].parameterize)
-  #  if !@price_params.blank?
+    unless params["post"]["strain"]["name"].blank? == true
+      @strain = Strain.find_or_create_by(name: params["post"]["strain"]["name"].parameterize)
+      @post.strain_id = @strain.id
+      @post.strain = @strain
+    end
+    unless params["post"]["price"]["cost"].blank? == true
       @price = Price.new(price_params)
       @price.cost = params["post"]["price"]["cost"]
       @price.strain = @strain
@@ -52,18 +56,17 @@ class UsersController < ApplicationController
       @price.user = current_user
       @price.post = @post
       @price.save
-  #  end
+      @post.price_id = @price.id
+      @post.price = @price
+    end
   #  if !@price_params.blank? && !@strain_params.blank
   #  end
     @post.user = current_user
-    @post.price_id = @price.id
-    @post.price = @price
-    @post.strain_id = @strain.id
-    @post.strain = @strain
     @post.region_id = @region.id
     @post.region = @region
     @post.save
     redirect_to :back
+    
   end
 
   # PATCH/PUT /posts/1

@@ -1,55 +1,63 @@
 <% @user.posts.each do |post| %>
-	<table>
-		<tr class="<%= cycle('odd', 'even') %>">
-			<td class="center" rowspan="2" width="100px">
+	<table class="posts">
+		<tr class="<%= cycle('even', 'odd') %>">
+			<td class="content" rowspan="2" width="100px">
 				<%= link_to image_tag(@user.normalimage), @user %>
 			</td>
 			<td colspan="5" class="content">
 				<%= post.content %>
 			</td>
 		</tr>
-		<tr class="<%= cycle('odd', 'even') %>">
-			<td class="center">
-				$<%= post.price ? post.price.cost : ""  %>
-			</td>
+		<tr class="<%= cycle('even', 'odd') %>">
+			<% if post.price %>
+				<td class="info">
+					$<%= post.price ? post.price.cost : ""  %>
+				</td>
+			<% end %>
 			<% if post.strain %>
 				<% if post.strain.name.parameterize == "unknown" %>
-					<td class="center">
+					<td class="info">
 						<%= link_to post.strain.name.titleize, graphs_path %>
 					</td>
 				<% else %>
-					<td class="center">
+					<td class="info">
 						<%= link_to post.strain.name.titleize, show_path( :s_slug => post.strain.name.parameterize ) %>
 					</td>
 				<% end %>
 			<% end %>
-			<td class="center"><%= post.region %></td>
-			<td class="center"><%= time_ago_in_words(post.created_at) %> ago</td>
+			<% unless post.region.name.blank? == true %>
+				<td class="info"><%= post.region %></td>
+			<% end %>
+			<td class="info" id="button"><%= time_ago_in_words(post.created_at) %> ago
 			<% if @user == current_user %>
-				<td class="actions">
 					<%= link_to 'Delete', {:controller=>:posts, :action=>:destroy, :id=>post.id}, :method=>:delete, :class=>"button" %>
 				</td>
 			<% else %>
 				<% unless post.liked_by?(current_user) %>
-					<td class="actions">
+					<td class="info">
 						<%= link_to 'Like', post_like_path(:post_id=>post.id), method: :post, :class=>"button" %>
 					</td>
 				<% else %>
-					<td class="actions">
+					<td class="info">
 						<%= link_to 'Unlike', post_unlike_path(:post_id=>post.id), method: :post, :class=>"button" %>
 					</td>
 				<% end %>
 			<% end %>
 		</tr>
 	</table>
-	<table>
+	<table class="posts">
 		<% post.comments.each do |c| %>
-			<tr class="<%= cycle('odd', 'even') %>">
-				<td class="content" width="50px">
+			<tr class="<%= cycle('even', 'odd') %>">
+				<td class="content" width="50px" rowspan="2">
 					<%= link_to image_tag(c.user.smallimage), c.user %>
 				</td>
 				<td colspan="3" class="content">
 					<%= c.content %>
+				</td>
+			</tr>
+			<tr class="<%= cycle('even', 'odd') %>">
+				<td class="info" colspan="2" >
+					<%= time_ago_in_words(post.created_at) %> ago 
 					<% if c.user == current_user %>
 						<%= link_to 'Delete', {:controller=>:comments, :action=>:destroy, :id=>c.id}, :method=>:delete, :class=>"button"%>
 					<% else %>
@@ -62,15 +70,19 @@
 				</td>
 			</tr>
 			<% c.replies.each do |reply| %>
-				<tr class="<%= cycle('odd', 'even') %>">
-					<td>
-						Reply>
+				<tr class="<%= cycle('even', 'odd') %>">
+					<td rowspan="2">	
 					</td>
-					<td class="content" width="50px">
+					<td class="content" width="50px" rowspan="2">
 						<%= link_to image_tag(reply.user.smallimage), reply.user %>
 					</td>
 					<td colspan="3" class="content" id="reply">
 						<%= reply.content %>
+					</td>
+					</tr>
+						<tr class="<%= cycle('even', 'odd') %>">
+							<td colspan="2" class="info" id="button">
+								<%= time_ago_in_words(post.created_at) %> ago
 						<% if reply.user == current_user %>
 								<%= link_to 'Delete', {:controller=>:replies, :action=>:destroy, :id=>reply.id}, :method=>:delete, :class=>"button"%>
 						<% else %>
@@ -83,7 +95,7 @@
 					</td>
 				</tr>
 			<% end%>
-			<tr class="<%= cycle('odd', 'even') %>">
+			<tr class="<%= cycle('even', 'odd') %>">
 				<td colspan="14">
 					<%= form_for(@reply, :url => reply_create_path) do |r| %>
 						<%= r.text_field :content, :placeholder => "Reply" %>
@@ -103,7 +115,6 @@
 						<%= comment.hidden_field :post_id, :value => post.id %>
 						<%= comment.text_field :content, :placeholder => 'Leave a comment', class: 'users' %>
 						<%= comment.submit "Comment" %>
-		
 					<% end %>
 				<% end %>
 			</td>

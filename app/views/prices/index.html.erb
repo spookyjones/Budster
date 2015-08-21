@@ -20,21 +20,30 @@
         <tr class="<%= cycle('odd', 'even') %>">
           <td><%= price.position %></td>
           <td class="center">$<%= price.cost %></td>
-          <% if price.strain.name.parameterize == "unknown" %>
-            <td class="center"><%= link_to price.strain.name.titleize, graphs_path %></td>
-          <% else %>
-            <td class="center"><%= link_to price.strain.name.titleize, show_path( :s_slug => price.strain.name.parameterize ) %></td>
-          <% end %>
+		  <td class="center">
+		  <% if price.strain %>
+	          <% if price.strain.name.parameterize == "unknown" %>
+	            <%= link_to price.strain.name.titleize, graphs_path %>
+	          <% else %>
+	            <%= link_to price.strain.name.titleize, show_path( :s_slug => price.strain.name.parameterize ) %>
+	          <% end %>
+		  <% end %>
+	  	  </td>
           <td class="center"><%= link_to price.region, price.region %></td>
           <td class="center"><%= time_ago_in_words(price.created_at) %> ago</td>
           <td class="actions">
             <%= link_to 'Show', price, :class => 'action show' %>
-            <%= link_to 'Find', locations_path( :s_slug => price.strain.name.parameterize, :address => price.region.name ), :class => 'action show' %>
-          <% if price.strain.name.parameterize == "unknown" %>
-            <%= link_to 'Info', graphs_path, :class => 'action show' %>
-          <% else %>
-            <%= link_to 'Info', show_path( :s_slug => price.strain.name.parameterize ), :class => 'action show' %>
-          <% end %>
+			<% if price.strain %>
+            	<%= link_to 'Find', locations_path( :s_slug => price.strain.name.parameterize, :address => price.region.name ), :class => 'action show' %>
+			
+	          <% if price.strain.name.parameterize == "unknown" %>
+	            <%= link_to 'Info', graphs_path, :class => 'action show' %>
+	          <% else %>
+	            <%= link_to 'Info', show_path( :s_slug => price.strain.name.parameterize ), :class => 'action show' %>
+	          <% end %>
+			<% else %>
+			  
+			<% end %>
           </td>
         </tr>
       <% end %>

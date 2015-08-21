@@ -3,12 +3,18 @@
 <p>
   <strong>Price:</strong>
   <%= @price.cost %><br />
-  <strong>Strain:</strong>
-  <%= link_to @price.strain.name.titleize, @price.strain %><br />
+  <% if @price.strain %>
+	  <strong>Strain:</strong>
+	  <%= link_to @price.strain.name.titleize, @price.strain %><br />
+  <% end %>
+  <% unless @price.region.name == "" %>
   <strong>Region:</strong>
   <%= link_to @price.region, @price.region %><br />  
+  <% end %>
+  <% if @price.user %>
   <strong>User:</strong>
   <%= link_to @price.user.name, @price.user %>
+  <% end %>
 </p>
 
 <%= link_to 'Home', prices_path, :class => 'action show'  %>

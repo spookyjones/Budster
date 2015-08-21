@@ -39,15 +39,17 @@ class PricesController < ApplicationController
   # POST /prices
   # POST /prices.json
   def create
-    @price = Price.new(price_params)
-    @price.position = Price.count + 1
-    respond_to do |format|
-      if @price.save
-        format.html { redirect_to "/", notice: 'Price was successfully created.' }
-        format.json { render :show, status: :created, location: @price }
-      else
-        format.html { render :new }
-        format.json { render json: @price.errors, status: :unprocessable_entity }
+    unless params[:cost] = ""
+      @price = Price.new(price_params)
+      @price.position = Price.count + 1
+      respond_to do |format|
+        if @price.save
+          format.html { redirect_to "/", notice: 'Price was successfully created.' }
+          format.json { render :show, status: :created, location: @price }
+        else
+          format.html { render :new }
+          format.json { render json: @price.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -89,6 +91,12 @@ class PricesController < ApplicationController
     end
     
     def update_price 
+    end
+    
+    def check_price
+      if @price.cost = ""
+        @price.destroy
+      end
     end
     
   	def setup_navigation
