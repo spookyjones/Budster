@@ -31,7 +31,9 @@ $rgba-primary-4: rgba( 55, 82,  2,1);
     margin: 0 auto;
     width: 100%;
 }
-
+td#avatar.content {
+	
+}
 #contentwrap {
     width: 66%;
     float: left;
@@ -39,20 +41,29 @@ $rgba-primary-4: rgba( 55, 82,  2,1);
 td.content {
     text-align: left;
 	vertical-align: top;
-	
+	border: 0px;	
 }
 
 td.info { 
 	font-size: x-small;
 	height: 15px;
+	border: 0px;
 }
 table.posts {
+	border: 0px;
+	background: #e4efd6;
+
+}
+table.reply_bar {
+	border: 0px;
+	background: #e4efd6;
 
 }
 td#button.info { 
 	font-size: x-small;
 	height: 15px;
 	float: center;
+	border: 0px;
 }
 
 #rightcontentwrap {
@@ -62,6 +73,7 @@ td#button.info {
 #user_content {
     border-radius: 10px;
     margin: 5px;
+	border: 0px;
 }
 
 #leftcolumnwrap {

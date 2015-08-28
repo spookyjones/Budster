@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'timeline/index'
+
+  get 'timeline/show'
+
+  get 'index/show'
+
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   resources :users, :only => [:show, :index] do
     post 'follow',   to: 'socializations#follow'
@@ -41,9 +47,12 @@ Rails.application.routes.draw do
   match '/searches/prev' => 'searches#search_leafly', :via => :post, :as => :prev_results_page
   match '/users/posts/new' => 'users#post_create', :via => :post, :as => :post_create
   match '/users/comments/new' => 'users#comment_create', :via => :post, :as => :comment_create
-  match '/users/replies/new' => 'users#reply_create', :via => :post, :as => :reply_create
+  match '/users/replies/new' => 'users#reply_create', :via => [:get, :post], :as => :reply_create
+  match '/users/replies/show' => 'users#reply_show', :via => [:get, :post], :as => :reply_show
+  match '/users/comments/show' => 'users#comment_show', :via => [:get, :post], :as => :comment_show  
   match '/users/#{:id}' => 'users#show', :via => :get, :as => :user_show
   match '/facebook_friends' => 'users#facebook_friends', :via => :get, :as => :facebook_friends
+  match '/timeline' => 'timelines#index', :via => :get, :as => :timeline
 
   devise_scope :user do
     get 'sign_in', :to => 'devise/sessions#new', :as => :session

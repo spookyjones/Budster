@@ -3,6 +3,15 @@
     <td>
   	 <h2><%= @slug.titleize %></h2>
     </td>
+	<td>
+		<h2>
+		<% unless current_user.follows?(@strain)%>
+			<%= link_to "Follow", strain_follow_path(:strain_id => @strain.id), :method => :post %>
+		<% else %>
+			<%= link_to "Unfollow", strain_unfollow_path(:strain_id => @strain.id), :method => :post %>
+		<% end %>
+		</h2>
+	</td>
   </table>
 </div>
 
@@ -12,9 +21,6 @@
 <%= render 'add_price_to_strain' %>
 
 
-  <% @strain = Strain.find_by( name: params[:s_slug]) %>
-
-  
   <% if @strain != nil %>
  <br>
   

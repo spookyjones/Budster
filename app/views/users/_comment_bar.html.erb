@@ -1,0 +1,15 @@
+<table class="comment_bar"> 
+	<tr class="even">
+		<td colspan="14">
+			<% if user_signed_in? %> 
+				<%= form_for(@comment, :url => comment_create_path, :html => { :multipart => true }) do |comment| %>
+					<%= comment.hidden_field :user_id, :value => current_user.id %>
+					<%= comment.hidden_field :post_id, :value => @p.id %>
+					<%= comment.text_field :content, :placeholder => 'Leave a comment', class: 'users' %>
+					<%= comment.file_field :image %>
+					<%= comment.submit "Comment" %>
+				<% end %>
+			<% end %>
+		</td>
+	</tr>
+</table>

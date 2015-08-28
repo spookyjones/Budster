@@ -1,0 +1,16 @@
+<table class="reply_bar">
+	<tr class="even">
+		<td colspan="14">
+			<% if user_signed_in? %> 
+				<%= form_for(@reply, :url => reply_create_path, :html => { :multipart => true }) do |r| %>
+					<%= r.text_field :content, :placeholder => "Reply" %>
+					<%= r.hidden_field :user_id, :value => current_user.id %>
+					<%= r.hidden_field :comment_id, :value => @c.id %>
+					<% r.label :image %>
+					<%= r.file_field :image %>
+					<%= r.submit %>
+				<% end %>
+			<% end %>
+		</td>
+	</tr>
+</table>

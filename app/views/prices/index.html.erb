@@ -8,6 +8,7 @@
 <div class="prices index" id="parent2">
   <table class="listing" summary="Prices list">
       <tr class="header">
+		  <th class="center">Images</th>
           <th class="center"><%= sortable "position", "Pos" %></th>
           <th class="center"><%= sortable "cost", "Price" %></th>
           <th class="center"><%= sortable "strain_id", "Strain" %></th>  
@@ -18,6 +19,11 @@
       
       <% @prices.each do |price| %>
         <tr class="<%= cycle('odd', 'even') %>">
+			<td>
+				<% if price.post && price.post.image %>
+					<%= image_tag price.post.image.url(:thumb) %>
+				<% end %>
+			</td>
           <td><%= price.position %></td>
           <td class="center">$<%= price.cost %></td>
 		  <td class="center">

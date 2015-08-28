@@ -1,17 +1,17 @@
-<% @user.posts.reverse.each do |post| %>
+<% @sorted_posts.each do |post| %>
 	<table class="posts">
-		<tr class="<%= cycle('even', 'odd') %>">
+		<tr class="even">
 			<td class="content" rowspan="2" width="100px">
-				<%= link_to image_tag(@user.normalimage), @user %>
+				<%= link_to image_tag(post.user.normalimage), post.user %>
 			</td>
-			<td colspan="5" class="content">
+			<td colspan="6" class="content">
 				<% unless post.image.url == "/images/original/missing.png" %>
 					<%= image_tag post.image.url(:large) %><br>
 				<% end %>
 				<%= post.content %>
 			</td>
 		</tr>
-		<tr class="<%= cycle('even', 'odd') %>">
+		<tr class="odd">
 			<% if post.price %>
 				<td class="info">
 					$<%= post.price ? post.price.cost : ""  %>
@@ -31,9 +31,12 @@
 			<% unless post.region.name.blank? == true %>
 				<td class="info"><%= post.region %></td>
 			<% end %>
-			<td class="info" id="button"><%= time_ago_in_words(post.created_at) %> ago
+			<td colspan="2" class="info" id="button"><%= time_ago_in_words(post.created_at) %> ago
+				<% if user_signed_in? %>
+					<%= link_to "| Comment", comment_show_path(:post_id=>post.id), :class=>"button", :remote => true %> 
+				<% end %>
 			<% if @user == current_user %>
-					<%= link_to 'Delete', {:controller=>:posts, :action=>:destroy, :id=>post.id}, :method=>:delete, :class=>"button" %>
+					<%= link_to 'Delete |', {:controller=>:posts, :action=>:destroy, :id=>post.id}, :method=>:delete, :class=>"button" %>
 				</td>
 			<% else %>
 				<% unless post.liked_by?(current_user) %>
@@ -48,22 +51,27 @@
 			<% end %>
 		</tr>
 	</table>
-	<table class="posts">
-		<% post.comments.each do |c| %>
-			<tr class="<%= cycle('even', 'odd') %>">
-				<td class="content" width="50px" rowspan="2">
-					<%= link_to image_tag(c.user.smallimage), c.user %>
+	<div id="comment_bar_<%= post.id %>">
+
+	</div>
+	<% post.comments.each do |c| %>
+		<table class="posts">
+			<tr class="even">
+				<td id="avatar" class="content" width="50px" rowspan="2" colspan="1">
+					> <%= link_to image_tag(c.user.smallimage), c.user %>
 				</td>
-				<td colspan="3" class="content">
+				<td colspan="5" class="content">
+				<% unless c.image.url == "/images/original/missing.png" %>
 					<%= image_tag c.image.url(:large) %><br>
+				<% end %>
 					<%= c.content %>
 				</td>
 			</tr>
-			<tr class="<%= cycle('even', 'odd') %>">
-				<td class="info" colspan="2" >
+			<tr class="odd">
+				<td class="info" colspan="5" id="button">
 					<%= time_ago_in_words(post.created_at) %> ago 
 					<% if c.user == current_user %>
-						<%= link_to 'Delete', {:controller=>:comments, :action=>:destroy, :id=>c.id}, :method=>:delete, :class=>"button"%>
+						<%= link_to '| Delete', {:controller=>:comments, :action=>:destroy, :id=>c.id}, :method=>:delete, :class=>"button"%>
 					<% else %>
 						<% unless c.liked_by?(current_user) %>
 								<%= link_to 'Like', comment_like_path(:comment_id=>c.id), method: :post, :class=>"button" %>
@@ -71,23 +79,28 @@
 								<%= link_to 'Unlike', comment_unlike_path(:comment_id=>c.id), method: :post, :class=>"button" %>
 						<% end %>
 					<% end %>
+					<%= link_to "Reply |", reply_show_path(:comment_id=>c.id), :class=>"button", :remote => true %> 
 				</td>
 			</tr>
-			<% c.replies.each do |reply| %>
-				<tr class="<%= cycle('even', 'odd') %>">
-					<td rowspan="2">	
+		</table>
+		<div id="reply_bar_<%= c.id %>">
+		</div>
+		<% c.replies.each do |reply| %>
+			<table class="posts">
+				<tr class="even">
+					<td id="avatar" class="content" width="50px" rowspan="2">
+						>> <%= link_to image_tag(reply.user.smallimage), reply.user %>
 					</td>
-					<td class="content" width="50px" rowspan="2">
-						<%= link_to image_tag(reply.user.smallimage), reply.user %>
-					</td>
-					<td colspan="3" class="content" id="reply">
+					<td colspan="5" class="content" id="reply">
+					<% unless reply.image.url == "/images/original/missing.png" %>
 						<%= image_tag reply.image.url(:large) %><br>
+					<% end %>
 						<%= reply.content %>
 					</td>
-					</tr>
-						<tr class="<%= cycle('even', 'odd') %>">
-							<td colspan="2" class="info" id="button">
-								<%= time_ago_in_words(post.created_at) %> ago
+				</tr>
+				<tr class="odd">
+					<td colspan="5" class="info" id="button">
+						<%= time_ago_in_words(post.created_at) %> ago
 						<% if reply.user == current_user %>
 								<%= link_to 'Delete', {:controller=>:replies, :action=>:destroy, :id=>reply.id}, :method=>:delete, :class=>"button"%>
 						<% else %>
@@ -99,35 +112,8 @@
 						<% end %>
 					</td>
 				</tr>
-			<% end%>
-			<tr class="<%= cycle('even', 'odd') %>">
-				<td colspan="14">
-					<%= form_for(@reply, :url => reply_create_path, :html => { :multipart => true }) do |r| %>
-						<%= r.text_field :content, :placeholder => "Reply" %>
-						<%= r.hidden_field :user_id, :value => current_user.id %>
-						<%= r.hidden_field :comment_id, :value => c.id %>
-						<% r.label :image %>
-						<%= r.file_field :image %>
-						<%= r.submit %>
-					<% end %>
-				</td>
-			</tr>
-		<% end %>	
-	</table>
-	<table> 
-		<tr>
-			<td>
-				<% if user_signed_in? %> 
-					<%= form_for(@comment, :url => comment_create_path, :html => { :multipart => true }) do |comment| %>
-						<%= comment.hidden_field :user_id, :value => current_user.id %>
-						<%= comment.hidden_field :post_id, :value => post.id %>
-						<%= comment.text_field :content, :placeholder => 'Leave a comment', class: 'users' %>
-						<%= comment.file_field :image %>
-						<%= comment.submit "Comment" %>
-					<% end %>
-				<% end %>
-			</td>
-		</tr>
-	</table>
+			</table>
+		<% end%>
+	<% end %>	
 	<br>
 <% end %>

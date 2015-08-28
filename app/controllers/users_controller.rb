@@ -15,6 +15,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @sorted_posts = @user.posts.reverse
     @post = Post.new
     @comment = Comment.new
     @reply = Reply.new
@@ -30,6 +31,24 @@ class UsersController < ApplicationController
     @comment = Comment.new(comment_params)
     @comment.save
     redirect_to :back
+  end
+  
+  def reply_show
+    @reply = Reply.new
+    @cid = show_reply_params
+    @c = Comment.find_by_id(@cid)
+    respond_to do |format|
+      format.js
+    end
+  end
+  
+  def comment_show
+    @comment = Comment.new
+    @cid = show_comment_params
+    @p = Post.find_by_id(@cid)
+    respond_to do |format|
+      format.js
+    end
   end
   
   def reply_create
@@ -101,6 +120,14 @@ class UsersController < ApplicationController
     
     def price_params
       params.require(:post).permit(price_attributes: [:id, :cost])
+    end
+    
+    def show_reply_params
+      params.require(:comment_id)
+    end 
+    
+    def show_comment_params
+      params.require(:post_id)
     end
     
     def strain_params
