@@ -5,12 +5,7 @@ class UsersController < ApplicationController
   end
   
   def facebook_friends
-    @user_friends = []
-    @koala = current_user.info
-    @friend_uids = @koala.split(",")
-    for f in @friend_uids
-      @user_friends << User.find_by(:uid => f)
-    end
+
   end
   
   def show
@@ -22,6 +17,7 @@ class UsersController < ApplicationController
     @strain = Strain.new
     @price = Price.new
     @region_options = Region.all.map{|r| [ r.name, r.id ] }
+    set_friends
   end
 
   def update
@@ -116,6 +112,15 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])
+    end
+    
+    def set_friends
+      @user_friends = []
+      @koala = current_user.info
+      @friend_uids = @koala.split(",")
+      for f in @friend_uids
+        @user_friends << User.find_by(:uid => f)
+      end
     end
     
     def price_params

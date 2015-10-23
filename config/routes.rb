@@ -4,8 +4,6 @@ Rails.application.routes.draw do
 
   get 'timeline/show'
 
-  get 'index/show'
-
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
   resources :users, :only => [:show, :index] do
     post 'follow',   to: 'socializations#follow'

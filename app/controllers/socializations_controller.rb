@@ -3,12 +3,18 @@ class SocializationsController < ApplicationController
 
   def follow
     current_user.follow!(@socializable)
-    redirect_to :back
+    respond_to do |format|
+      format.html { redirect_to :back, notice: @socializable.name.titleize + ' was successfully followed.' }
+    end
+    
   end
 
   def unfollow
     current_user.unfollow!(@socializable)
-    redirect_to :back
+    respond_to do |format|
+      format.html { redirect_to :back, notice: 'You are no longer following ' + @socializable.name.titleize + '.' }
+      format.json { head :no_content }
+    end
   end
   
   def like

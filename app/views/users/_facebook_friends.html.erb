@@ -1,0 +1,25 @@
+<div id="facebook_friends">
+	<table>
+		<tr>
+			<th colspan="2">
+				Friends Using Budster
+			</th>
+		</tr>
+		<% @user_friends.each do |f| %>
+			<% if f %>
+		<tr class="<%= cycle('odd', 'even') %>">
+			<td>
+				<%= link_to f.name, f %>
+			</td>
+			<td>
+				<% unless current_user.follows?(f)%>
+					<%= link_to "Follow", user_follow_path(:user_id => f.id), :method => :post %>
+				<% else %>
+					<%= link_to "Unfollow", user_unfollow_path(:user_id => f.id), :method => :post %>
+				<% end %>
+			</td>
+		</tr>
+			<% end %>
+		<% end %>
+	</table>
+</div>

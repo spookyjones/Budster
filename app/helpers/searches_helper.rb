@@ -18,6 +18,8 @@ module SearchesHelper
     avg == Float::NAN ? avg = 0 : avg
   end
   
-  
+  def strain_from_slug(slug)
+    @strain = Strain.find_or_create_by({name: slug.parameterize })
+  end
   
 end

@@ -6,6 +6,8 @@ class StrainsController < ApplicationController
 	def show
 		@strain = Strain.find(params[:id])
 		@prices = @strain.prices
+    @price = Price.new
+    @region_options = Region.all.map{|r| [ r.name, r.id ] }
 		@leafly = Vaporizer::Strain.details(@strain.name.parameterize)
 		@category = @leafly['category']
 		@description = @leafly['description']
@@ -21,8 +23,10 @@ class StrainsController < ApplicationController
 		@permalink = @leafly['permalink']
 		@relatedstrains = @leafly['relatedStrains']#returns an array of hashes
 		@parents = @leafly['parents']#returns an array of hashes
-	    @reviews = @leafly["highlightedReviews"]#returns an array of hashes
+	  @reviews = @leafly["highlightedReviews"]#returns an array of hashes
 		@video = @leafly['videoUrl']
+  rescue Vaporizer::NotFound
+      
 	end
 
 	def index

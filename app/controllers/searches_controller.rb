@@ -1,4 +1,5 @@
 class SearchesController < ApplicationController
+  
   before_action :set_search
 	def index
 		@flavor_options = flavors
@@ -9,10 +10,10 @@ class SearchesController < ApplicationController
 	
 	def show
 		@strain_params = params[:s_slug] || "unknown"
-    	@strain = Strain.find_or_create_by(name: @strain_params)
-    	@region_options = Region.all.map{|r| [ r.name, r.id ] }
-    	@price = Price.new
-    	@price.strain = @strain
+    @strain = Strain.find_or_create_by(name: @strain_params)
+    @region_options = Region.all.map{|r| [ r.name, r.id ] }
+    @price = Price.new
+    @price.strain = @strain
 		@flavor_options = flavors
 		@symptoms_options = symptoms
 		@tag_options = tags
@@ -34,6 +35,8 @@ class SearchesController < ApplicationController
 		@parents = @leafly['parents']#returns an array of hashes
 	  @reviews = @leafly["highlightedReviews"]#returns an array of hashes
 		@video = @leafly['videoUrl']
+  rescue Vaporizer::NotFound
+      redirect_to @strain
 	end
 	
 	def search_leafly
@@ -57,6 +60,10 @@ class SearchesController < ApplicationController
 	end
 	
 	private
+  
+  def not_found
+    redirect_to @strain
+  end
 	
     def set_search
   		@page = params[:s_page] || 0

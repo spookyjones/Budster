@@ -1,0 +1,12 @@
+<table>
+	<tr>
+		<th>Favorite Strains</th>
+	</tr>
+	<% for followee in @user.followees(Strain) %>
+      <tr class="<%= cycle('odd', 'even') %>">
+		  <td>
+			  <%= link_to followee.name.titleize, show_path( :s_slug => followee.name.parameterize ) %>
+		  </td>
+  	  </tr>
+    <% end %>	
+</table>

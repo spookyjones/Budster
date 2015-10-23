@@ -3,6 +3,7 @@
 		<tr class="even">
 			<td class="content" rowspan="2" width="100px">
 				<%= link_to image_tag(post.user.normalimage), post.user %>
+				<%= link_to post.user.name.titleize, post.user %>
 			</td>
 			<td colspan="6" class="content">
 				<% unless post.image.url == "/images/original/missing.png" %>
@@ -33,34 +34,34 @@
 			<% end %>
 			<td colspan="2" class="info" id="button"><%= time_ago_in_words(post.created_at) %> ago
 				<% if user_signed_in? %>
-					<%= link_to "| Comment", comment_show_path(:post_id=>post.id), :class=>"button", :remote => true %> 
+					<%= link_to "Comment", comment_show_path(:post_id=>post.id), :class=>"button", :remote => true %> 
 				<% end %>
-			<% if @user == current_user %>
-					<%= link_to 'Delete |', {:controller=>:posts, :action=>:destroy, :id=>post.id}, :method=>:delete, :class=>"button" %>
-				</td>
-			<% else %>
-				<% unless post.liked_by?(current_user) %>
-					<td class="info">
-						<%= link_to 'Like', post_like_path(:post_id=>post.id), method: :post, :class=>"button" %>
-					</td>
+				<% if post.user == current_user %>
+						<%= link_to 'Delete', {:controller=>:posts, :action=>:destroy, :id=>post.id}, :method=>:delete, :class=>"button" %>
+			</td>
 				<% else %>
-					<td class="info">
-						<%= link_to 'Unlike', post_unlike_path(:post_id=>post.id), method: :post, :class=>"button" %>
-					</td>
+					<% unless post.liked_by?(current_user) %>
+							<%= link_to 'Like', post_like_path(:post_id=>post.id), method: :post, :class=>"button" %> 
+					
+					<% else %>
+							<%= link_to 'Unlike', post_unlike_path(:post_id=>post.id), method: :post, :class=>"button" %>
+					<% end %>
+			</td>
 				<% end %>
-			<% end %>
 		</tr>
 	</table>
 	<div id="comment_bar_<%= post.id %>">
-
 	</div>
 	<% post.comments.each do |c| %>
 		<table class="posts">
 			<tr class="even">
-				<td id="avatar" class="content" width="50px" rowspan="2" colspan="1">
-					> <%= link_to image_tag(c.user.smallimage), c.user %>
+				<td class="content" width="100px" rowspan="2">
+					
 				</td>
-				<td colspan="5" class="content">
+				<td id="avatar" class="content" width="50px" rowspan="2" colspan="1">
+					 <%= link_to image_tag(c.user.smallimage), c.user %>
+				</td>
+				<td colspan="5" class="content" id="comment">
 				<% unless c.image.url == "/images/original/missing.png" %>
 					<%= image_tag c.image.url(:large) %><br>
 				<% end %>
@@ -70,8 +71,11 @@
 			<tr class="odd">
 				<td class="info" colspan="5" id="button">
 					<%= time_ago_in_words(post.created_at) %> ago 
+					<% if user_signed_in? %>
+						<%= link_to "Reply", reply_show_path(:comment_id=>c.id), :class=>"button", :remote => true %> 
+					<% end %>
 					<% if c.user == current_user %>
-						<%= link_to '| Delete', {:controller=>:comments, :action=>:destroy, :id=>c.id}, :method=>:delete, :class=>"button"%>
+						<%= link_to 'Delete', {:controller=>:comments, :action=>:destroy, :id=>c.id}, :method=>:delete, :class=>"button"%>
 					<% else %>
 						<% unless c.liked_by?(current_user) %>
 								<%= link_to 'Like', comment_like_path(:comment_id=>c.id), method: :post, :class=>"button" %>
@@ -79,7 +83,6 @@
 								<%= link_to 'Unlike', comment_unlike_path(:comment_id=>c.id), method: :post, :class=>"button" %>
 						<% end %>
 					<% end %>
-					<%= link_to "Reply |", reply_show_path(:comment_id=>c.id), :class=>"button", :remote => true %> 
 				</td>
 			</tr>
 		</table>
@@ -88,8 +91,14 @@
 		<% c.replies.each do |reply| %>
 			<table class="posts">
 				<tr class="even">
+					<td class="content" width="100px" rowspan="2">
+						
+					</td>
+					<td class="content" width="50px" rowspan="2">
+						
+					</td>
 					<td id="avatar" class="content" width="50px" rowspan="2">
-						>> <%= link_to image_tag(reply.user.smallimage), reply.user %>
+						 <%= link_to image_tag(reply.user.smallimage), reply.user %>
 					</td>
 					<td colspan="5" class="content" id="reply">
 					<% unless reply.image.url == "/images/original/missing.png" %>
@@ -102,12 +111,12 @@
 					<td colspan="5" class="info" id="button">
 						<%= time_ago_in_words(post.created_at) %> ago
 						<% if reply.user == current_user %>
-								<%= link_to 'Delete', {:controller=>:replies, :action=>:destroy, :id=>reply.id}, :method=>:delete, :class=>"button"%>
+								<%= link_to 'Delete ', {:controller=>:replies, :action=>:destroy, :id=>reply.id}, :method=>:delete, :class=>"button"%>
 						<% else %>
 							<% unless reply.liked_by?(current_user) %>
-									<%= link_to 'Like', reply_like_path(:reply_id=>reply.id), method: :post, :class=>"button" %>
+									<%= link_to 'Like ', reply_like_path(:reply_id=>reply.id), method: :post, :class=>"button" %>
 							<% else %>
-									<%= link_to 'Unlike', reply_unlike_path(:reply_id=>reply.id), method: :post, :class=>"button" %>
+									<%= link_to 'Unlike ', reply_unlike_path(:reply_id=>reply.id), method: :post, :class=>"button" %>
 							<% end %>
 						<% end %>
 					</td>
